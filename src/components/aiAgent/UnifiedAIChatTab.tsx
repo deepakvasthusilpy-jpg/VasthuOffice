@@ -389,7 +389,7 @@ export const UnifiedAIChatTab: React.FC<{
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-sm font-bold text-white font-sans">
-                  AI ചീഫ് എഞ്ചിനീയർ ലൈവ് കൺസൾട്ടേഷൻ
+                  Live Support
                 </h3>
                 <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[10px] font-mono font-bold flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />

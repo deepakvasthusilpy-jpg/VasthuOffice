@@ -47,7 +47,19 @@ export type MainSectionType =
   | "building_rules"
   | "ksmart"
   | "survey"
-  | "civil";
+  | "civil"
+  | "rendering"
+  | "quotation";
+
+export type QuotationTabType =
+  | "quotation_dashboard"
+  | "quotation_create"
+  | "quotation_all"
+  | "quotation_rates"
+  | "quotation_contractors"
+  | "quotation_terms";
+
+export type RenderingTabType = "ai_rendering";
 
 export type PanchangamTabType =
   | "panchangam_calendar"
@@ -529,6 +541,22 @@ export interface Invoice {
   createdAt: string;
 }
 
+export interface Client {
+  id: string;
+  name: string;
+  companyName?: string;
+  phone: string;
+  email: string;
+  address: string;
+  gstin?: string;
+}
+
+export interface ProjectDetails {
+  projectName: string;
+  projectType: string;
+  siteAddress: string;
+}
+
 export type ConstructionTabType =
   | "dashboard"
   | "new_construction"
@@ -567,7 +595,85 @@ export type TabType =
   | OfficeDashboardTabType
   | InvoicesTabType
   | EstimateTabType
-  | PersonalBillsTabType;
+  | PersonalBillsTabType
+  | RenderingTabType
+  | QuotationTabType;
+
+export type QuotationStatus = "draft" | "pending" | "approved" | "expired" | "expiring_soon";
+
+export interface QuotationLineItem {
+  id: string;
+  service_id?: string;
+  description: string;
+  unit: string;
+  quantity: number;
+  rate: number;
+  include_material: boolean;
+  include_labour: boolean;
+  material_rate?: number;
+  labour_rate?: number;
+  amount: number;
+}
+
+export interface QuotationService {
+  id: string;
+  name: string;
+  category?: string;
+  unit: string;
+  material_rate: number;
+  labour_rate: number;
+  combined_rate: number;
+  last_updated: string;
+}
+
+export interface Contractor {
+  id: string;
+  name: string;
+  company_name?: string;
+  trade: string;
+  phone: string;
+  email?: string;
+  notes?: string;
+  created_at: string;
+}
+
+export interface TermsClause {
+  id: string;
+  order: number;
+  title?: string;
+  text: string;
+  is_default: boolean;
+}
+
+export interface Quotation {
+  id: string;
+  quotation_no: string;
+  status: QuotationStatus;
+  client_name: string;
+  client_phone: string;
+  client_email?: string;
+  site_address: string;
+  plot_area_sqft?: number | string;
+  date_issued: string;
+  expiry_date: string;
+  line_items: QuotationLineItem[];
+  discount_type: "amount" | "percentage";
+  discount_value: number;
+  discount_amount: number;
+  enable_tax: boolean;
+  tax_rate: number; // e.g. 18 for 18% GST
+  tax_amount: number;
+  subtotal: number;
+  material_subtotal: number;
+  labour_subtotal: number;
+  total: number;
+  notes: string;
+  terms_clause_ids: string[];
+  contractor_ids?: string[];
+  show_contractors_on_print?: boolean;
+  created_at: string;
+  updated_at: string;
+}
 
 export type ConstructionProjectType = "New Construction" | "Addition" | "Extension" | "Renovation" | "Other";
 export type ConstructionRoofingType = "Contemporary" | "Flat Roof" | "Sloped Roof" | "Other";

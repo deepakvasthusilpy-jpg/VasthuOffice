@@ -65,7 +65,7 @@ import {
   Calendar as CalendarIcon,
   Image as ImageIcon
 } from "lucide-react";
-import { PanchangamDashboard } from "../panchangam/PanchangamDashboard";
+
 
 interface HomePageProps {
   activeTab?: TabType;
@@ -339,20 +339,6 @@ export const HomePage: React.FC<HomePageProps> = ({ activeTab = "home_overview",
             )}
           </button>
 
-          <button
-            onClick={() => setActiveTab && setActiveTab("panchangam_calendar")}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-mono text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
-              activeTab === "panchangam_calendar"
-                ? "bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-lg shadow-amber-950/50 border border-white/30"
-                : "text-amber-200/80 hover:text-white hover:bg-white/10"
-            }`}
-          >
-            <CalendarIcon className="w-4 h-4 text-amber-300" />
-            <span>കേരള പഞ്ചാംഗം & കലണ്ടർ (Kerala Panchangam)</span>
-            <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-200 font-mono text-[10px] font-bold border border-amber-400/40">
-              ചിങ്ങം 1202
-            </span>
-          </button>
 
           <button
             onClick={() => setActiveTab && setActiveTab("all_tools")}
@@ -416,8 +402,6 @@ export const HomePage: React.FC<HomePageProps> = ({ activeTab = "home_overview",
           <SubscriptionRequestsTab />
         ) : activeTab === "all_tools" ? (
           <AllToolsDashboardTab onNavigate={onNavigate} />
-        ) : activeTab === "panchangam_calendar" ? (
-          <PanchangamDashboard initialTab="panchangam_calendar" onNavigate={onNavigate} />
         ) : (
           <>
             {/* Dynamic Festival & Special Day Greeting Banner (Auto-adjusts for Onam, Vishu, Republic Day, etc.) */}

@@ -49,7 +49,6 @@ import { ClientProgressPortal } from "./components/office/clientView/ClientProgr
 import { ClientInvoicePortal } from "./components/office/clientView/ClientInvoicePortal";
 import { PublicCadSharePortal } from "./components/home/dataStorage/PublicCadSharePortal";
 import { HomePage } from "./components/home/HomePage";
-import { UnifiedAIAgentDashboard } from "./components/aiAgent/UnifiedAIAgentDashboard";
 import {
   INITIAL_ESTIMATES_LIST,
   EstimateProject,
@@ -65,6 +64,7 @@ import { db } from "./lib/firebase";
 import { collection, onSnapshot, setDoc, doc, deleteDoc } from "firebase/firestore";
 
 // Office Dashboard Components
+import { QuotationModule } from "./components/quotation/QuotationModule";
 import { OfficeDashboard } from "./components/office/OfficeDashboard";
 import { InvoicePaymentsTab } from "./components/invoices/InvoicePaymentsTab";
 import { OfficeDashboardTabType, InvoicesTabType, ConstructionTabType } from "./types";
@@ -72,6 +72,7 @@ import { SubscriptionExpiredScreen } from "./components/subscription/Subscriptio
 
 // Construction Works Master Component
 import { ConstructionDashboard } from "./components/construction/ConstructionDashboard";
+import { RenderingDashboard } from "./components/rendering/RenderingDashboard";
 
 // Personal Bills and Payments Master Component
 import { PersonalBillsDashboard } from "./components/personalBills/PersonalBillsDashboard";
@@ -123,6 +124,8 @@ export default function App() {
               ? ("material_quantity_bbs" as TabType)
               : sec === "construction_works"
               ? ("construction_dashboard" as TabType)
+              : sec === "quotation"
+              ? ("quotation_dashboard" as TabType)
               : sec === "personal_bills"
               ? ("poov_mala_bill" as TabType)
               : ("home_overview" as TabType))
@@ -673,13 +676,7 @@ export default function App() {
             />
           )}
 
-          {/* UNIFIED AI AGENT & ARCHITECT SECTION */}
-          {activeSection === "ai_agent" && (
-            <UnifiedAIAgentDashboard
-              initialTab={activeTab}
-              onTabChange={(newTab) => setActiveTab(newTab as TabType)}
-            />
-          )}
+          {/* PERSONAL BILLS AND PAYMENTS SECTION */}
           {activeSection === "construction_works" && (
             <ConstructionDashboard
               initialTab={activeTab as ConstructionTabType}
@@ -698,6 +695,16 @@ export default function App() {
                 setActiveTab(subIdMap[newTab] || (newTab as TabType));
               }}
             />
+          )}
+
+          {/* RENDERING SECTION */}
+          {activeSection === "rendering" && (
+            <RenderingDashboard />
+          )}
+
+          {/* QUOTATIONS SECTION */}
+          {activeSection === "quotation" && (
+            <QuotationModule activeTab={activeTab} setActiveTab={setActiveTab} />
           )}
 
           {/* PERSONAL BILLS AND PAYMENTS SECTION */}

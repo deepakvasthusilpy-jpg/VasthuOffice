@@ -139,27 +139,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
       ]
     },
     {
-      id: "ai_agent" as MainSectionType,
-      title: "AI ആർക്കിടെക്റ്റ് & എഞ്ചിനീയർ",
-      subtitle: "UNIFIED AI AGENT • ARCHITECT",
-      shortLabel: "AI ഏജന്റ്",
-      icon: Bot,
-      defaultTab: "ai_agent_chat" as TabType,
-      color: "from-cyan-500 via-blue-600 to-indigo-600",
-      activeBorder: "border-cyan-400",
-      activeText: "text-cyan-300",
-      badge: "AVATAR",
-      subTabs: [
-        { id: "ai_agent_chat" as TabType, label: "AI ചീഫ് എഞ്ചിനീയർ ചാറ്റ്", sub: "Live Male AI Avatar & Audio", icon: Bot, badge: "LIVE" },
-        { id: "ai_vastu" as TabType, label: "തച്ചു ശാസ്ത്ര & വാസ്തു ഓഡിറ്റ്", sub: "Vastu Shastra & Kol Calculations", icon: Compass },
-        { id: "ai_kpbr" as TabType, label: "KPBR 2019/2026 കെട്ടിട ചട്ടങ്ങൾ", sub: "Setbacks, Coverage & Rules", icon: Building2 },
-        { id: "ai_survey" as TabType, label: "ഭൂമി സർവ്വേ & അളവ് പരിശോധന", sub: "FMB, Cent Conversions & Area", icon: MapPin },
-        { id: "ai_estimate" as TabType, label: "എസ്റ്റിമേറ്റ് & നിരക്ക് വിശകലനം", sub: "Kerala PWD Rates & BOQ", icon: FileSpreadsheet },
-        { id: "ai_structural" as TabType, label: "സിവിൽ & സ്ട്രക്ചറൽ ഗൈഡ്", sub: "RCC Mix, BBS & Masonry", icon: HardHat },
-        { id: "ai_visual_scanner" as TabType, label: "ബ്ലൂപ്രിന്റ് & പ്ലാൻ സ്കാനർ", sub: "Multimodal Plan & Drawing OCR", icon: FileCode, badge: "VISION" }
-      ]
-    },
-    {
       id: "construction_works" as MainSectionType,
       title: "നിർമ്മാണ പ്രവർത്തനങ്ങൾ",
       subtitle: "CONSTRUCTION & E-STAMP",
@@ -180,6 +159,41 @@ export const Sidebar: React.FC<SidebarProps> = ({
         { id: "construction_reports" as TabType, label: "ധനകാര്യ റിപ്പോർട്ടുകൾ", sub: "FINANCIAL REPORTS", icon: FileSpreadsheet },
         { id: "construction_settings" as TabType, label: "നിർമ്മാണ ക്രമീകരണങ്ങൾ", sub: "STAGES & PRINT MARGINS", icon: Sparkles },
         { id: "construction_search" as TabType, label: "QR വെരിഫിക്കേഷൻ", sub: "QR VERIFICATION", icon: ShieldCheck, badge: "QR" }
+      ]
+    },
+    {
+      id: "rendering" as MainSectionType,
+      title: "AI റെൻഡറിംഗ്",
+      subtitle: "AI REALISTIC RENDERING",
+      shortLabel: "റെൻഡർ",
+      icon: ImageIcon,
+      defaultTab: "ai_rendering" as TabType,
+      color: "from-pink-500 to-rose-600",
+      activeBorder: "border-pink-500",
+      activeText: "text-pink-400",
+      badge: "AI",
+      subTabs: [
+        { id: "ai_rendering" as TabType, label: "AI റെൻഡറിംഗ്", sub: "Realistic Image Generation", icon: ImageIcon, badge: "NEW" }
+      ]
+    },
+    {
+      id: "quotation" as MainSectionType,
+      title: "ക്വട്ടേഷൻ തയാറാക്കൽ",
+      subtitle: "QUOTATIONS & ESTIMATES",
+      shortLabel: "ക്വട്ടേഷൻ",
+      icon: FileText,
+      defaultTab: "quotation_dashboard" as TabType,
+      color: "from-amber-500 to-yellow-600",
+      activeBorder: "border-amber-400",
+      activeText: "text-amber-300",
+      badge: "QTN",
+      subTabs: [
+        { id: "quotation_dashboard" as TabType, label: "ഡാഷ്‌ബോർഡ്", sub: "DASHBOARD", icon: LayoutGrid },
+        { id: "quotation_create" as TabType, label: "പുതിയ ക്വട്ടേഷൻ", sub: "CREATE QUOTATION", icon: Plus, badge: "NEW" },
+        { id: "quotation_all" as TabType, label: "എല്ലാ ക്വട്ടേഷനുകളും", sub: "ALL QUOTATIONS", icon: FileText },
+        { id: "quotation_rates" as TabType, label: "സർവീസ് & റേറ്റ് ലിസ്റ്റ്", sub: "SERVICE & RATE LIST", icon: Calculator, badge: "RATES" },
+        { id: "quotation_contractors" as TabType, label: "കോൺട്രാക്ടർമാർ", sub: "CONTRACTORS", icon: Users },
+        { id: "quotation_terms" as TabType, label: "നിബന്ധനകളും വ്യവസ്ഥകളും", sub: "TERMS & CONDITIONS", icon: ShieldCheck }
       ]
     },
     {

@@ -856,6 +856,14 @@ html.anthropomorphic .bg-blueprint-grid-dark {
     text-shadow: none !important;
   }
 
+  /* Specific element overrides for print */
+  div#root:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > main:nth-of-type(1) > div#estimate-sheet-container:nth-of-type(1),
+  div#root:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > main:nth-of-type(1) > div#estimate-sheet-container:nth-of-type(1) > div:nth-of-type(8) > div:nth-of-type(1),
+  div#root:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > main:nth-of-type(1) > div#estimate-sheet-container:nth-of-type(1) > div:nth-of-type(7) {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
   @page {
     size: A4 portrait;
     margin: 15mm;

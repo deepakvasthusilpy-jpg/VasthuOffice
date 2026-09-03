@@ -35,7 +35,8 @@ import {
   Stamp,
   Plus,
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  FileText
 } from "lucide-react";
 
 interface ConstructionDashboardProps {

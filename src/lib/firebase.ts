@@ -1,6 +1,6 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, initializeFirestore, setLogLevel } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import firebaseConfig from "../../firebase-applet-config.json";
 
@@ -23,10 +23,33 @@ try {
 }
 
 try {
+  // Suppress transient backend connection / offline retry logs
+  setLogLevel("error");
+} catch {
+  // Ignore if setLogLevel is not supported in current environment
+}
+
+try {
   const firestoreDatabaseId = (firebaseConfig as any)?.firestoreDatabaseId;
-  dbInstance = app
-    ? (firestoreDatabaseId ? getFirestore(app, firestoreDatabaseId) : getFirestore(app))
-    : null;
+  const firestoreSettings = {
+    // Enable long polling to prevent WebSocket connection failures in sandbox/iframe environments
+    experimentalForceLongPolling: true,
+  };
+
+  if (app) {
+    try {
+      dbInstance = firestoreDatabaseId
+        ? initializeFirestore(app, firestoreSettings, firestoreDatabaseId)
+        : initializeFirestore(app, firestoreSettings);
+    } catch {
+      // Fallback if initializeFirestore was already called previously
+      dbInstance = firestoreDatabaseId
+        ? getFirestore(app, firestoreDatabaseId)
+        : getFirestore(app);
+    }
+  } else {
+    dbInstance = null;
+  }
 } catch (e) {
   console.warn("Firebase Firestore offline fallback notice:", e);
 }

@@ -144,43 +144,6 @@ export const ALL_APP_MODULES: TabPermissionDefinition[] = [
     ]
   },
   {
-    sectionId: "panchangam",
-    sectionTitle: "Kerala Panchangam & Calendar",
-    sectionTitleMl: "കേരള പഞ്ചാംഗം & കലണ്ടർ",
-    tabs: [
-      {
-        id: "panchangam_calendar" as TabType,
-        label: "Kerala Monthly Calendar",
-        labelMl: "കേരള കലണ്ടർ & മാസക്കാഴ്ച",
-        description: "Kollavarsham 1202, Gregorian calendar, Nakshatram, Tithi & Festival days"
-      },
-      {
-        id: "panchangam_daily" as TabType,
-        label: "Daily Panchangam & Drik Ephemeris",
-        labelMl: "ദിവസേനയുള്ള പഞ്ചാംഗം",
-        description: "Sunrise, Sunset, Tithi, Nakshatram, Rahu Kalam, Gulika, Yamagandam & Muhurtham"
-      },
-      {
-        id: "panchangam_muhurtham" as TabType,
-        label: "Vasthu Shastra Muhurtham",
-        labelMl: "വാസ്തു മുഹൂർത്തം",
-        description: "Bhoomi Pooja, Foundation stone & Grihapravesham evaluation"
-      },
-      {
-        id: "panchangam_festivals" as TabType,
-        label: "Kerala Festivals & Holidays",
-        labelMl: "വിശേഷ ദിവസങ്ങളും അവധികളും",
-        description: "Kerala festivals, Govt holidays & auspicious observances"
-      },
-      {
-        id: "panchangam_choghadiya" as TabType,
-        label: "Choghadiya Muhurtham",
-        labelMl: "ചോഘടിയ & ശുഭ സമയങ്ങൾ",
-        description: "8 daytime and nighttime Choghadiya planetary hours"
-      }
-    ]
-  },
-  {
     sectionId: "ai_agent",
     sectionTitle: "Unified AI Chief Architect & Engineer",
     sectionTitleMl: "AI ആർക്കിടെക്റ്റ് & എഞ്ചിനീയർ",
