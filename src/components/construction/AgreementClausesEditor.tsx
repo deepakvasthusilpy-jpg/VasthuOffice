@@ -34,81 +34,81 @@ const PRESET_CLAUSES: Array<{
   {
     category: "Statutory",
     title: "LSGD Building Rules & Permit Compliance",
-    titleMl: "കെട്ടിട നിർമ്മാണ ചട്ടങ്ങളും പെർമിറ്റും",
+    titleMl: "LSGD Building Rules & Permit Compliance",
     content: "The construction shall strictly conform to the approved plan sanctioned by the local Grama Panchayat / Municipality and the Kerala Municipality/Panchayat Building Rules. Any deviation requested by the client requiring revised permit shall be processed at the client's expense.",
-    contentMl: "കെട്ടിട നിർമ്മാണം തദ്ദേശ സ്വയംഭരണ സ്ഥാപനം (LSGD) പാസാക്കിയ പെർമിറ്റ് പ്ലാനും കേരള പഞ്ചായത്ത്/മുനിസിപ്പാലിറ്റി ബിൽഡിംഗ് റൂൾസും അനുസരിച്ച് മാത്രമായിരിക്കും നിർവ്വഹിക്കുന്നത്. പ്ലാനിൽ വ്യത്യാസം വരുത്തണമെങ്കിൽ അതിനുള്ള അനുമതി ഒന്നാം കക്ഷി സ്വന്തം ചെലവിൽ വാങ്ങേണ്ടതാണ്.",
+    contentMl: "The construction shall strictly conform to the approved plan sanctioned by the local Grama Panchayat / Municipality and the Kerala Municipality/Panchayat Building Rules. Any deviation requested by the client requiring revised permit shall be processed at the client's expense.",
     isMandatory: true
   },
   {
     category: "Liability & Warranty",
     title: "Defect Liability Period (12 Months)",
-    titleMl: "12 മാസത്തെ അറ്റകുറ്റപ്പണി ഉത്തരവാദിത്തം (Defect Liability)",
+    titleMl: "Defect Liability Period (12 Months)",
     content: "The contractor provides a 12-month Defect Liability Period from the date of final handover. Any structural cracks, roof leakages, plumbing failures, or defective workmanship arising from construction defects will be rectified free of cost. Normal wear-and-tear or client alterations are excluded.",
-    contentMl: "കെട്ടിടം കൈമാറുന്ന തീയതി മുതൽ 12 മാസക്കാലം കോൺട്രാക്ടറുടെ അറ്റകുറ്റപ്പണി ഉത്തരവാദിത്ത കാലാവധിയായിരിക്കും (Defect Liability Period). നിർമ്മാണപരമായ തകരാറുകൾ, ചോർച്ചകൾ, പ്ലംബിംഗ് തകരാറുകൾ എന്നിവ ഈ കാലയളവിൽ കോൺട്രാക്ടർ സ്വന്തം ചെലവിൽ സൗജന്യമായി പരിഹരിച്ചു നൽകുന്നതാണ്.",
+    contentMl: "The contractor provides a 12-month Defect Liability Period from the date of final handover. Any structural cracks, roof leakages, plumbing failures, or defective workmanship arising from construction defects will be rectified free of cost. Normal wear-and-tear or client alterations are excluded.",
     isMandatory: true
   },
   {
     category: "Payments",
     title: "Cement & Steel Price Escalation Clause",
-    titleMl: "സിമന്റ്, സ്റ്റീൽ വിലക്കയറ്റ നിബന്ധന (Price Escalation)",
+    titleMl: "Cement & Steel Price Escalation Clause",
     content: "The agreed base rate is calculated on prevailing market rates for 53 Grade Cement and Fe-500D TMT Steel. If market retail prices fluctuate by more than 10% during construction, the actual difference in material cost for remaining stages shall be mutually adjusted.",
-    contentMl: "കരാർ തുക നിലവിലെ സിമന്റ്, കമ്പി (TMT Steel) വിപണി നിരക്കിനെ അടിസ്ഥാനമാക്കിയുള്ളതാണ്. നിർമ്മാണ കാലയളവിൽ ഇവയുടെ വിലയിൽ 10%-ൽ കൂടുതൽ വർദ്ധനവുണ്ടായാൽ ബാക്കിയുള്ള ജോലികൾക്ക് വരുന്ന അധിക തുക ഒന്നാം കക്ഷി നൽകാൻ ബാധ്യസ്ഥനാണ്.",
+    contentMl: "The agreed base rate is calculated on prevailing market rates for 53 Grade Cement and Fe-500D TMT Steel. If market retail prices fluctuate by more than 10% during construction, the actual difference in material cost for remaining stages shall be mutually adjusted.",
     isMandatory: false
   },
   {
     category: "Site Facilities",
     title: "Potable Water & Construction Electricity",
-    titleMl: "വെള്ളം, വൈദ്യുതി, സുരക്ഷിത സ്റ്റോറേജ്",
+    titleMl: "Potable Water & Construction Electricity",
     content: "The First Party (Client) shall arrange uninterrupted potable water source and working single/three-phase electric power connection at the site. The contractor will construct a temporary secure lockable shed for cement and tools storage.",
-    contentMl: "നിർമ്മാണ പ്രവർത്തനങ്ങൾക്കാവശ്യമായ നല്ല ശുദ്ധജലവും വൈദ്യുതി കണക്ഷനും സൈറ്റിൽ ഒന്നാം കക്ഷി സ്വന്തം ചെലവിൽ ഏർപ്പാടാക്കേണ്ടതാണ്. സാമഗ്രികൾ സൂക്ഷിക്കുന്നതിനുള്ള താൽക്കാലിക ഷെഡ് കോൺട്രാക്ടർ നിർമ്മിക്കുന്നതാണ്.",
+    contentMl: "The First Party (Client) shall arrange uninterrupted potable water source and working single/three-phase electric power connection at the site. The contractor will construct a temporary secure lockable shed for cement and tools storage.",
     isMandatory: true
   },
   {
     category: "Payments",
     title: "Stage Payments & Work Stoppage for Delay",
-    titleMl: "ഘട്ടം തിരിച്ചുള്ള പെയ്‌മെന്റും കാലതാമസവും",
+    titleMl: "Stage Payments & Work Stoppage for Delay",
     content: "The client shall release payment for each stage within 7 days of stage completion and verification. If payment is delayed beyond 14 days without valid reason, work will be paused, and the final completion milestone will be extended by the delayed duration.",
-    contentMl: "ഓരോ നിർമ്മാണ ഘട്ടവും പൂർത്തിയാകുമ്പോൾ 7 ദിവസത്തിനകം ഒന്നാം കക്ഷി പണം നൽകേണ്ടതാണ്. പെയ്‌മെന്റിൽ 14 ദിവസത്തിൽ കൂടുതൽ കാലതാമസം ഉണ്ടായാൽ ജോലി താൽക്കാലികമായി നിർത്തിവെക്കാനും കാലതാമസത്തിന് ആനുപാതികമായി കാലാവധി നീട്ടാനും കരാറുകാരന് അവകാശമുണ്ടായിരിക്കും.",
+    contentMl: "The client shall release payment for each stage within 7 days of stage completion and verification. If payment is delayed beyond 14 days without valid reason, work will be paused, and the final completion milestone will be extended by the delayed duration.",
     isMandatory: true
   },
   {
     category: "Legal & Arbitration",
     title: "Dispute Resolution & Jurisdiction",
-    titleMl: "തർക്ക പരിഹാരവും കോടതി അധികാര പരിധിയും",
+    titleMl: "Dispute Resolution & Jurisdiction",
     content: "Any dispute arising between the parties regarding quality, rates, or execution shall first be resolved through mutual consultation with the supervising chartered engineer/architect. Unresolved disputes shall be subject to the exclusive jurisdiction of the civil courts in Palakkad District, Kerala.",
-    contentMl: "കരാറുമായി ബന്ധപ്പെട്ട് എന്തെങ്കിലും തർക്കങ്ങളുണ്ടായാൽ ഇരു കക്ഷികളും ചർച്ച ചെയ്ത് എഞ്ചിനീയറുടെ മധ്യസ്ഥതയിൽ പരിഹരിക്കേണ്ടതാണ്. പരിഹരിക്കപ്പെടാത്ത തർക്കങ്ങളിൽ പാലക്കാട് ജില്ലാ കോടതികളുടെ അധികാരപരിധിക്ക് വിധേയമായിരിക്കും.",
+    contentMl: "Any dispute arising between the parties regarding quality, rates, or execution shall first be resolved through mutual consultation with the supervising chartered engineer/architect. Unresolved disputes shall be subject to the exclusive jurisdiction of the civil courts in Palakkad District, Kerala.",
     isMandatory: true
   },
   {
     category: "Quality",
     title: "Structural Concrete Curing (21 Days)",
-    titleMl: "കോൺക്രീറ്റ് വാട്ടറിംഗ് & ക്യൂറിംഗ് (21 Days)",
+    titleMl: "Structural Concrete Curing (21 Days)",
     content: "All RCC structural elements, roof slabs, beams, and columns shall be continuously ponded / cured with water for a mandatory period of 21 days to ensure full characteristic compressive strength as per IS 456.",
-    contentMl: "റൂഫ് സ്ലാബ്, ബീമുകൾ, കോളങ്ങൾ എന്നിവ കോൺക്രീറ്റ് ചെയ്ത ശേഷം കുറഞ്ഞത് 21 ദിവസം തുടർച്ചയായി വെള്ളം കെട്ടിനിർത്തി നനയ്ക്കേണ്ടതും (Curing) സാങ്കേതിക മേൽനോട്ടം ഉറപ്പുവരുത്തേണ്ടതുമാണ്.",
+    contentMl: "All RCC structural elements, roof slabs, beams, and columns shall be continuously ponded / cured with water for a mandatory period of 21 days to ensure full characteristic compressive strength as per IS 456.",
     isMandatory: false
   },
   {
     category: "Safety",
     title: "Workmen Safety & Insurance Responsibility",
-    titleMl: "തൊഴിലാളി സുരക്ഷയും ഇൻഷുറൻസും",
+    titleMl: "Workmen Safety & Insurance Responsibility",
     content: "The contractor is solely responsible for adopting all standard safety measures and providing personal protective equipment (PPE) for workers at the site. The contractor indemnifies the client from any labour compensation claims under the Workmen's Compensation Act.",
-    contentMl: "സൈറ്റിൽ ജോലി ചെയ്യുന്ന തൊഴിലാളികളുടെ സുരക്ഷയും അവർക്ക് ആവശ്യമായ മുൻകരുതലുകളും ഇൻഷുറൻസും കോൺട്രാക്ടറുടെ പൂർണ്ണ ഉത്തരവാദിത്തത്തിലായിരിക്കും.",
+    contentMl: "The contractor is solely responsible for adopting all standard safety measures and providing personal protective equipment (PPE) for workers at the site. The contractor indemnifies the client from any labour compensation claims under the Workmen's Compensation Act.",
     isMandatory: false
   },
   {
     category: "Variations",
     title: "Extra Works Written Confirmation",
-    titleMl: "അധിക ജോലികൾക്ക് മുൻകൂട്ടിയുള്ള അനുമതി",
+    titleMl: "Extra Works Written Confirmation",
     content: "Any extra work, luxury material upgrading, or design alterations requested by the client shall be estimated with item rates and approved in writing/messaging before execution. Payment for extra works shall be made along with immediate next stage.",
-    contentMl: "അംഗീകരിച്ച പ്ലാനിന് പുറമെ ഒന്നാം കക്ഷി ആവശ്യപ്പെടുന്ന അധിക നിർമ്മാണ ജോലികൾക്ക് എസ്റ്റിമേറ്റും നിരക്കും മുൻകൂട്ടി നിശ്ചയിച്ച് രേഖാമൂലം അനുമതി വാങ്ങി മാത്രമേ ജോലി ആരംഭിക്കുകയുള്ളൂ.",
+    contentMl: "Any extra work, luxury material upgrading, or design alterations requested by the client shall be estimated with item rates and approved in writing/messaging before execution. Payment for extra works shall be made along with immediate next stage.",
     isMandatory: true
   },
   {
     category: "Handover",
     title: "Site Clearance & Key Handover",
-    titleMl: "സൈറ്റ് ക്ലീനിംഗും താക്കോൽ കൈമാറ്റവും",
+    titleMl: "Site Clearance & Key Handover",
     content: "Upon completion of all finishing items and final chemical cleaning of tiles, the keys will be handed over to the client upon settlement of the final contract invoice and retention amount.",
-    contentMl: "എല്ലാ ജോലികളും ഫ്ലോർ ക്ലീനിംഗും പൂർത്തിയാക്കി അവസാന പെയ്‌മെന്റ് നൽകുന്നതോടെ കെട്ടിടത്തിന്റെ താക്കോൽ ഒന്നാം കക്ഷിക്ക് കൈമാറുന്നതാണ്.",
+    contentMl: "Upon completion of all finishing items and final chemical cleaning of tiles, the keys will be handed over to the client upon settlement of the final contract invoice and retention amount.",
     isMandatory: true
   }
 ];
@@ -250,13 +250,13 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="font-bold text-sm text-white">കരാർ വ്യവസ്ഥകൾ (Contract Terms & Legal Clauses)</h3>
+              <h3 className="font-bold text-sm text-white">Contract Terms & Legal Clauses</h3>
               <span className="px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 font-mono text-[11px] border border-emerald-800">
-                {enabledCount} സജീവമാണ് (Active) / {clauses.length} ആകെ
+                {enabledCount} Active / {clauses.length} Total
               </span>
             </div>
             <p className="text-[11px] text-slate-400 font-mono">
-              വ്യവസ്ഥകൾ കൂട്ടിച്ചേർക്കാനും, മാറ്റങ്ങൾ വരുത്താനും, നീക്കം ചെയ്യാനും താഴെയുള്ള ഓപ്ഷനുകൾ ഉപയോഗിക്കുക.
+              Use the options below to add, edit, reorder, or customize legal contract clauses.
             </p>
           </div>
         </div>
@@ -270,7 +270,7 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
               title="Renumber clauses sequentially 1, 2, 3..."
             >
               <Hash className="w-3.5 h-3.5 text-cyan-400" />
-              <span>നമ്പർ ക്രമീകരിക്കുക (1..N)</span>
+              <span>Auto Renumber (1..N)</span>
             </button>
 
             {/* Presets Drawer Toggle */}
@@ -279,7 +279,7 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
               className="px-3 py-1.5 bg-indigo-950 hover:bg-indigo-900 text-indigo-300 border border-indigo-500/40 rounded-xl text-xs font-mono font-bold flex items-center gap-1.5 cursor-pointer transition"
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span>സ്റ്റാൻഡേർഡ് വ്യവസ്ഥകൾ (Presets)</span>
+              <span>Standard Presets</span>
             </button>
 
             {/* Reset to Defaults */}
@@ -289,7 +289,7 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
               title="Reset to default legal clauses"
             >
               <RotateCcw className="w-3 h-3" />
-              <span>ഡിഫോൾട്ട്</span>
+              <span>Default</span>
             </button>
 
             {/* Add New Clause Button */}
@@ -298,7 +298,7 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
               className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-mono font-bold flex items-center gap-1.5 cursor-pointer shadow-md shadow-emerald-950 transition"
             >
               <Plus className="w-4 h-4" />
-              <span>+ പുതിയ വ്യവസ്ഥ ചേർക്കുക (Add Clause)</span>
+              <span>+ Add Legal Clause</span>
             </button>
           </div>
         )}
@@ -311,14 +311,14 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-amber-400" />
               <span className="font-bold text-xs text-white uppercase tracking-wider font-mono">
-                റെഡിമെയ്ഡ് കേരള നിർമ്മാണ കരാർ വ്യവസ്ഥകൾ (Standard Legal Presets)
+                Standard Legal Presets
               </span>
             </div>
             <button
               onClick={() => setShowPresetsDrawer(false)}
               className="text-xs text-slate-400 hover:text-white font-mono"
             >
-              അടയ്ക്കുക (Close)
+              Close
             </button>
           </div>
 
@@ -330,13 +330,13 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
               >
                 <div>
                   <div className="flex items-center justify-between text-xs font-bold text-white">
-                    <span className="text-amber-300">{preset.titleMl}</span>
+                    <span className="text-amber-300">{preset.title}</span>
                     <span className="px-1.5 py-0.5 rounded bg-slate-900 text-[10px] text-slate-400 font-mono">
                       {preset.category}
                     </span>
                   </div>
                   <p className="text-[11px] text-slate-300 font-sans line-clamp-2 mt-1">
-                    {preset.contentMl}
+                    {preset.content}
                   </p>
                 </div>
                 <div className="pt-2 flex justify-end">
@@ -345,7 +345,7 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
                     className="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-[11px] font-mono font-bold flex items-center gap-1 cursor-pointer transition"
                   >
                     <Plus className="w-3 h-3" />
-                    <span>കരാറിൽ ചേർക്കുക (Add)</span>
+                    <span>Add to Contract</span>
                   </button>
                 </div>
               </div>
@@ -361,7 +361,7 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
           type="text"
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
-          placeholder="വ്യവസ്ഥകൾ തിരയുക... (Search clauses by keyword / title / number)"
+          placeholder="Search clauses by keyword / title / number..."
           className="w-full pl-9 pr-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-white font-mono text-xs focus:border-indigo-500 outline-none"
         />
         {searchTerm && (
@@ -431,7 +431,7 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
                       />
                       {clause.isMandatory && (
                         <span className="px-2 py-0.5 rounded-full bg-amber-950/80 text-amber-300 border border-amber-500/30 text-[10px] font-mono shrink-0">
-                          നിർബന്ധം (Mandatory)
+                          Mandatory
                         </span>
                       )}
                     </div>
@@ -454,7 +454,7 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
                         onChange={e => handleUpdateField(originalIndex, { isMandatory: e.target.checked })}
                         className="rounded border-slate-700 text-amber-500"
                       />
-                      <span>നിർബന്ധിതം</span>
+                      <span>Mandatory</span>
                     </label>
                   )}
 
@@ -468,7 +468,7 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
                       className="rounded border-slate-700 text-emerald-500"
                     />
                     <span className={clause.isEnabled ? "text-emerald-400 font-bold" : "text-slate-500"}>
-                      {clause.isEnabled ? "സജീവം (Active)" : "ഒഴിവാക്കി"}
+                      {clause.isEnabled ? "Active" : "Disabled"}
                     </span>
                   </label>
 
@@ -489,7 +489,7 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
                   {!readOnly && (
                     <button
                       onClick={() => {
-                        if (window.confirm(`"${clause.titleMl || clause.title}" എന്ന വ്യവസ്ഥ നീക്കം ചെയ്യണമെന്നുറപ്പാണോ?`)) {
+                        if (window.confirm(`Are you sure you want to remove the clause "${clause.title || clause.titleMl}"?`)) {
                           handleDeleteClause(originalIndex);
                         }
                       }}
@@ -502,33 +502,33 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
                 </div>
               </div>
 
-              {/* Main Content Area (Malayalam Legal Text) */}
+              {/* Main Content Area (Legal Text) */}
               <div className="px-3 sm:px-4 pb-3 sm:pb-4 space-y-2">
                 <textarea
                   rows={2}
-                  value={clause.contentMl || clause.content}
+                  value={clause.content || clause.contentMl}
                   readOnly={readOnly}
-                  onChange={e => handleUpdateField(originalIndex, { contentMl: e.target.value })}
-                  placeholder="മലയാളത്തിലുള്ള വ്യവസ്ഥയുടെ പൂർണ്ണരൂപം (Clause text in Malayalam)..."
+                  onChange={e => handleUpdateField(originalIndex, { content: e.target.value, contentMl: e.target.value })}
+                  placeholder="Enter clause text and legal terms..."
                   className="w-full p-2.5 bg-slate-900/90 border border-slate-800 focus:border-indigo-500 rounded-xl text-slate-200 font-sans text-xs sm:text-sm leading-relaxed outline-none transition"
                 />
 
-                {/* Expanded English & Advanced Meta Fields */}
+                {/* Expanded Advanced Meta Fields */}
                 {isExpanded && (
                   <div className="p-3 bg-slate-900 border border-slate-800 rounded-xl space-y-3 pt-2 text-xs font-mono">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="text-slate-400 block mb-1 text-[11px]">ഇംഗ്ലീഷ് തലക്കെട്ട് (Title in English):</label>
+                        <label className="text-slate-400 block mb-1 text-[11px]">Clause Title (English):</label>
                         <input
                           type="text"
                           value={clause.title || ""}
                           readOnly={readOnly}
-                          onChange={e => handleUpdateField(originalIndex, { title: e.target.value })}
+                          onChange={e => handleUpdateField(originalIndex, { title: e.target.value, titleMl: e.target.value })}
                           className="w-full p-2 bg-slate-950 border border-slate-700 rounded-lg text-white font-mono"
                         />
                       </div>
                       <div>
-                        <label className="text-slate-400 block mb-1 text-[11px]">വിഭാഗം (Category):</label>
+                        <label className="text-slate-400 block mb-1 text-[11px]">Category:</label>
                         <select
                           value={clause.category || "General"}
                           disabled={readOnly}
@@ -551,12 +551,12 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
                     </div>
 
                     <div>
-                      <label className="text-slate-400 block mb-1 text-[11px]">ഇംഗ്ലീഷ് വിവരണം (Legal text in English):</label>
+                      <label className="text-slate-400 block mb-1 text-[11px]">Clause Description / Legal Text:</label>
                       <textarea
                         rows={2}
                         value={clause.content || ""}
                         readOnly={readOnly}
-                        onChange={e => handleUpdateField(originalIndex, { content: e.target.value })}
+                        onChange={e => handleUpdateField(originalIndex, { content: e.target.value, contentMl: e.target.value })}
                         className="w-full p-2 bg-slate-950 border border-slate-700 rounded-lg text-slate-300 font-mono text-xs"
                       />
                     </div>
@@ -569,7 +569,7 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
 
         {filteredClauses.length === 0 && (
           <div className="p-8 text-center bg-slate-950 border border-slate-800 rounded-2xl text-slate-500 font-mono text-xs">
-            വ്യവസ്ഥകൾ ഒന്നും കണ്ടെത്തിയില്ല. പുതിയത് ചേർക്കാൻ മുകളിലെ ബട്ടൺ ഉപയോഗിക്കുക.
+            No clauses found. Click the button above to add a new clause.
           </div>
         )}
       </div>
@@ -582,7 +582,7 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
               <div className="flex items-center gap-2">
                 <Plus className="w-5 h-5 text-emerald-400" />
                 <h3 className="font-bold text-white text-base font-sans">
-                  പുതിയ കരാർ വ്യവസ്ഥ ചേർക്കുക (Add New Legal Clause)
+                  Add New Legal Clause
                 </h3>
               </div>
               <button
@@ -595,53 +595,38 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
 
             <div className="space-y-3 text-xs font-mono">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="text-slate-300 block mb-1">തലക്കെട്ട് (മലയാളം)*:</label>
-                  <input
-                    type="text"
-                    value={newTitleMl}
-                    onChange={e => setNewTitleMl(e.target.value)}
-                    placeholder="ഉദാ: വാറന്റി & അറ്റകുറ്റപ്പണി"
-                    className="w-full p-2.5 bg-slate-950 border border-slate-700 rounded-xl text-white font-bold"
-                  />
-                </div>
-                <div>
-                  <label className="text-slate-300 block mb-1">Title in English:</label>
+                <div className="sm:col-span-2">
+                  <label className="text-slate-300 block mb-1">Clause Title*:</label>
                   <input
                     type="text"
                     value={newTitle}
-                    onChange={e => setNewTitle(e.target.value)}
+                    onChange={e => {
+                      setNewTitle(e.target.value);
+                      setNewTitleMl(e.target.value);
+                    }}
                     placeholder="e.g. Warranty & Maintenance"
-                    className="w-full p-2.5 bg-slate-950 border border-slate-700 rounded-xl text-white"
+                    className="w-full p-2.5 bg-slate-950 border border-slate-700 rounded-xl text-white font-bold"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-slate-300 block mb-1">വ്യവസ്ഥയുടെ പൂർണ്ണരൂപം (Malayalam)*:</label>
+                <label className="text-slate-300 block mb-1">Clause Legal Terms*:</label>
                 <textarea
                   rows={3}
-                  value={newContentMl}
-                  onChange={e => setNewContentMl(e.target.value)}
-                  placeholder="വ്യവസ്ഥയുടെ വിശദ വിവരങ്ങൾ ഇവിടെ ടൈപ്പ് ചെയ്യുക..."
-                  className="w-full p-2.5 bg-slate-950 border border-slate-700 rounded-xl text-white font-sans text-xs leading-relaxed"
-                />
-              </div>
-
-              <div>
-                <label className="text-slate-300 block mb-1">Clause Content in English (Optional):</label>
-                <textarea
-                  rows={2}
                   value={newContent}
-                  onChange={e => setNewContent(e.target.value)}
-                  placeholder="Optional English legal wording..."
-                  className="w-full p-2 bg-slate-950 border border-slate-700 rounded-xl text-slate-300 font-mono text-xs"
+                  onChange={e => {
+                    setNewContent(e.target.value);
+                    setNewContentMl(e.target.value);
+                  }}
+                  placeholder="Type the complete legal terms and conditions here..."
+                  className="w-full p-2.5 bg-slate-950 border border-slate-700 rounded-xl text-white font-sans text-xs leading-relaxed"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-center pt-1">
                 <div>
-                  <label className="text-slate-300 block mb-1">വിഭാഗം (Category):</label>
+                  <label className="text-slate-300 block mb-1">Category:</label>
                   <select
                     value={newCategory}
                     onChange={e => setNewCategory(e.target.value)}
@@ -667,7 +652,7 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
                       onChange={e => setNewIsMandatory(e.target.checked)}
                       className="rounded border-slate-700 text-amber-500"
                     />
-                    <span>നിർബന്ധിത വ്യവസ്ഥയാണ് (Mandatory Clause)</span>
+                    <span>Mandatory Clause</span>
                   </label>
                 </div>
               </div>
@@ -678,14 +663,14 @@ export const AgreementClausesEditor: React.FC<AgreementClausesEditorProps> = ({
                 onClick={() => setShowAddModal(false)}
                 className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-mono cursor-pointer"
               >
-                റദ്ദാക്കുക (Cancel)
+                Cancel
               </button>
               <button
                 onClick={handleAddClause}
-                disabled={!newTitleMl.trim() && !newTitle.trim()}
+                disabled={!newTitle.trim() && !newTitleMl.trim()}
                 className="px-5 py-2 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white rounded-xl text-xs font-mono font-bold cursor-pointer shadow-md shadow-emerald-950"
               >
-                + ചേർക്കുക (Add to Agreement)
+                + Add to Agreement
               </button>
             </div>
           </div>

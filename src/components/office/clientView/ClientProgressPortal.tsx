@@ -235,10 +235,10 @@ export const ClientProgressPortal: React.FC<ClientProgressPortalProps> = ({
             <AlertTriangle className="w-7 h-7" />
           </div>
           <h2 className="text-lg font-black text-white font-sans">
-            പ്രോജക്ട് വിവരങ്ങൾ ലഭ്യമായില്ല (Project Link Not Found)
+            Direct Access Link Not Found
           </h2>
           <p className="text-xs text-slate-400 leading-relaxed">
-            നിങ്ങൾ നൽകിയ ലിങ്ക് സിസ്റ്റത്തിൽ ലഭ്യമല്ല. ലോഗിൻ ആവശ്യമില്ലാതെ പുതിയ ആക്സസ് ലിങ്ക് ലഭിക്കാൻ ഓഫീസുമായി ബന്ധപ്പെടുക.
+            The link you provided is not available in the system. Please contact the office to obtain a new direct access link.
           </p>
           <div className="pt-2 flex flex-col gap-2">
             <button
@@ -265,14 +265,14 @@ export const ClientProgressPortal: React.FC<ClientProgressPortalProps> = ({
             <Clock className="w-7 h-7" />
           </div>
           <h2 className="text-lg font-black text-white font-sans">
-            ലിങ്കിന്റെ കാലാവധി കഴിഞ്ഞു (Link Expired)
+            Link Expired
           </h2>
           <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs font-mono text-slate-300">
             <p>Project: <strong className="text-cyan-300">{shareLink.estimateProjectName}</strong></p>
             <p className="text-amber-400 mt-1">Status: {timeInfo.label}</p>
           </div>
           <p className="text-xs text-slate-400 leading-relaxed">
-            ഈ പ്രോഗ്രസ് ലിങ്കിന്റെ അനുവദിച്ച സമയം പൂർത്തിയായിരിക്കുന്നു. ലോഗിൻ ആവശ്യമില്ലാത്ത പുതിയ ലിങ്ക് ലഭിക്കാൻ എഞ്ചിനീയറുമായി ബന്ധപ്പെടുക.
+            The validity duration for this progress link has expired. Please contact the engineer to receive a refreshed direct access link.
           </p>
           <div className="pt-2 flex flex-col gap-2">
             <button
@@ -290,12 +290,12 @@ export const ClientProgressPortal: React.FC<ClientProgressPortalProps> = ({
 
   // STAGE PROGRESS PIPELINE STEPS
   const STAGES = [
-    { name: "Site Survey & Soil Test", labelMl: "സർവ്വേ & പ്ലാനിംഗ്", threshold: 15, status: progressPct >= 15 ? "DONE" : "PENDING" },
-    { name: "Substructure & Foundation", labelMl: "ഫൗണ്ടേഷൻ & പ്ലിന്ത്", threshold: 35, status: progressPct >= 35 ? "DONE" : progressPct >= 15 ? "ACTIVE" : "PENDING" },
-    { name: "Superstructure & Masonry", labelMl: "ബ്രിക്ക് വർക്ക് & ലിന്റൽ", threshold: 60, status: progressPct >= 60 ? "DONE" : progressPct >= 35 ? "ACTIVE" : "PENDING" },
-    { name: "Roof Slab & Curing", labelMl: "റൂഫ് സ്ലാബ് കോൺക്രീറ്റിംഗ്", threshold: 75, status: progressPct >= 75 ? "DONE" : progressPct >= 60 ? "ACTIVE" : "PENDING" },
-    { name: "Plastering & Electrical MEP", labelMl: "പ്ലാസ്റ്ററിംഗ് & വയറിംഗ്", threshold: 90, status: progressPct >= 90 ? "DONE" : progressPct >= 75 ? "ACTIVE" : "PENDING" },
-    { name: "Finishing & Handover", labelMl: "പെയിന്റിംഗ് & കൈമാറൽ", threshold: 100, status: progressPct >= 100 ? "DONE" : progressPct >= 90 ? "ACTIVE" : "PENDING" }
+    { name: "Site Survey & Soil Test", labelMl: "Survey & Planning", threshold: 15, status: progressPct >= 15 ? "DONE" : "PENDING" },
+    { name: "Substructure & Foundation", labelMl: "Foundation & Plinth", threshold: 35, status: progressPct >= 35 ? "DONE" : progressPct >= 15 ? "ACTIVE" : "PENDING" },
+    { name: "Superstructure & Masonry", labelMl: "Brickwork & Lintel", threshold: 60, status: progressPct >= 60 ? "DONE" : progressPct >= 35 ? "ACTIVE" : "PENDING" },
+    { name: "Roof Slab & Curing", labelMl: "Roof Slab Concreting", threshold: 75, status: progressPct >= 75 ? "DONE" : progressPct >= 60 ? "ACTIVE" : "PENDING" },
+    { name: "Plastering & Electrical MEP", labelMl: "Plastering & Wiring", threshold: 90, status: progressPct >= 90 ? "DONE" : progressPct >= 75 ? "ACTIVE" : "PENDING" },
+    { name: "Finishing & Handover", labelMl: "Painting & Handover", threshold: 100, status: progressPct >= 100 ? "DONE" : progressPct >= 90 ? "ACTIVE" : "PENDING" }
   ];
 
   const certifiedExp = (stageCertData && stageCertData.stageValuationAmount > 0)
@@ -439,7 +439,7 @@ export const ClientProgressPortal: React.FC<ClientProgressPortalProps> = ({
             }`}
           >
             <Receipt className="w-4 h-4" />
-            <span>5. ഇൻവോയ്സ് & പേയ്‌മെന്റുകൾ (Invoices & Payments)</span>
+            <span>5. Invoices & Payments</span>
           </button>
         </div>
 
@@ -528,7 +528,7 @@ export const ClientProgressPortal: React.FC<ClientProgressPortalProps> = ({
                 <div className="flex items-center gap-2.5">
                   <HardHat className="w-5 h-5 text-amber-400" />
                   <h2 className="text-base font-bold text-white font-sans">
-                    നിർമ്മാണ ഘട്ടങ്ങൾ & പുരോഗതി (Construction Stage Pipeline)
+                    Construction Stage Pipeline
                   </h2>
                 </div>
                 <span className="text-xs font-mono text-slate-400">
@@ -827,10 +827,10 @@ export const ClientProgressPortal: React.FC<ClientProgressPortalProps> = ({
                   <Lock className="w-7 h-7" />
                 </div>
                 <h3 className="text-lg font-bold text-white font-sans">
-                  കംപ്ലീഷൻ സർട്ടിഫിക്കറ്റ് ലഭ്യമല്ല (Completion Incomplete)
+                  Completion Certificate Incomplete
                 </h3>
                 <p className="text-xs text-slate-300 font-sans leading-relaxed">
-                  കെട്ടിട നിർമ്മാണത്തിന്റെ മുഴുവൻ പ്രവൃത്തികളും (100% Works) പൂർത്തിയായതിന് ശേഷം മാത്രമേ കംപ്ലീഷൻ സർട്ടിഫിക്കറ്റ് ഇഷ്യൂ ചെയ്യാൻ സാധിക്കുകയുള്ളൂ. നിലവിൽ പ്രവൃത്തികൾ പുരോഗമിക്കുകയാണ് ({progressPct}% പൂർത്തിയായി).
+                  The completion certificate can only be issued once all construction works (100% Works) are completed. Works are currently in progress ({progressPct}% completed).
                 </p>
                 <div className="pt-2">
                   <button
@@ -1046,7 +1046,7 @@ export const ClientProgressPortal: React.FC<ClientProgressPortalProps> = ({
               <div className="flex items-center gap-2.5">
                 <Receipt className="w-5 h-5 text-emerald-400" />
                 <h2 className="text-base md:text-lg font-bold text-white font-sans">
-                  ഇൻവോയ്സ് & പേയ്‌മെന്റ് വിവരങ്ങൾ (Invoices & Payments)
+                  Invoices & Payment Details
                 </h2>
               </div>
 

@@ -768,127 +768,122 @@ export const InvoiceDetailModal: React.FC<InvoiceDetailModalProps> = ({
         )}
 
         {/* ========================================================================= */}
-        {/* OFFICIAL PRINTABLE INVOICE DOCUMENT (PREMIUM PROFESSIONAL THEME)         */}
+        {/* OFFICIAL PRINTABLE INVOICE DOCUMENT (COMPLETE BLACK & WHITE THEME)         */}
         {/* ========================================================================= */}
         <div
           id="printable-invoice-document"
-          className="bg-white text-slate-900 rounded-3xl p-6 md:p-10 space-y-6 shadow-xl font-sans border border-slate-200 print:border-none print:shadow-none print:p-0 print:rounded-none"
+          className="bg-white text-black rounded-2xl p-6 md:p-8 space-y-5 font-sans border-2 border-black shadow-none print:border-none print:shadow-none print:p-0 print:rounded-none"
         >
           {/* Top Document Corporate Header */}
-          <div className="flex flex-wrap items-start justify-between gap-6 border-b-2 border-slate-900 pb-6">
-            <div className="space-y-1.5">
+          <div className="flex flex-wrap items-start justify-between gap-6 border-b-2 border-black pb-5">
+            <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <h2 className="text-3xl font-black text-slate-950 tracking-tight font-sans uppercase">
+                <h2 className="text-3xl font-black text-black tracking-tight font-sans uppercase">
                   VASTHUSILPY
                 </h2>
               </div>
-              <div className="text-xs font-bold text-teal-800 uppercase tracking-widest font-mono">
+              <div className="text-xs font-black text-black uppercase tracking-widest font-mono">
                 Architectural • Engineering • Survey • Valuation • 3D Design
               </div>
-              <div className="text-xs text-slate-600 leading-relaxed font-sans pt-1 space-y-0.5">
+              <div className="text-xs text-black font-semibold leading-relaxed font-sans pt-1 space-y-0.5">
                 <div className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                  <MapPin className="w-3.5 h-3.5 text-black shrink-0" />
                   <span>Near Panchayath Office, Keralassery, Palakkad, Kerala - 678641</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                  <Phone className="w-3.5 h-3.5 text-black shrink-0" />
                   <span className="font-mono">Mob: +91 97479 95961 / +91 70123 83137</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                  <Mail className="w-3.5 h-3.5 text-black shrink-0" />
                   <span>deepak.vasthusilpy@gmail.com</span>
                 </div>
               </div>
-              <div className="inline-block text-[10px] font-mono font-bold bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200 mt-1">
+              <div className="inline-block text-[11px] font-mono font-bold bg-white text-black px-2 py-0.5 rounded border border-black mt-1">
                 KPBR & KMBR Registered Engineer • Valuation Consultant
               </div>
             </div>
 
             <div className="text-right space-y-1">
-              <div className="text-3xl font-black text-slate-950 uppercase font-mono tracking-wider">
+              <div className="text-3xl font-black text-black uppercase font-mono tracking-wider">
                 TAX INVOICE
               </div>
-              <div className="text-sm font-bold font-mono text-teal-700">
+              <div className="text-sm font-black font-mono text-black">
                 #{invoice.invoiceNumber}
               </div>
               {invoice.poNumber && (
-                <div className="text-xs text-slate-500 font-mono">P.O. #{invoice.poNumber}</div>
+                <div className="text-xs font-bold text-black font-mono">P.O. #{invoice.poNumber}</div>
               )}
-              <div className="pt-2 text-xs text-slate-600 space-y-0.5 font-mono">
-                <div>Invoice Date: <strong className="text-slate-900">{invoice.invoiceDate}</strong></div>
-                <div>Payment Due: <strong className="text-slate-900">{invoice.dueDate}</strong></div>
+              <div className="pt-2 text-xs text-black space-y-0.5 font-mono font-semibold">
+                <div>Invoice Date: <strong className="text-black font-black">{invoice.invoiceDate}</strong></div>
+                <div>Payment Due: <strong className="text-black font-black">{invoice.dueDate}</strong></div>
               </div>
               <div className="pt-2">
-                <span
-                  className={`inline-block text-xs font-mono font-black px-3 py-1 rounded-md uppercase border ${
-                    isPaid
-                      ? "bg-emerald-100 text-emerald-800 border-emerald-300"
-                      : isPartial
-                      ? "bg-amber-100 text-amber-800 border-amber-300"
-                      : "bg-rose-100 text-rose-800 border-rose-300"
-                  }`}
-                >
-                  {isPaid ? "PAID IN FULL" : isPartial ? "PARTIALLY PAID" : "PAYMENT DUE"}
+                <span className="inline-block text-xs font-mono font-black px-3 py-1 rounded uppercase border-2 border-black bg-white text-black tracking-wider">
+                  {isPaid ? "[ PAID IN FULL ]" : isPartial ? "[ PARTIALLY PAID ]" : "[ PAYMENT DUE ]"}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Billed To Customer Card (Professional Layout) */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 bg-slate-50/80 border border-slate-200 rounded-2xl p-4 text-xs">
+          {/* Billed To Customer Card (Black and White Layout) */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 bg-white border-2 border-black rounded-xl p-4 text-xs text-black">
             <div className="md:col-span-7 space-y-1">
-              <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-mono">
+              <div className="text-[11px] font-black text-black uppercase tracking-widest font-mono border-b border-black pb-1 mb-1.5">
                 BILLED TO (CLIENT)
               </div>
-              <div className="text-base font-black text-slate-950 font-sans">{invoice.applicantName}</div>
+              <div className="text-base font-black text-black font-sans">{invoice.applicantName}</div>
               {invoice.applicantContactPerson && (
-                <div className="text-slate-700 font-medium font-sans">Attn: {invoice.applicantContactPerson}</div>
+                <div className="text-black font-bold font-sans">Attn: {invoice.applicantContactPerson}</div>
               )}
               {invoice.applicantAddress && (
-                <div className="text-slate-600 leading-relaxed font-sans">{invoice.applicantAddress}</div>
+                <div className="text-black font-semibold leading-relaxed font-sans">{invoice.applicantAddress}</div>
               )}
-              <div className="flex flex-wrap items-center gap-3 text-slate-700 font-mono pt-1">
+              <div className="flex flex-wrap items-center gap-3 text-black font-bold font-mono pt-1">
                 {invoice.applicantMobile && <span>Mob: +91 {invoice.applicantMobile}</span>}
                 {invoice.applicantEmail && <span>• Email: {invoice.applicantEmail}</span>}
               </div>
             </div>
 
-            <div className="md:col-span-5 md:border-l md:border-slate-200 md:pl-4 space-y-1 font-mono">
-              <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+            <div className="md:col-span-5 md:border-l-2 md:border-black md:pl-4 space-y-1 font-mono">
+              <div className="text-[11px] font-black text-black uppercase tracking-widest border-b border-black pb-1 mb-1.5">
                 PROJECT & WORK REFERENCE
               </div>
-              <div className="text-xs font-bold text-slate-900 font-sans">
+              <div className="text-xs font-black text-black font-sans">
                 {invoice.projectTitle || "Architectural & Engineering Consulting"}
               </div>
-              <div className="text-slate-500 text-[11px] pt-1 space-y-0.5">
-                <div>Currency: <strong>INR (₹)</strong></div>
-                <div>Payment Terms: <strong>Due on Receipt / Net Terms</strong></div>
+              <div className="text-black font-semibold text-xs pt-1 space-y-0.5">
+                <div>Currency: <strong className="font-black text-black">INR (₹)</strong></div>
+                <div>Payment Terms: <strong className="font-black text-black">Due on Receipt / Net Terms</strong></div>
+                {invoice.projectId && (
+                  <div>Project Ref: <strong className="font-black text-black">#{invoice.projectId}</strong></div>
+                )}
               </div>
             </div>
           </div>
 
           {/* Professional Line Items Table */}
-          <div className="overflow-x-auto border-2 border-slate-900 rounded-2xl overflow-hidden">
+          <div className="overflow-x-auto border-2 border-black rounded-xl overflow-hidden">
             <table className="w-full text-left text-xs border-collapse">
               <thead>
-                <tr className="bg-slate-950 text-white font-mono font-bold">
-                  <th className="p-3.5 text-center w-12 border-r border-slate-800">#</th>
-                  <th className="p-3.5">Scope of Work / Service Description</th>
-                  <th className="p-3.5 text-center w-28 border-l border-slate-800">Unit / Qty</th>
-                  <th className="p-3.5 text-right w-32 border-l border-slate-800">Rate (₹)</th>
-                  <th className="p-3.5 text-right w-36 border-l border-slate-800">Total (₹)</th>
+                <tr className="bg-neutral-100 text-black border-b-2 border-black font-mono font-black text-xs uppercase">
+                  <th className="p-3 text-center w-12 border-r-2 border-black">#</th>
+                  <th className="p-3 border-r-2 border-black">Scope of Work / Service Description</th>
+                  <th className="p-3 text-center w-28 border-r-2 border-black">Unit / Qty</th>
+                  <th className="p-3 text-right w-32 border-r-2 border-black">Rate (₹)</th>
+                  <th className="p-3 text-right w-36">Total (₹)</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-200 font-sans">
+              <tbody className="divide-y divide-black font-sans text-black">
                 {(invoice.items || []).map((item, index) => (
-                  <tr key={item.id} className={index % 2 === 1 ? "bg-slate-50/70" : "bg-white"}>
-                    <td className="p-3 text-center font-mono text-slate-500 border-r border-slate-200">{index + 1}</td>
-                    <td className="p-3 font-semibold text-slate-950 font-sans">{item.description}</td>
-                    <td className="p-3 text-center font-mono text-slate-700 border-l border-slate-200">{item.unit || "1"}</td>
-                    <td className="p-3 text-right font-mono text-slate-800 border-l border-slate-200">
+                  <tr key={item.id} className="bg-white">
+                    <td className="p-3 text-center font-mono font-black text-black border-r border-black">{index + 1}</td>
+                    <td className="p-3 font-bold text-black font-sans border-r border-black">{item.description}</td>
+                    <td className="p-3 text-center font-mono font-bold text-black border-r border-black">{item.unit || item.quantity || "1"}</td>
+                    <td className="p-3 text-right font-mono font-bold text-black border-r border-black">
                       ₹{item.rate.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
                     </td>
-                    <td className="p-3 text-right font-mono font-black text-slate-950 border-l border-slate-200">
+                    <td className="p-3 text-right font-mono font-black text-black">
                       ₹{item.amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
                     </td>
                   </tr>
@@ -898,37 +893,37 @@ export const InvoiceDetailModal: React.FC<InvoiceDetailModalProps> = ({
           </div>
 
           {/* Subtotals & Payment Settlement Section */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-2">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-5 pt-1">
             {/* Left Column: Bank Account Details & Official QR Code */}
             <div className="md:col-span-7 space-y-4">
               {/* Bank Transfer Box */}
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs font-mono text-slate-800 space-y-2">
-                <div className="flex items-center justify-between border-b border-slate-200 pb-1.5">
-                  <span className="font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
-                    <Building2 className="w-3.5 h-3.5 text-teal-700" />
+              <div className="bg-white border-2 border-black rounded-xl p-4 text-xs font-mono text-black space-y-2">
+                <div className="flex items-center justify-between border-b border-black pb-1.5">
+                  <span className="font-black text-black uppercase tracking-wider flex items-center gap-1.5">
+                    <Building2 className="w-3.5 h-3.5 text-black" />
                     <span>Bank & Online Payment Details</span>
                   </span>
-                  <span className="text-[10px] text-teal-800 font-bold bg-teal-50 px-2 py-0.5 rounded border border-teal-200">
+                  <span className="text-[10px] text-black font-black uppercase border border-black px-2 py-0.5 rounded">
                     Official Account
                   </span>
                 </div>
                 
                 {invoice.notes ? (
-                  <div className="whitespace-pre-line leading-relaxed text-slate-700 pt-1">
+                  <div className="whitespace-pre-line leading-relaxed text-black font-semibold pt-1">
                     {invoice.notes}
                   </div>
                 ) : (
-                  <div className="space-y-1 text-slate-700 leading-relaxed pt-1">
-                    <div>Bank Name: <strong>Axis Bank Ltd</strong></div>
-                    <div>Account Name: <strong>VASTHUSILPY</strong></div>
-                    <div>Account Number: <strong>923020007012383</strong></div>
-                    <div>IFSC Code: <strong>UTIB0002144</strong> (Keralassery Branch)</div>
-                    <div>UPI ID: <strong>7012383137@naviaxis</strong></div>
+                  <div className="space-y-1 text-black font-semibold leading-relaxed pt-1">
+                    <div>Bank Name: <strong className="text-black font-black">Axis Bank Ltd</strong></div>
+                    <div>Account Name: <strong className="text-black font-black">VASTHUSILPY</strong></div>
+                    <div>Account Number: <strong className="text-black font-black">923020007012383</strong></div>
+                    <div>IFSC Code: <strong className="text-black font-black">UTIB0002144</strong> (Keralassery Branch)</div>
+                    <div>UPI ID: <strong className="text-black font-black">7012383137@naviaxis</strong></div>
                   </div>
                 )}
               </div>
 
-              {/* Instant UPI Payment QR Code */}
+              {/* Instant UPI Payment QR Code (Black and White) */}
               <div className="w-full">
                 <InvoiceQrCode
                   upiId={invoice.upiId || "7012383137@naviaxis"}
@@ -937,60 +932,61 @@ export const InvoiceDetailModal: React.FC<InvoiceDetailModalProps> = ({
                   invoiceNumber={invoice.invoiceNumber}
                   size={100}
                   compact={true}
+                  blackAndWhite={true}
                 />
               </div>
             </div>
 
             {/* Right Column: Total Calculation Breakdown */}
-            <div className="md:col-span-5 space-y-2.5 text-xs font-sans">
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-2.5">
-                <div className="flex justify-between items-center text-slate-600">
-                  <span className="font-semibold">Subtotal:</span>
-                  <span className="font-mono font-bold text-slate-900">
+            <div className="md:col-span-5 space-y-3 text-xs font-sans text-black">
+              <div className="bg-white border-2 border-black rounded-xl p-4 space-y-2.5">
+                <div className="flex justify-between items-center text-black">
+                  <span className="font-bold">Subtotal:</span>
+                  <span className="font-mono font-bold text-black">
                     ₹{invoice.subTotal.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
                   </span>
                 </div>
 
                 {invoice.discount > 0 && (
-                  <div className="flex justify-between items-center text-emerald-700">
-                    <span className="font-semibold">Discount:</span>
+                  <div className="flex justify-between items-center text-black">
+                    <span className="font-bold">Discount:</span>
                     <span className="font-mono font-bold">
                       -₹{invoice.discount.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
                     </span>
                   </div>
                 )}
 
-                <div className="flex justify-between items-center pt-2 border-t-2 border-slate-300 text-slate-950">
+                <div className="flex justify-between items-center pt-2 border-t-2 border-black text-black">
                   <span className="font-black uppercase text-sm">Grand Total:</span>
-                  <span className="font-mono font-black text-xl text-slate-950">
+                  <span className="font-mono font-black text-xl text-black">
                     ₹{invoice.grandTotal.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
                   </span>
                 </div>
 
-                <div className="flex justify-between items-center text-emerald-800 pt-1">
-                  <span className="font-semibold">Amount Paid:</span>
+                <div className="flex justify-between items-center text-black pt-1">
+                  <span className="font-bold">Amount Paid:</span>
                   <span className="font-mono font-bold">
                     ₹{invoice.totalPaid.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
                   </span>
                 </div>
 
-                <div className="flex justify-between items-center pt-2.5 border-t border-slate-300 text-base font-black">
-                  <span className="text-slate-900 uppercase">Balance Due:</span>
-                  <span className={`font-mono ${invoice.balanceDue > 0 ? "text-rose-600" : "text-emerald-700"}`}>
+                <div className="flex justify-between items-center pt-2.5 border-t-2 border-black text-base font-black text-black">
+                  <span className="text-black uppercase">Balance Due:</span>
+                  <span className="font-mono font-black text-black">
                     ₹{invoice.balanceDue.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
                   </span>
                 </div>
               </div>
 
               {/* Authorized Signatory Block */}
-              <div className="border border-slate-200 rounded-2xl p-4 text-center space-y-4 bg-white">
-                <div className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">
+              <div className="border-2 border-black rounded-xl p-4 text-center space-y-4 bg-white text-black">
+                <div className="text-[11px] font-black text-black uppercase tracking-wider">
                   For VASTHUSILPY
                 </div>
-                <div className="h-10 border-b border-dashed border-slate-300 flex items-end justify-center pb-1">
-                  <span className="text-[10px] text-slate-400 font-mono italic">Authorized Signature / Seal</span>
+                <div className="h-10 border-b-2 border-dashed border-black flex items-end justify-center pb-1">
+                  <span className="text-[10px] text-black font-mono font-bold italic">Authorized Signature / Seal</span>
                 </div>
-                <div className="text-[10px] text-slate-500 font-sans">
+                <div className="text-[10px] text-black font-bold font-sans">
                   Registered Consulting Engineer & Valuer
                 </div>
               </div>
@@ -998,13 +994,13 @@ export const InvoiceDetailModal: React.FC<InvoiceDetailModalProps> = ({
           </div>
 
           {/* Footer Terms & Conditions */}
-          <div className="border-t border-slate-200 pt-4 text-xs text-slate-500 space-y-1 font-sans">
-            <div className="font-bold text-slate-700 text-[11px]">TERMS & CONDITIONS:</div>
-            <div className="leading-relaxed">
+          <div className="border-t-2 border-black pt-3 text-xs text-black space-y-1 font-sans">
+            <div className="font-black text-black text-xs uppercase tracking-wider">TERMS & CONDITIONS:</div>
+            <div className="leading-relaxed font-semibold text-black">
               {invoice.terms ||
                 "1. Payment should be made by UPI, Bank Transfer (NEFT/RTGS), or Cheque in favor of VASTHUSILPY. 2. Please quote invoice number during electronic transfer. 3. This is a computer-generated tax invoice."}
             </div>
-            <div className="text-center font-bold text-slate-700 pt-2 text-[11px]">
+            <div className="text-center font-black text-black pt-2 text-xs uppercase tracking-wider">
               Thank you for your business!
             </div>
           </div>

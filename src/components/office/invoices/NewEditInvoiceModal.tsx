@@ -485,7 +485,7 @@ export const NewEditInvoiceModal: React.FC<NewEditInvoiceModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 md:p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
-      <div className="bg-white text-slate-900 rounded-3xl max-w-7xl w-full p-4 md:p-6 shadow-2xl my-4 space-y-4 border border-slate-200 flex flex-col max-h-[92vh]">
+      <div className="invoice-modal-container bg-white text-slate-900 rounded-3xl max-w-7xl w-full p-4 md:p-6 shadow-2xl my-4 space-y-4 border border-slate-200 flex flex-col max-h-[92vh]">
         {/* Top Header Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3 shrink-0">
           <div className="flex items-center gap-3">

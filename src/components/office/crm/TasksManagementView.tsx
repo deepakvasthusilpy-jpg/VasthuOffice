@@ -259,7 +259,7 @@ export const TasksManagementView: React.FC<TasksManagementViewProps> = ({
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-white font-sans flex items-center gap-2.5">
               <ListTodo className="w-6 h-6 text-emerald-400" />
-              <span>ടാസ്കുകൾ & ഉപടാസ്കുകൾ ലൈബ്രറി (Tasks & Sub-Tasks)</span>
+              <span>Tasks & Sub-Tasks Library</span>
             </h1>
             <p className="text-xs text-slate-300 font-sans leading-relaxed">
               Manage master tasks, standard KPBR architectural phases, survey milestones, and subtask checklists.

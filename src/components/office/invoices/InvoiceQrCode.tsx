@@ -11,6 +11,7 @@ interface InvoiceQrCodeProps {
   size?: number;
   className?: string;
   compact?: boolean;
+  blackAndWhite?: boolean;
 }
 
 export const InvoiceQrCode: React.FC<InvoiceQrCodeProps> = ({
@@ -22,7 +23,8 @@ export const InvoiceQrCode: React.FC<InvoiceQrCodeProps> = ({
   note,
   size = 140,
   className = "",
-  compact = false
+  compact = false,
+  blackAndWhite = false
 }) => {
   const [copied, setCopied] = useState(false);
   const resolvedPayee = payeeName || name || "Vasthusilpy";
@@ -51,6 +53,97 @@ export const InvoiceQrCode: React.FC<InvoiceQrCodeProps> = ({
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
+  if (blackAndWhite) {
+    if (compact) {
+      return (
+        <div className={`bg-white border-2 border-black rounded-xl p-3 flex items-center gap-3 text-black ${className}`}>
+          <div className="bg-white p-1 rounded-lg shrink-0 border-2 border-black">
+            <img
+              src={qrImageUrl}
+              alt={`UPI Payment QR for ${upiId}`}
+              width={size}
+              height={size}
+              className="object-contain block"
+              loading="lazy"
+            />
+          </div>
+          <div className="flex-1 min-w-0 font-mono text-left">
+            <div className="text-[11px] font-black uppercase tracking-wider text-black">
+              SCAN TO PAY VIA UPI
+            </div>
+            {amount && amount > 0 && (
+              <div className="text-sm font-black text-black truncate mt-0.5">
+                Amount: ₹{amount.toLocaleString("en-IN")}
+              </div>
+            )}
+            <div className="text-[11px] font-bold text-black truncate font-mono mt-0.5">
+              UPI ID: {upiId}
+            </div>
+            <div className="text-[10px] text-black font-sans mt-0.5">
+              Payee: {resolvedPayee}
+            </div>
+            <button
+              type="button"
+              onClick={handleCopyUpi}
+              className="mt-1.5 px-2.5 py-1 bg-white text-black border-2 border-black hover:bg-neutral-100 rounded text-[10px] font-black flex items-center gap-1 transition-all cursor-pointer print:hidden"
+            >
+              {copied ? <Check className="w-3 h-3 text-black" /> : <Copy className="w-3 h-3 text-black" />}
+              <span>{copied ? "COPIED" : "COPY UPI ID"}</span>
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className={`bg-white border-2 border-black rounded-xl p-4 flex flex-col items-center text-center space-y-3 text-black ${className}`}>
+        <div className="text-xs font-mono font-black border-2 border-black px-3 py-1 rounded-md uppercase">
+          OFFICIAL UPI QR PAYMENT
+        </div>
+
+        <div className="bg-white p-2 rounded-xl border-2 border-black inline-block">
+          <img
+            src={qrImageUrl}
+            alt={`UPI Payment QR for ${upiId}`}
+            width={size}
+            height={size}
+            className="object-contain block mx-auto"
+            loading="lazy"
+          />
+        </div>
+
+        {amount && amount > 0 && (
+          <div className="text-center">
+            <div className="text-[11px] font-mono font-bold uppercase text-black">Payable Amount</div>
+            <div className="text-xl font-black font-mono text-black">
+              ₹{amount.toLocaleString("en-IN")}
+            </div>
+          </div>
+        )}
+
+        <div className="w-full bg-white border-2 border-black rounded-lg p-2.5 flex items-center justify-between gap-2 font-mono text-xs text-black">
+          <div className="text-left overflow-hidden">
+            <div className="text-[10px] font-bold uppercase text-black">UPI ID</div>
+            <div className="text-black font-black truncate text-xs">{upiId}</div>
+          </div>
+          <button
+            type="button"
+            onClick={handleCopyUpi}
+            className="px-2.5 py-1 bg-white text-black border-2 border-black hover:bg-neutral-100 rounded transition-colors cursor-pointer flex items-center gap-1 text-[10px] font-black shrink-0 print:hidden"
+            title="Copy UPI ID"
+          >
+            {copied ? <Check className="w-3.5 h-3.5 text-black" /> : <Copy className="w-3.5 h-3.5 text-black" />}
+            <span>{copied ? "COPIED" : "COPY"}</span>
+          </button>
+        </div>
+
+        <div className="text-[10px] font-bold text-black uppercase tracking-wider">
+          GPay • PhonePe • Paytm • BHIM • All UPI Apps
+        </div>
+      </div>
+    );
+  }
 
   if (compact) {
     return (

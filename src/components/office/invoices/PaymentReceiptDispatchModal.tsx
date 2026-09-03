@@ -260,7 +260,7 @@ export const PaymentReceiptDispatchModal: React.FC<PaymentReceiptDispatchModalPr
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-sm overflow-y-auto">
-      <div className="bg-white border border-slate-200 w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden my-6 animate-in fade-in zoom-in-95 duration-150">
+      <div className="invoice-modal-container bg-white border border-slate-200 w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden my-6 animate-in fade-in zoom-in-95 duration-150">
         
         {/* Top Header */}
         <div className="bg-slate-900 text-white p-5 border-b-2 border-emerald-500 relative">

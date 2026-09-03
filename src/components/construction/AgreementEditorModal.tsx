@@ -201,7 +201,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-base font-bold text-white font-sans truncate">
-                  {agreement.title || "കെട്ടിട നിർമ്മാണ കരാർ എഡിറ്റർ"}
+                  {agreement.title || "Construction Agreement Editor"}
                 </h2>
                 <span className="px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-mono text-[10px] border border-slate-700 font-bold">
                   {agreement.agreementNo}
@@ -225,21 +225,21 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
               className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 hover:border-amber-400 text-xs font-mono font-bold rounded-xl transition cursor-pointer flex items-center gap-1.5"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>ഇ-സ്റ്റാമ്പ്</span>
+              <span>E-Stamp</span>
             </button>
             <button
               onClick={() => setPrintMode("plain_a4")}
               className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30 hover:border-cyan-400 text-xs font-mono font-bold rounded-xl transition cursor-pointer flex items-center gap-1.5"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>പ്രിന്റ് / PDF</span>
+              <span>Print / PDF</span>
             </button>
             <button
               onClick={() => shareAgreementOnWhatsApp(agreement)}
               className="px-3 py-1.5 bg-emerald-950 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold rounded-xl transition cursor-pointer flex items-center gap-1.5"
             >
               <Share2 className="w-3.5 h-3.5" />
-              <span>വാട്സ്ആപ്പ്</span>
+              <span>WhatsApp</span>
             </button>
             <button
               onClick={() => handleSave()}
@@ -247,7 +247,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
               className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-xs font-mono font-bold rounded-xl shadow-lg shadow-emerald-950 transition cursor-pointer flex items-center gap-1.5"
             >
               <Save className="w-3.5 h-3.5" />
-              <span>{isSaving ? "സേവ് ചെയ്യുന്നു..." : "സേവ് (Save)"}</span>
+              <span>{isSaving ? "Saving..." : "Save"}</span>
             </button>
             <button
               onClick={onClose}
@@ -268,13 +268,13 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
         {/* Navigation Tabs for Editor */}
         <div className="flex items-center gap-1 bg-slate-950/70 p-2 border-b border-slate-800 overflow-x-auto">
           {[
-            { id: "parties", label: "1. കക്ഷികൾ (Parties)", icon: Building },
-            { id: "areas_cost", label: "2. വിസ്തീർണ്ണവും നിരക്കും (Areas & Rate)", icon: Layers },
-            { id: "extra_works", label: `3. അധിക ജോലികൾ (${(agreement.extraWorks || []).length})`, icon: Wrench },
-            { id: "stages", label: `4. പേയ്‌മെന്റ് സ്റ്റേജുകൾ (${agreement.paymentSchedule.length})`, icon: Receipt },
-            { id: "specs", label: "5. സ്പെസിഫിക്കേഷൻ (Specs)", icon: Sparkles },
-            { id: "clauses", label: "6. നിബന്ധനകൾ (Clauses)", icon: FileText },
-            { id: "signatures", label: "7. ഒപ്പ് & സാക്ഷികൾ (Signatures)", icon: FileCheck }
+            { id: "parties", label: "1. Parties", icon: Building },
+            { id: "areas_cost", label: "2. Areas & Rate", icon: Layers },
+            { id: "extra_works", label: `3. Extra Works (${(agreement.extraWorks || []).length})`, icon: Wrench },
+            { id: "stages", label: `4. Payment Stages (${agreement.paymentSchedule.length})`, icon: Receipt },
+            { id: "specs", label: "5. Specifications", icon: Sparkles },
+            { id: "clauses", label: "6. Terms & Clauses", icon: FileText },
+            { id: "signatures", label: "7. Signatures & Witnesses", icon: FileCheck }
           ].map(tab => (
             <button
               key={tab.id}
@@ -301,10 +301,10 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                 <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3">
                   <div className="font-bold text-sm text-emerald-400 border-b border-slate-800 pb-2 flex items-center gap-2">
                     <Building className="w-4 h-4" />
-                    <span>ഒന്നാം കക്ഷി വിവരങ്ങൾ (First Party / Client)</span>
+                    <span>First Party Details (Client)</span>
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">ഉടമസ്ഥന്റെ പേര് (Client Name):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Client Name:</label>
                     <input
                       type="text"
                       value={agreement.client.clientName}
@@ -313,7 +313,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">വീട്ടുപേര് (House Name):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">House Name:</label>
                     <input
                       type="text"
                       value={agreement.client.houseName}
@@ -322,7 +322,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">മേൽവിലാസം (Address):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Address:</label>
                     <input
                       type="text"
                       value={agreement.client.address}
@@ -332,7 +332,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="text-[11px] text-slate-400 font-mono">മൊബൈൽ നമ്പർ:</label>
+                      <label className="text-[11px] text-slate-400 font-mono">Mobile Number:</label>
                       <input
                         type="text"
                         value={agreement.client.mobileNumber}
@@ -341,7 +341,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] text-slate-400 font-mono">പഞ്ചായത്ത് / നഗരസഭ:</label>
+                      <label className="text-[11px] text-slate-400 font-mono">Panchayat / Municipality:</label>
                       <input
                         type="text"
                         value={agreement.client.localBody}
@@ -352,7 +352,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                   </div>
                   <div className="grid grid-cols-3 gap-2">
                     <div>
-                      <label className="text-[11px] text-slate-400 font-mono">വില്ലേജ്:</label>
+                      <label className="text-[11px] text-slate-400 font-mono">Village:</label>
                       <input
                         type="text"
                         value={agreement.client.village}
@@ -361,7 +361,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] text-slate-400 font-mono">താലൂക്ക്:</label>
+                      <label className="text-[11px] text-slate-400 font-mono">Taluk:</label>
                       <input
                         type="text"
                         value={agreement.client.taluk}
@@ -370,7 +370,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] text-slate-400 font-mono">ജില്ല:</label>
+                      <label className="text-[11px] text-slate-400 font-mono">District:</label>
                       <input
                         type="text"
                         value={agreement.client.district}
@@ -385,10 +385,10 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                 <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3">
                   <div className="font-bold text-sm text-indigo-400 border-b border-slate-800 pb-2 flex items-center gap-2">
                     <Building className="w-4 h-4" />
-                    <span>രണ്ടാം കക്ഷി വിവരങ്ങൾ (Contractor / Builder)</span>
+                    <span>Second Party Details (Contractor / Builder)</span>
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">സ്ഥാപനത്തിന്റെ പേര് (Company Name):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Company Name:</label>
                     <input
                       type="text"
                       value={agreement.contractor.companyName}
@@ -397,7 +397,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">പ്രൊപ്രൈറ്റർ / എൻജിനീയർ (Proprietor):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Proprietor / Engineer:</label>
                     <input
                       type="text"
                       value={agreement.contractor.proprietorName}
@@ -406,7 +406,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">ഓഫീസ് മേൽവിലാസം (Address):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Office Address:</label>
                     <input
                       type="text"
                       value={agreement.contractor.address}
@@ -416,7 +416,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="text-[11px] text-slate-400 font-mono">ഫോൺ നമ്പർ:</label>
+                      <label className="text-[11px] text-slate-400 font-mono">Phone Number:</label>
                       <input
                         type="text"
                         value={agreement.contractor.phone}
@@ -425,7 +425,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] text-slate-400 font-mono">ഇമെയിൽ:</label>
+                      <label className="text-[11px] text-slate-400 font-mono">Email:</label>
                       <input
                         type="text"
                         value={agreement.contractor.email}
@@ -435,7 +435,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                     </div>
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">ലൈസൻസ് നമ്പർ:</label>
+                    <label className="text-[11px] text-slate-400 font-mono">License Number:</label>
                     <input
                       type="text"
                       value={agreement.contractor.licenseNumber || ""}
@@ -449,11 +449,11 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
               {/* Site Details & Dates */}
               <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3">
                 <div className="font-bold text-sm text-cyan-400 border-b border-slate-800 pb-2">
-                  സൈറ്റ് ലൊക്കേഷനും കരാർ തീയതികളും (Site & Timeline)
+                  Site Location & Timeline
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">കരാർ തീയതി (Agreement Date):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Agreement Date:</label>
                     <input
                       type="date"
                       value={agreement.agreementDate}
@@ -462,17 +462,17 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">കരാർ ഒപ്പിട്ട സ്ഥലം (Place):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Place of Execution:</label>
                     <input
                       type="text"
                       value={agreement.place || ""}
                       onChange={e => setAgreement({ ...agreement, place: e.target.value })}
                       className="w-full mt-1 p-2 bg-slate-900 border border-slate-700 rounded-xl text-white font-mono"
-                      placeholder="ഉദാ: പാലക്കാട്"
+                      placeholder="e.g. Palakkad"
                     />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">കാലാവധി (മാസങ്ങൾ):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Period (Months):</label>
                     <input
                       type="number"
                       value={agreement.completionPeriodMonths}
@@ -481,7 +481,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">പൂർത്തീകരണ തീയതി (Target Date):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Completion Target Date:</label>
                     <input
                       type="date"
                       value={agreement.completionTargetDate}
@@ -502,7 +502,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                 <div className="flex justify-between items-center border-b border-slate-800 pb-2">
                   <div className="font-bold text-sm text-indigo-400 flex items-center gap-2">
                     <Layers className="w-4 h-4" />
-                    <span>നിലകൾ തിരിച്ചുള്ള വിസ്തീർണ്ണം (Floor-Wise Area Breakdown)</span>
+                    <span>Floor-Wise Area Breakdown</span>
                   </div>
                   <button
                     onClick={() => {
@@ -525,7 +525,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                     className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-indigo-300 rounded-lg text-xs font-mono font-bold flex items-center gap-1 cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" />
-                    <span>+ ഫ്ലോർ ചേർക്കുക</span>
+                    <span>+ Add Floor</span>
                   </button>
                 </div>
 
@@ -631,7 +631,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                 </div>
 
                 <div className="p-3 bg-indigo-950/40 border border-indigo-500/30 rounded-xl flex justify-between items-center font-mono">
-                  <span className="text-slate-300 font-bold">ആകെ വിസ്തീർണ്ണം (Total Built-up Area):</span>
+                  <span className="text-slate-300 font-bold">Total Built-up Area:</span>
                   <span className="text-indigo-400 font-bold text-sm">{agreement.totalBuiltUpArea.toLocaleString()} Sq.Ft</span>
                 </div>
               </div>
@@ -639,11 +639,11 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
               {/* Financial Calculation */}
               <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-4">
                 <div className="font-bold text-sm text-emerald-400 border-b border-slate-800 pb-2">
-                  സാമ്പത്തിക നിരക്കുകൾ (Financial Calculation)
+                  Financial Calculation
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">സ്ക്വയർ ഫീറ്റ് റേറ്റ് (Rate / Sq.Ft):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Rate / Sq.Ft:</label>
                     <input
                       type="number"
                       value={agreement.baseRatePerSqFt}
@@ -652,7 +652,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">അധിക ചിലവുകൾ (Additional Costs):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Additional Costs:</label>
                     <input
                       type="number"
                       value={agreement.additionalCosts}
@@ -661,7 +661,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">ഡിസ്കൗണ്ട് / ഇളവ് (Discount):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Discount:</label>
                     <input
                       type="number"
                       value={agreement.discount}
@@ -670,7 +670,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">നികുതി ശതമാനം (Tax %):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Tax %:</label>
                     <input
                       type="number"
                       value={agreement.taxPercent}
@@ -683,18 +683,18 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                 {/* Grand Total */}
                 <div className="p-4 bg-slate-900 border border-slate-700 rounded-2xl space-y-2">
                   <div className="flex justify-between items-center text-sm font-bold text-white">
-                    <span>ആകെ കരാർ തുക (Final Contract Amount):</span>
+                    <span>Final Contract Amount:</span>
                     <span className="text-emerald-400 font-mono text-base">{formatIndianCurrency(agreement.finalContractAmount)}</span>
                   </div>
                   <div className="flex justify-between items-center text-[11px] text-slate-400 font-mono">
-                    <span>യഥാർത്ഥ നിരക്ക് (Effective Rate): {formatIndianCurrency(agreement.effectiveRatePerSqFt, false)} / Sq.Ft</span>
+                    <span>Effective Rate: {formatIndianCurrency(agreement.effectiveRatePerSqFt, false)} / Sq.Ft</span>
                   </div>
                   <div>
-                    <label className="text-[10px] text-slate-500 font-mono block">തുക അക്ഷരത്തിൽ (മലയാളം):</label>
+                    <label className="text-[10px] text-slate-500 font-mono block">Amount in Words:</label>
                     <input
                       type="text"
-                      value={agreement.amountInWordsMl || ""}
-                      onChange={e => setAgreement({ ...agreement, amountInWordsMl: e.target.value })}
+                      value={agreement.amountInWords || ""}
+                      onChange={e => setAgreement({ ...agreement, amountInWords: e.target.value })}
                       className="w-full mt-0.5 p-2 bg-slate-950 border border-slate-700 rounded-lg text-slate-200 font-sans text-xs"
                     />
                   </div>
@@ -710,10 +710,10 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                 <div>
                   <div className="font-bold text-sm text-amber-400 flex items-center gap-2">
                     <Wrench className="w-4 h-4" />
-                    <span>അധിക നിർമ്മാണ ജോലികൾ (Extra Works / Add-on Items)</span>
+                    <span>Extra Works / Add-on Items</span>
                   </div>
                   <p className="text-[11px] text-slate-400 font-mono">
-                    ചുറ്റുമതിൽ, കിണർ, ഇന്റർലോക്ക്, മോഡുലാർ കിച്ചൻ തുടങ്ങിയ അധിക ജോലികൾ ഇവിടെ ചേർക്കാം.
+                    Add extra works such as compound wall, well digging, interlock, modular kitchen, etc.
                   </p>
                 </div>
                 <button
@@ -721,19 +721,19 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                   className="px-3.5 py-1.5 bg-amber-600 hover:bg-amber-500 text-white rounded-xl text-xs font-mono font-bold flex items-center gap-1.5 cursor-pointer shadow-md shadow-amber-950"
                 >
                   <Plus className="w-3.5 h-3.5" />
-                  <span>+ അധിക ജോലി ചേർക്കുക (Add Extra Work)</span>
+                  <span>+ Add Extra Work</span>
                 </button>
               </div>
 
               {/* Quick Presets for Extra Works */}
               <div className="bg-slate-950/60 p-3 rounded-2xl border border-slate-800 flex items-center gap-2 overflow-x-auto">
-                <span className="text-[11px] text-slate-400 font-mono shrink-0">പെട്ടെന്ന് ചേർക്കാൻ (Presets):</span>
+                <span className="text-[11px] text-slate-400 font-mono shrink-0">Presets:</span>
                 {[
-                  { name: "Compound Wall", nameMl: "ചുറ്റുമതിൽ നിർമ്മാണം", rate: 850, unit: "R.Ft", qty: 150 },
-                  { name: "Well Digging & Rings", nameMl: "കിണർ നിർമ്മാണം & റിംഗ്", rate: 65000, unit: "LS", qty: 1 },
-                  { name: "Interlock Paving", nameMl: "മുറ്റത്ത് ഇന്റർലോക്ക് ടൈൽസ്", rate: 75, unit: "Sq.Ft", qty: 400 },
-                  { name: "Modular Kitchen", nameMl: "മോഡുലാർ കിച്ചൻ കാബിനറ്റ്സ്", rate: 120000, unit: "LS", qty: 1 },
-                  { name: "Solar Power Provision", nameMl: "സോളാർ പവർ പ്രൊവിഷൻ", rate: 45000, unit: "LS", qty: 1 }
+                  { name: "Compound Wall", nameMl: "Compound Wall", rate: 850, unit: "R.Ft", qty: 150 },
+                  { name: "Well Digging & Rings", nameMl: "Well Digging & Rings", rate: 65000, unit: "LS", qty: 1 },
+                  { name: "Interlock Paving", nameMl: "Interlock Paving", rate: 75, unit: "Sq.Ft", qty: 400 },
+                  { name: "Modular Kitchen", nameMl: "Modular Kitchen", rate: 120000, unit: "LS", qty: 1 },
+                  { name: "Solar Power Provision", nameMl: "Solar Power Provision", rate: 45000, unit: "LS", qty: 1 }
                 ].map((preset, idx) => (
                   <button
                     key={idx}
@@ -1014,7 +1014,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                     <Stamp className="w-5 h-5 text-emerald-400" />
                     <div>
                       <h4 className="text-white font-bold text-sm">
-                        ഡിജിറ്റൽ ഒപ്പും ഔദ്യോഗിക സീലും (Digital Signature & Seal)
+                        Digital Signature & Official Seal
                       </h4>
                       <p className="text-xs text-slate-400 font-mono">
                         Authorised contractor/engineer verification for Vasthusilpy legal work agreements
@@ -1025,12 +1025,12 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                   {isAuthorizedSigner ? (
                     <span className="text-[10px] font-mono font-bold text-emerald-300 bg-emerald-950 border border-emerald-500/40 px-3 py-1 rounded-full flex items-center gap-1.5">
                       <UserCheck className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>ലോഗിൻ: {activeEmail} (Authorized Signer)</span>
+                      <span>Logged in: {activeEmail} (Authorized Signer)</span>
                     </span>
                   ) : (
                     <span className="text-[10px] font-mono font-bold text-amber-300 bg-amber-950 border border-amber-500/40 px-3 py-1 rounded-full flex items-center gap-1.5">
                       <Lock className="w-3.5 h-3.5 text-amber-400" />
-                      <span>ഡിജിറ്റൽ ഒപ്പ് നിയന്ത്രിച്ചിരിക്കുന്നു (View Only)</span>
+                      <span>Digital Signature Restricted (View Only)</span>
                     </span>
                   )}
                 </div>
@@ -1038,7 +1038,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                 {isAuthorizedSigner ? (
                   <div className="bg-emerald-950/40 border border-emerald-800/60 rounded-xl p-3 flex flex-wrap items-center justify-between gap-3">
                     <div className="text-xs text-emerald-200 font-mono">
-                      കരാർ ഔദ്യോഗികമായി ഡിജിറ്റൽ ഒപ്പ് വെച്ച് കൺഫേം ചെയ്യാൻ താഴെയുള്ള ബട്ടൺ ക്ലിക്ക് ചെയ്യുക.
+                      Click the button below to digitally sign and confirm the agreement.
                     </div>
                     <button
                       type="button"
@@ -1046,14 +1046,14 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                       className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold rounded-xl flex items-center gap-2 shadow-md shadow-emerald-950 cursor-pointer"
                     >
                       <Stamp className="w-4 h-4" />
-                      <span>ഡിജിറ്റലായി ഒപ്പുവെക്കുക (Apply Digital E-Sign)</span>
+                      <span>Apply Digital E-Sign</span>
                     </button>
                   </div>
                 ) : (
                   <div className="bg-amber-950/30 border border-amber-800/40 rounded-xl p-3 flex items-start gap-2.5 text-amber-200">
                     <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                     <div className="text-xs font-mono">
-                      ഡിജിറ്റൽ ഒപ്പും ഔദ്യോഗിക എൻജിനീയർ സീലും രേഖപ്പെടുത്താൻ <strong className="text-amber-100">deepak.vasthusilpy@gmail.com</strong> അല്ലെങ്കിൽ <strong className="text-amber-100">dibindeepak1@gmail.com</strong> വഴി ലോഗിൻ ചെയ്യേണ്ടതാണ്.
+                      To apply official engineer digital signature and seal, log in with <strong className="text-amber-100">deepak.vasthusilpy@gmail.com</strong> or <strong className="text-amber-100">dibindeepak1@gmail.com</strong>.
                     </div>
                   </div>
                 )}
@@ -1062,10 +1062,10 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3">
                   <div className="font-bold text-sm text-emerald-400 border-b border-slate-800 pb-2">
-                    സാക്ഷി 1 (Witness 1)
+                    Witness 1
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">പേര് (Name):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Name:</label>
                     <input
                       type="text"
                       value={agreement.witness1?.name || ""}
@@ -1077,7 +1077,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">മേൽവിലാസം (Address):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Address:</label>
                     <input
                       type="text"
                       value={agreement.witness1?.address || ""}
@@ -1092,10 +1092,10 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
 
                 <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3">
                   <div className="font-bold text-sm text-cyan-400 border-b border-slate-800 pb-2">
-                    സാക്ഷി 2 (Witness 2)
+                    Witness 2
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">പേര് (Name):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Name:</label>
                     <input
                       type="text"
                       value={agreement.witness2?.name || ""}
@@ -1107,7 +1107,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="text-[11px] text-slate-400 font-mono">മേൽവിലാസം (Address):</label>
+                    <label className="text-[11px] text-slate-400 font-mono">Address:</label>
                     <input
                       type="text"
                       value={agreement.witness2?.address || ""}
@@ -1124,7 +1124,7 @@ export const AgreementEditorModal: React.FC<AgreementEditorModalProps> = ({
               {/* Status change bar */}
               <div className="p-4 bg-slate-950 border border-slate-800 rounded-2xl flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <div className="text-white font-bold text-sm">കരാർ സ്റ്റാറ്റസ് മാറ്റുക (Change Status)</div>
+                  <div className="text-white font-bold text-sm">Change Agreement Status</div>
                   <div className="text-slate-400 text-xs font-mono">
                     Token: {agreement.verificationToken} • Created: {agreement.createdAt.slice(0, 10)}
                   </div>

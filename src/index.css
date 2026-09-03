@@ -1084,4 +1084,138 @@ html.anthropomorphic .bg-blueprint-grid-dark {
     page-break-after: always;
     break-after: page;
   }
+
+  /* Strict Complete Black & White Print Rules for Printable Invoice Document */
+  #printable-invoice-document {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #printable-invoice-document,
+  #printable-invoice-document * {
+    color: #000000 !important;
+    border-color: #000000 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  #printable-invoice-document table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    border: 2px solid #000000 !important;
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
+  }
+
+  #printable-invoice-document thead th {
+    background-color: #f3f4f6 !important;
+    background: #f3f4f6 !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+    font-weight: 900 !important;
+    padding: 6px 8px !important;
+    font-size: 8.5pt !important;
+  }
+
+  #printable-invoice-document tbody td {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+    padding: 6px 8px !important;
+    font-size: 8.5pt !important;
+    font-weight: 600 !important;
+  }
 }
+
+/* ========================================================================= */
+/* INVOICE & MODAL INPUT VISIBILITY & CONTRAST (FIXES INVISIBLE ENTERING TEXT) */
+/* ========================================================================= */
+.bg-white input:not([type="checkbox"]):not([type="radio"]),
+.bg-white select,
+.bg-white textarea,
+.bg-slate-50 input:not([type="checkbox"]):not([type="radio"]),
+.bg-slate-50 select,
+.bg-slate-50 textarea,
+.bg-slate-100 input:not([type="checkbox"]):not([type="radio"]),
+.bg-slate-100 select,
+.bg-slate-100 textarea,
+.bg-neutral-50 input:not([type="checkbox"]):not([type="radio"]),
+.bg-neutral-50 select,
+.bg-neutral-50 textarea,
+.bg-neutral-100 input:not([type="checkbox"]):not([type="radio"]),
+.bg-neutral-100 select,
+.bg-neutral-100 textarea,
+.invoice-modal-container input:not([type="checkbox"]):not([type="radio"]),
+.invoice-modal-container select,
+.invoice-modal-container textarea,
+input.invoice-input,
+select.invoice-input,
+textarea.invoice-input,
+input.invoice-field,
+select.invoice-field,
+textarea.invoice-field {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  border: 1px solid #94a3b8 !important;
+  opacity: 1 !important;
+  font-weight: 600 !important;
+}
+
+.bg-white input:focus,
+.bg-white select:focus,
+.bg-white textarea:focus,
+.bg-slate-50 input:focus,
+.bg-slate-50 select:focus,
+.bg-slate-50 textarea:focus,
+.invoice-modal-container input:focus,
+.invoice-modal-container select:focus,
+.invoice-modal-container textarea:focus,
+input.invoice-input:focus,
+select.invoice-input:focus,
+textarea.invoice-input:focus,
+input.invoice-field:focus,
+select.invoice-field:focus,
+textarea.invoice-field:focus {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  border: 1.5px solid #1d4ed8 !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2) !important;
+  outline: none !important;
+}
+
+.bg-white input::placeholder,
+.bg-white textarea::placeholder,
+.bg-slate-50 input::placeholder,
+.bg-slate-50 textarea::placeholder,
+.invoice-modal-container input::placeholder,
+.invoice-modal-container textarea::placeholder,
+input.invoice-input::placeholder,
+textarea.invoice-input::placeholder,
+input.invoice-field::placeholder,
+textarea.invoice-field::placeholder {
+  color: #64748b !important;
+  -webkit-text-fill-color: #64748b !important;
+  opacity: 1 !important;
+  font-weight: 500 !important;
+}
+
+.bg-white input[type="date"],
+.bg-slate-50 input[type="date"],
+.invoice-modal-container input[type="date"],
+input.invoice-input[type="date"] {
+  color-scheme: light !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+}
+

@@ -68,16 +68,16 @@ export const ClientInvoiceQrModal: React.FC<ClientInvoiceQrModalProps> = ({
 
   const handleShareWhatsApp = () => {
     const text = encodeURIComponent(
-      `*വാസ്തുശില്പി - ഒഫീഷ്യൽ ഇൻവോയ്സ് & പേയ്‌മെന്റ് വ്യൂ*\n` +
-      `പ്രിയ ${invoice.applicantName},\n\n` +
-      `നിങ്ങളുടെ *${invoice.projectTitle || "പ്രോജക്റ്റ്"}* സംബന്ധിച്ച ഇൻവോയ്സ് #${invoice.invoiceNumber} വിവരങ്ങൾ താഴെ കാണുന്ന ലിങ്കിൽ പരിശോധിക്കാവുന്നതാണ്:\n\n` +
-      `💰 *തുക:* ₹${invoice.grandTotal.toLocaleString("en-IN")}\n` +
+      `*VASTHUSILPY - OFFICIAL INVOICE & PAYMENT VIEW*\n` +
+      `Dear ${invoice.applicantName},\n\n` +
+      `Your invoice #${invoice.invoiceNumber} for *${invoice.projectTitle || "Consultancy Services"}* is available for your review and download:\n\n` +
+      `💰 *Invoice Total:* ₹${invoice.grandTotal.toLocaleString("en-IN")}\n` +
       (invoice.balanceDue > 0
-        ? `⚠️ *അടയ്ക്കാനുള്ള ബാക്കി തുക:* ₹${invoice.balanceDue.toLocaleString("en-IN")}\n`
-        : `✅ *സ്റ്റാറ്റസ്:* പൂർണ്ണമായി അടച്ചു (PAID)\n`) +
+        ? `⚠️ *Balance Due:* ₹${invoice.balanceDue.toLocaleString("en-IN")}\n`
+        : `✅ *Status:* FULLY PAID\n`) +
       `🔗 ${shareUrl}\n\n` +
-      `✨ *ലോഗിൻ ആവശ്യമില്ല:* ഈ ലിങ്കിൽ ക്ലിക്ക് ചെയ്താൽ മൊബൈലിലോ കമ്പ്യൂട്ടറിലോ നേരിട്ട് ഇൻവോയ്സും രസീതും കാണാം. UPI QR വഴി ഉടൻ പേയ്മെന്റ് ചെയ്യാനും സാധിക്കും.\n\n` +
-      `Vasthusilpy Architectural & Engineering - Keralassery\n📞 +91 70123 83137`
+      `✨ *Direct Access (No Login Required):* Click the link above on your phone or computer to review the invoice, download the official PDF receipt, or scan the UPI QR code to complete payment instantly.\n\n` +
+      `Vasthusilpy Architectural & Engineering Consultants - Keralassery\n📞 +91 70123 83137`
     );
     window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
   };

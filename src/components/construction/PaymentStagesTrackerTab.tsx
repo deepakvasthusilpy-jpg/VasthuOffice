@@ -309,7 +309,7 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* 1. Total Contract */}
             <div className="bg-slate-900 border border-slate-800 rounded-3xl p-4 space-y-2 font-mono">
-              <div className="text-[11px] text-slate-400">ആകെ കരാർ തുക (Contract)</div>
+              <div className="text-[11px] text-slate-400">Total Contract Amount</div>
               <div className="text-xl font-black text-white">
                 {formatIndianCurrency(activeProject.finalContractAmount)}
               </div>
@@ -321,7 +321,7 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
             {/* 2. Received & Financial % */}
             <div className="bg-slate-900 border border-slate-800 rounded-3xl p-4 space-y-2 font-mono">
               <div className="flex justify-between items-center text-[11px] text-slate-400">
-                <span>ലഭിച്ച തുക (Received)</span>
+                <span>Received Amount</span>
                 <span className="text-cyan-400 font-bold">{financialProgressPct}% Paid</span>
               </div>
               <div className="text-xl font-black text-cyan-400">
@@ -334,7 +334,7 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
 
             {/* 3. Balance */}
             <div className="bg-slate-900 border border-slate-800 rounded-3xl p-4 space-y-2 font-mono">
-              <div className="text-[11px] text-slate-400">ബാക്കി തുക (Balance)</div>
+              <div className="text-[11px] text-slate-400">Balance Amount</div>
               <div className="text-xl font-black text-amber-400">
                 {formatIndianCurrency(activeProject.balanceAmount || activeProject.finalContractAmount - totalReceived)}
               </div>
@@ -348,12 +348,12 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
               <div className="flex justify-between items-center text-[11px]">
                 <span className="text-slate-300 font-bold flex items-center gap-1">
                   <CheckSquare className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>ജോലി പൂർത്തീകരണം:</span>
+                  <span>Work Completion:</span>
                 </span>
                 <span className="text-emerald-400 font-black text-sm">{overallWorkProgress}%</span>
               </div>
               <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                <span>{paymentSchedule.filter(s => s.status === "PAID" || s.isCompleted).length} / {paymentSchedule.length} ഘട്ടങ്ങൾ</span>
+                <span>{paymentSchedule.filter(s => s.status === "PAID" || s.isCompleted).length} / {paymentSchedule.length} Stages</span>
               </div>
               <div className="w-full h-2 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
                 <div
@@ -376,7 +376,7 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                 }`}
               >
                 <Receipt className="w-4 h-4" />
-                <span>1. സ്റ്റേജ് പെയ്‌മെന്റ് ഷെഡ്യൂൾ & ചെക്ക്‌ലിസ്റ്റ് (Stages)</span>
+                <span>1. Stage Payment Schedule & Checklist</span>
               </button>
 
               <button
@@ -388,7 +388,7 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                 }`}
               >
                 <Layers className="w-4 h-4" />
-                <span>2. നിലകൾ തിരിച്ചുള്ള തുക (Floor Breakdown)</span>
+                <span>2. Floor-Wise Cost Breakdown</span>
               </button>
 
               <button
@@ -400,20 +400,20 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                 }`}
               >
                 <Wrench className="w-4 h-4" />
-                <span>3. അധിക ജോലികൾ ({extraWorks.length})</span>
+                <span>3. Additional Works ({extraWorks.length})</span>
               </button>
             </div>
 
             {/* Quick floor filter if in stages view */}
             {activeViewMode === "STAGES" && floors.length > 1 && (
               <div className="flex items-center gap-2">
-                <span className="text-[11px] text-slate-400">ഫ്ലോർ ഫിൽട്ടർ:</span>
+                <span className="text-[11px] text-slate-400">Floor Filter:</span>
                 <select
                   value={selectedFloorFilter}
                   onChange={e => setSelectedFloorFilter(e.target.value)}
                   className="px-3 py-1 bg-slate-950 border border-slate-700 rounded-lg text-[11px] text-indigo-300 font-bold focus:outline-none"
                 >
-                  <option value="ALL">എല്ലാ ഫ്ലോറുകളും (All Stages)</option>
+                  <option value="ALL">All Stages</option>
                   {floors.map(f => (
                     <option key={f.id} value={f.floorName}>
                       {f.floorName} ({f.areaSqFt} Sq.Ft)
@@ -430,10 +430,10 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
               <div className="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3 gap-2">
                 <div className="font-bold text-sm text-white flex items-center gap-2">
                   <Receipt className="w-4 h-4 text-cyan-400" />
-                  <span>സ്റ്റേജുകൾ & പെയ്‌മെന്റ് വിവരങ്ങൾ (Stage-Wise Breakdown & Checklist)</span>
+                  <span>Stage-Wise Payment Breakdown & Checklist</span>
                 </div>
                 <div className="text-xs text-slate-400 font-mono">
-                  ഓരോ ഘട്ടത്തിന്റെയും ചെക്ക്‌ലിസ്റ്റ് ടിക്ക് ചെയ്ത് വർക്ക് % കണ്ടെത്താം.
+                  Check stage-wise checklist items to verify engineering completion.
                 </div>
               </div>
 
@@ -443,13 +443,13 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                     <thead>
                       <tr className="bg-slate-950 text-slate-400 border-b border-slate-800">
                         <th className="p-3">#</th>
-                        <th className="p-3">നിർമ്മാണ ഘട്ടം (Stage Name)</th>
-                        <th className="p-3 text-center">ശതമാനം</th>
-                        <th className="p-3 text-right">ഘട്ട തുക</th>
-                        <th className="p-3 text-center">ജോലി പുരോഗതി (% Done)</th>
-                        <th className="p-3 text-right">ലഭിച്ചത്</th>
-                        <th className="p-3 text-center">സ്റ്റാറ്റസ്</th>
-                        <th className="p-3 text-center">നടപടി (Action)</th>
+                        <th className="p-3">Stage Name</th>
+                        <th className="p-3 text-center">Percent</th>
+                        <th className="p-3 text-right">Stage Amount</th>
+                        <th className="p-3 text-center">Work Progress</th>
+                        <th className="p-3 text-right">Received</th>
+                        <th className="p-3 text-center">Status</th>
+                        <th className="p-3 text-center">Action</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800">
@@ -549,7 +549,7 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                 </div>
               ) : (
                 <div className="p-8 text-center text-slate-500 font-mono text-xs">
-                  ഈ പ്രോജക്ടിന് കരാർ ഷെഡ്യൂൾ ലഭ്യമല്ല.
+                  No contract schedule available for this project.
                 </div>
               )}
             </div>
@@ -563,10 +563,10 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                   <div>
                     <h3 className="font-bold text-sm text-white flex items-center gap-2">
                       <Layers className="w-4 h-4 text-indigo-400" />
-                      <span>നിലകൾ തിരിച്ചുള്ള നിർമ്മാണ ചെലവും പേയ്‌മെന്റും (Floor-Wise Cost Matrix)</span>
+                      <span>Floor-Wise Construction Cost & Payment Matrix</span>
                     </h3>
                     <p className="text-xs text-slate-400 font-mono">
-                      ഓരോ ഫ്ലോറിന്റെയും വിസ്തീർണ്ണവും നിർമ്മാണ നിരക്കും തിരിച്ചുള്ള കണക്കുകൾ.
+                      Floor-wise built-up area and construction cost breakdown.
                     </p>
                   </div>
                 </div>
@@ -590,19 +590,19 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
 
                       <div className="space-y-2 text-xs">
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-400">നിരക്ക് / Sq.Ft:</span>
+                          <span className="text-slate-400">Rate / Sq.Ft:</span>
                           <span className="text-white font-bold">{formatIndianCurrency(item.rate, false)} / Sq.Ft</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-slate-400">ഫ്ലോർ ചെലവ്:</span>
+                          <span className="text-slate-400">Floor Cost:</span>
                           <span className="text-emerald-400 font-black text-sm">{formatIndianCurrency(item.estimatedCost)}</span>
                         </div>
                         <div className="flex justify-between items-center border-t border-slate-900 pt-1 text-[11px]">
-                          <span className="text-slate-400">ലഭിച്ചത് (Allocated):</span>
+                          <span className="text-slate-400">Allocated Received:</span>
                           <span className="text-cyan-400 font-bold">{formatIndianCurrency(item.allocatedPaid)}</span>
                         </div>
                         <div className="flex justify-between items-center text-[11px]">
-                          <span className="text-slate-400">ബാക്കി തുക:</span>
+                          <span className="text-slate-400">Balance Amount:</span>
                           <span className="text-amber-400 font-bold">{formatIndianCurrency(item.balance)}</span>
                         </div>
                       </div>
@@ -619,17 +619,17 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                 {/* Total Floor Summary Footer */}
                 <div className="p-4 bg-indigo-950/40 border border-indigo-500/30 rounded-2xl flex flex-wrap justify-between items-center font-mono text-xs gap-3">
                   <div>
-                    <span className="text-slate-400">ആകെ വിസ്തീർണ്ണം: </span>
+                    <span className="text-slate-400">Total Built-up Area: </span>
                     <strong className="text-white">{activeProject.totalBuiltUpArea} Sq.Ft</strong>
                   </div>
                   <div>
-                    <span className="text-slate-400">പ്രാഥമിക കെട്ടിട ചെലവ്: </span>
+                    <span className="text-slate-400">Estimated Building Cost: </span>
                     <strong className="text-emerald-400 font-black">
                       {formatIndianCurrency(floorCostMatrix.reduce((s, it) => s + it.estimatedCost, 0))}
                     </strong>
                   </div>
                   <div>
-                    <span className="text-slate-400">അധിക ജോലികൾ: </span>
+                    <span className="text-slate-400">Additional Works: </span>
                     <strong className="text-amber-400">
                       {formatIndianCurrency(extraWorks.reduce((s, it) => s + (it.totalAmount || 0), 0))}
                     </strong>
@@ -646,10 +646,10 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                 <div>
                   <h3 className="font-bold text-sm text-white flex items-center gap-2">
                     <Wrench className="w-4 h-4 text-amber-400" />
-                    <span>അധിക ജോലികൾ & വേരിയേഷൻസ് (Multiple Additional Works)</span>
+                    <span>Additional Works & Variations</span>
                   </h3>
                   <p className="text-xs text-slate-400 font-mono">
-                    പ്രോജക്റ്റിൽ ഉൾപ്പെടുത്തിയിരിക്കുന്ന അധിക നിർമ്മാണ ജോലികളുടെയും പേയ്‌മെന്റുകളുടെയും പട്ടിക.
+                    Schedule of extra construction works, variations, and payments.
                   </p>
                 </div>
 
@@ -659,7 +659,7 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                   className="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white font-mono text-xs font-bold rounded-xl transition cursor-pointer flex items-center gap-2 shadow-lg shadow-amber-950"
                 >
                   <Plus className="w-4 h-4" />
-                  <span>+ അധിക ജോലി ചേർക്കുക (Add Variation)</span>
+                  <span>+ Add Variation Work</span>
                 </button>
               </div>
 
@@ -669,14 +669,14 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                     <thead>
                       <tr className="bg-slate-950 text-slate-400 border-b border-slate-800">
                         <th className="p-3">#</th>
-                        <th className="p-3">ജോലിയുടെ പേര്</th>
-                        <th className="p-3">ഫ്ലോർ / സ്ഥലം</th>
-                        <th className="p-3 text-center">വിഭാഗം</th>
-                        <th className="p-3 text-right">അളവ് & യൂണിറ്റ്</th>
-                        <th className="p-3 text-right">നിരക്ക്</th>
-                        <th className="p-3 text-right">ആകെ തുക</th>
-                        <th className="p-3 text-center">പെയ്‌മെന്റ്</th>
-                        <th className="p-3 text-center">നടപടി</th>
+                        <th className="p-3">Work Description</th>
+                        <th className="p-3">Floor / Location</th>
+                        <th className="p-3 text-center">Category</th>
+                        <th className="p-3 text-right">Qty & Unit</th>
+                        <th className="p-3 text-right">Rate</th>
+                        <th className="p-3 text-right">Total Amount</th>
+                        <th className="p-3 text-center">Payment Status</th>
+                        <th className="p-3 text-center">Action</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800">
@@ -723,7 +723,7 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                 </div>
               ) : (
                 <div className="p-8 text-center text-slate-500 font-mono text-xs bg-slate-950 rounded-2xl border border-slate-800">
-                  ഈ പ്രോജക്റ്റിൽ അധിക ജോലികൾ ഒന്നും ചേർത്തിട്ടില്ല.
+                  No additional variation works recorded for this project.
                 </div>
               )}
             </div>
@@ -731,7 +731,7 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
         </div>
       ) : (
         <div className="p-12 text-center text-slate-500 font-mono text-xs bg-slate-900 border border-slate-800 rounded-3xl">
-          പ്രോജക്ടുകൾ ലഭ്യമല്ല. ദയവായി പുതിയ പ്രോജക്ട് നിർമ്മിക്കുക.
+          No projects available. Please create a new project.
         </div>
       )}
 
@@ -753,7 +753,7 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
             <div className="flex justify-between items-center border-b border-slate-800 pb-3">
               <div className="flex items-center gap-2">
                 <Wrench className="w-5 h-5 text-amber-400" />
-                <h3 className="font-bold text-white text-base">അധിക ജോലി ചേർക്കുക (Add Variation)</h3>
+                <h3 className="font-bold text-white text-base">Add Variation Work</h3>
               </div>
               <button
                 onClick={() => setShowAddExtraModal(false)}
@@ -765,19 +765,19 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
 
             <div className="space-y-3">
               <div>
-                <label className="text-slate-400 block mb-1">ജോലിയുടെ പേര് (Name in Malayalam):</label>
+                <label className="text-slate-400 block mb-1">Work Description:</label>
                 <input
                   type="text"
-                  value={newExtraWork.nameMl || ""}
-                  onChange={e => setNewExtraWork({ ...newExtraWork, nameMl: e.target.value, name: e.target.value })}
-                  placeholder="e.g. കിണർ റിംഗ് ഇറക്കലും നിർമ്മാണവും"
+                  value={newExtraWork.name || ""}
+                  onChange={e => setNewExtraWork({ ...newExtraWork, name: e.target.value })}
+                  placeholder="e.g. Well digging, ring installation and casing"
                   className="w-full p-2.5 bg-slate-950 border border-slate-700 rounded-xl text-white font-sans text-xs"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-slate-400 block mb-1">ഫ്ലോർ / സ്ഥലം (Floor/Area):</label>
+                  <label className="text-slate-400 block mb-1">Floor / Location:</label>
                   <input
                     type="text"
                     value={newExtraWork.floorOrArea || ""}
@@ -787,26 +787,26 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                   />
                 </div>
                 <div>
-                  <label className="text-slate-400 block mb-1">വിഭാഗം (Category):</label>
+                  <label className="text-slate-400 block mb-1">Category:</label>
                   <select
                     value={newExtraWork.category || "CIVIL"}
                     onChange={e => setNewExtraWork({ ...newExtraWork, category: e.target.value as any })}
                     className="w-full p-2.5 bg-slate-950 border border-slate-700 rounded-xl text-white text-xs"
                   >
-                    <option value="CIVIL">CIVIL (സിവിൽ നിർമ്മാണം)</option>
-                    <option value="INTERIOR">INTERIOR (ഇന്റീരിയർ)</option>
-                    <option value="EXTERIOR">EXTERIOR (എക്സ്റ്റീരിയർ)</option>
-                    <option value="ELECTRICAL">ELECTRICAL (വൈദ്യുതീകരണം)</option>
-                    <option value="PLUMBING">PLUMBING (പ്ലംബിംഗ്)</option>
-                    <option value="LANDSCAPING">LANDSCAPING (ലാൻഡ്സ്കേപ്പ്)</option>
-                    <option value="OTHER">OTHER (മറ്റുള്ളവ)</option>
+                    <option value="CIVIL">CIVIL</option>
+                    <option value="INTERIOR">INTERIOR</option>
+                    <option value="EXTERIOR">EXTERIOR</option>
+                    <option value="ELECTRICAL">ELECTRICAL</option>
+                    <option value="PLUMBING">PLUMBING</option>
+                    <option value="LANDSCAPING">LANDSCAPING</option>
+                    <option value="OTHER">OTHER</option>
                   </select>
                 </div>
               </div>
 
               <div className="grid grid-cols-3 gap-2">
                 <div>
-                  <label className="text-slate-400 block mb-1">അളവ് (Qty):</label>
+                  <label className="text-slate-400 block mb-1">Quantity (Qty):</label>
                   <input
                     type="number"
                     value={newExtraWork.quantity || 1}
@@ -815,7 +815,7 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                   />
                 </div>
                 <div>
-                  <label className="text-slate-400 block mb-1">യൂണിറ്റ്:</label>
+                  <label className="text-slate-400 block mb-1">Unit:</label>
                   <input
                     type="text"
                     value={newExtraWork.unit || "LS"}
@@ -824,7 +824,7 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                   />
                 </div>
                 <div>
-                  <label className="text-slate-400 block mb-1">നിരക്ക് (Rate):</label>
+                  <label className="text-slate-400 block mb-1">Unit Rate (₹):</label>
                   <input
                     type="number"
                     value={newExtraWork.unitRate || 0}
@@ -835,7 +835,7 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
               </div>
 
               <div className="p-3 bg-slate-950 rounded-2xl border border-slate-800 flex justify-between items-center">
-                <span className="text-slate-400">ആകെ അധിക തുക:</span>
+                <span className="text-slate-400">Total Variation Cost:</span>
                 <span className="text-emerald-400 font-bold text-sm">
                   {formatIndianCurrency((Number(newExtraWork.quantity) || 1) * (Number(newExtraWork.unitRate) || 0))}
                 </span>
@@ -848,14 +848,14 @@ export const PaymentStagesTrackerTab: React.FC<PaymentStagesTrackerTabProps> = (
                 onClick={handleAddExtraWork}
                 className="flex-1 py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-xl transition cursor-pointer"
               >
-                ചേർക്കുക (Add Variation Work)
+                Add Variation Work
               </button>
               <button
                 type="button"
                 onClick={() => setShowAddExtraModal(false)}
                 className="px-4 py-2.5 bg-slate-800 text-slate-300 rounded-xl hover:bg-slate-700 transition cursor-pointer"
               >
-                ക്യാൻസൽ
+                Cancel
               </button>
             </div>
           </div>

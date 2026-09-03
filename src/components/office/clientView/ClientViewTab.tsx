@@ -668,7 +668,7 @@ export const ClientViewTab: React.FC<ClientViewTabProps> = ({
                 }`}
               >
                 <Award className="w-4 h-4" />
-                <span>1. സ്റ്റേജ് സർട്ടിഫിക്കറ്റ് (Stage Certificate Verification)</span>
+                <span>1. Stage Certificate Verification</span>
                 <span className="text-[10px] bg-cyan-950 text-cyan-300 border border-cyan-800 px-2 py-0.5 rounded-full">
                   {activeStageCert.progressPercentage}%
                 </span>
@@ -687,7 +687,7 @@ export const ClientViewTab: React.FC<ClientViewTabProps> = ({
                     }`}
                   >
                     {isCompUnlocked ? <CheckCircle2 className="w-4 h-4" /> : <Lock className="w-4 h-4 text-amber-400" />}
-                    <span>2. കംപ്ലീഷൻ സർട്ടിഫിക്കറ്റ് (Completion Certificate)</span>
+                    <span>2. Completion Certificate</span>
                     {isCompUnlocked ? (
                       <span className="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded-full font-mono">
                         100% Unlocked
@@ -710,7 +710,7 @@ export const ClientViewTab: React.FC<ClientViewTabProps> = ({
                 }`}
               >
                 <FileSpreadsheet className="w-4 h-4" />
-                <span>3. എസ്റ്റിമേറ്റ് BOQ (Detailed Quantity Verification)</span>
+                <span>3. Estimate BOQ (Detailed Quantity Verification)</span>
                 <span className="text-[10px] text-slate-400">
                   ₹{activeVerifyProject.grandTotal.toLocaleString("en-IN")}
                 </span>
@@ -821,14 +821,14 @@ export const ClientViewTab: React.FC<ClientViewTabProps> = ({
                       </div>
                       <div className="space-y-1">
                         <h4 className="text-base font-bold text-white font-sans">
-                          കംപ്ലീഷൻ സർട്ടിഫിക്കറ്റ് ലഭ്യമല്ല (Completion Certificate Locked)
+                          Completion Certificate Locked
                         </h4>
                         <p className="text-xs text-slate-300 leading-relaxed font-sans">
-                          കേരള പഞ്ചായത്ത്/മുനിസിപ്പാലിറ്റി കെട്ടിട നിർമ്മാണ ചട്ടങ്ങൾ (KPBR 2019 / KMBR) പ്രകാരം, സ്റ്റേജ് സർട്ടിഫിക്കറ്റിലെ 100% പ്രവൃത്തികളും പൂർത്തിയായാൽ മാത്രമേ കംപ്ലീഷൻ സർട്ടിഫിക്കറ്റ് കാണാനോ ഇഷ്യൂ ചെയ്യാനോ സാധിക്കൂ.
+                          According to Kerala Municipality/Panchayat Building Rules (KPBR 2019 / KMBR), the completion certificate can only be issued or viewed when 100% of stage works are completed.
                         </p>
                       </div>
                       <div className="p-3 bg-slate-900 rounded-xl border border-slate-800 text-xs font-mono text-slate-300">
-                        നിലവിലെ പ്രവൃത്തി പുരോഗതി: <strong className="text-amber-400">{activeStageCert.progressPercentage}%</strong>
+                        Current Work Progress: <strong className="text-amber-400">{activeStageCert.progressPercentage}%</strong>
                       </div>
                     </div>
                   ) : (
@@ -888,13 +888,13 @@ export const ClientViewTab: React.FC<ClientViewTabProps> = ({
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <h3 className="text-base font-bold text-white font-sans flex items-center gap-2">
-                  <span>ഷെയറബിൾ ക്ലൈൻ്റ് പ്രോഗ്രസ് ലിങ്കുകൾ (Active Estimate Links)</span>
+                  <span>Shareable Client Progress Links (Active Estimate Links)</span>
                   <span className="text-xs font-mono text-cyan-400 font-bold bg-cyan-950 px-2 py-0.5 rounded-full border border-cyan-800">
                     {filteredLinks.length}
                   </span>
                 </h3>
                 <p className="text-xs text-slate-400">
-                  ക്ലൈന്റുകൾക്ക് നേരിട്ട് SMS / WhatsApp വഴി നൽകിയ ടൈം-ലിമിറ്റഡ് ആക്സസ് ലിങ്കുകൾ.
+                  Time-limited access links shared directly with clients via SMS / WhatsApp.
                 </p>
               </div>
 
@@ -931,9 +931,9 @@ export const ClientViewTab: React.FC<ClientViewTabProps> = ({
                   <Link2 className="w-6 h-6" />
                 </div>
                 <div className="space-y-1">
-                  <h4 className="text-sm font-bold text-slate-300">ക്ലൈൻ്റ് ലിങ്കുകൾ കണ്ടെത്താനായില്ല</h4>
+                  <h4 className="text-sm font-bold text-slate-300">No Client Links Found</h4>
                   <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                    പുതിയ ഒരു ക്ലൈൻ്റ് പ്രോഗ്രസ് ലിങ്ക് ജനറേറ്റ് ചെയ്യാൻ മുകളിലുള്ള ബട്ടൺ ക്ലിക്ക് ചെയ്യുക.
+                    Click the button above to generate a new client progress link.
                   </p>
                 </div>
                 <button
@@ -1084,10 +1084,10 @@ export const ClientViewTab: React.FC<ClientViewTabProps> = ({
                 </div>
 
                 <h2 className="text-xl md:text-2xl font-black text-white font-sans tracking-tight">
-                  ക്ലൈൻ്റ് ഇൻവോയ്സ് & പേയ്‌മെന്റ് വെരിഫിക്കേഷൻ (Invoices View)
+                  Client Invoice & Payment Verification (Invoices View)
                 </h2>
                 <p className="text-xs md:text-sm text-slate-400 max-w-2xl leading-relaxed">
-                  ഇൻവോയ്സുകൾ, ബില്ലുകൾ, പേയ്‌മെന്റ് രസീതുകൾ എന്നിവ ക്ലൈന്റുകൾക്ക് ലോഗിൻ ആവശ്യമില്ലാതെ ലിങ്ക് അല്ലെങ്കിൽ QR കോഡ് വഴി ഷെയർ ചെയ്യാം. UPI QR വഴി instant പേയ്‌മെന്റുകൾ സ്വീകരിക്കാം.
+                  Invoices, bills, and payment receipts can be shared with clients via link or QR code without requiring login. Accept instant payments via UPI QR.
                 </p>
               </div>
 
@@ -1164,7 +1164,7 @@ export const ClientViewTab: React.FC<ClientViewTabProps> = ({
               }`}
             >
               <CreditCard className="w-4 h-4" />
-              <span>1. പേയ്‌മെന്റ് ഹിസ്റ്ററി & പാർഷ്യൽ പേയ്‌മെന്റുകൾ (Payment History)</span>
+              <span>1. Payment History & Partial Payments</span>
               <span className="text-[10px] bg-slate-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded-full font-bold">
                 {invoices.reduce((acc, c) => acc + (c.payments?.length || 0), 0)} Logged
               </span>
@@ -1179,7 +1179,7 @@ export const ClientViewTab: React.FC<ClientViewTabProps> = ({
               }`}
             >
               <Receipt className="w-4 h-4" />
-              <span>2. ഷെയറബിൾ ഇൻവോയ്സ് ലിസ്റ്റ് (Invoices Directory)</span>
+              <span>2. Shareable Invoices List</span>
               <span className="text-[10px] bg-slate-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded-full font-bold">
                 {invoices.length} Invoices
               </span>
@@ -1194,7 +1194,7 @@ export const ClientViewTab: React.FC<ClientViewTabProps> = ({
               }`}
             >
               <ShieldCheck className="w-4 h-4" />
-              <span>3. ഇൻവോയ്സ് വെരിഫിക്കേഷൻ & പ്രിവ്യൂ (Verification Hub)</span>
+              <span>3. Invoice Verification & Preview Hub</span>
             </button>
           </div>
 
@@ -1226,10 +1226,10 @@ export const ClientViewTab: React.FC<ClientViewTabProps> = ({
                     </span>
                   </div>
                   <h3 className="text-lg md:text-xl font-black text-white font-sans">
-                    ഇൻവോയ്സ്, ബില്ലിംഗ് & പേയ്‌മെന്റ് രസീത് വെരിഫിക്കേഷൻ
+                    Invoice, Billing & Payment Receipt Verification
                   </h3>
                   <p className="text-xs text-slate-400">
-                    ഏത് ഇൻവോയ്സും ക്ലൈന്റുകൾക്ക് ലോഗിൻ ആവശ്യമില്ലാതെ നേരിട്ട് ഷെയർ ചെയ്യാനും UPI QR കോഡ് സ്കാൻ ചെയ്തു പേയ്‌മെന്റ് അടയ്ക്കാനും സാധിക്കും.
+                    Any invoice can be directly shared with clients without requiring a login, and payment can be made by scanning the UPI QR code.
                   </p>
                 </div>
 
@@ -1399,7 +1399,7 @@ export const ClientViewTab: React.FC<ClientViewTabProps> = ({
                       <span>OFFICIAL UPI QR PAYMENT LINKED</span>
                     </div>
                     <p className="text-xs text-slate-400">
-                      ക്ലൈന്റുകൾക്ക് ഈ ഇൻവോയ്സ് ലിങ്ക് തുറന്ന് GPay, PhonePe, Paytm വഴി ഉടൻ പണമടയ്ക്കാം.
+                      Clients can open this invoice link and pay instantly via GPay, PhonePe, or Paytm.
                     </p>
                     <div className="text-xs font-mono text-cyan-300">
                       UPI ID: {activeVerifyInvoice.upiId || "7012383137@okbizaxis"}
@@ -1436,13 +1436,13 @@ export const ClientViewTab: React.FC<ClientViewTabProps> = ({
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <h3 className="text-base font-bold text-white font-sans flex items-center gap-2">
-                  <span>ഷെയറബിൾ ഇൻവോയ്സ് ലിസ്റ്റുകൾ (Invoices & Payments Directory)</span>
+                  <span>Shareable Invoices List (Invoices & Payments Directory)</span>
                   <span className="text-xs font-mono text-emerald-400 font-bold bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-800">
                     {filteredInvoices.length}
                   </span>
                 </h3>
                 <p className="text-xs text-slate-400">
-                  ഏത് ഇൻവോയ്സിന്റെയും ക്ലൈൻ്റ് ലിങ്കോ QR കോഡോ കോപ്പി ചെയ്തു ആർക്കും ഷെയർ ചെയ്യാം (ലോഗിൻ ആവശ്യമില്ല).
+                  Copy the client link or QR code of any invoice to share with anyone (no login required).
                 </p>
               </div>
 
@@ -1479,9 +1479,9 @@ export const ClientViewTab: React.FC<ClientViewTabProps> = ({
                   <Receipt className="w-6 h-6" />
                 </div>
                 <div className="space-y-1">
-                  <h4 className="text-sm font-bold text-slate-300">ഇൻവോയ്സുകൾ കണ്ടെത്താനായില്ല</h4>
+                  <h4 className="text-sm font-bold text-slate-300">No Invoices Found</h4>
                   <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                    തിരഞ്ഞെടുത്ത ഫിൽട്ടറുകൾ പ്രകാരം ഇൻവോയ്സുകൾ ലഭ്യമല്ല.
+                    No invoices match the selected filters.
                   </p>
                 </div>
               </div>

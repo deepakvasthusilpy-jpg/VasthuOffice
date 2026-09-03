@@ -193,20 +193,20 @@ export const ClientPaymentHistoryView: React.FC<ClientPaymentHistoryViewProps> =
 
   const handleShareReceiptWhatsApp = (invoice: Invoice, payment: PaymentRecord) => {
     const text = encodeURIComponent(
-      `*വാസ്തുശില്പി - പേയ്‌മെന്റ് രസീത് (Payment Acknowledgement)*\n` +
-      `പ്രിയ ${invoice.applicantName},\n\n` +
-      `നിങ്ങളുടെ ഇൻവോയ്സ് #${invoice.invoiceNumber} ലേക്ക് തുക വിജയകരമായി ലഭിച്ചിരിക്കുന്നു:\n\n` +
-      `💰 *ലഭിച്ച തുക:* ₹${payment.amount.toLocaleString("en-IN")}\n` +
-      `📅 *തീയതി:* ${payment.date}\n` +
-      `💳 *പേയ്‌മെന്റ് രീതി:* ${payment.paymentMode}\n` +
+      `*VASTHUSILPY - PAYMENT RECEIPT (Payment Acknowledgement)*\n` +
+      `Dear ${invoice.applicantName},\n\n` +
+      `Payment has been successfully received towards invoice #${invoice.invoiceNumber}:\n\n` +
+      `💰 *Amount Received:* ₹${payment.amount.toLocaleString("en-IN")}\n` +
+      `📅 *Date:* ${payment.date}\n` +
+      `💳 *Payment Mode:* ${payment.paymentMode}\n` +
       (payment.referenceNo ? `🔢 *Ref/UTR No:* ${payment.referenceNo}\n` : "") +
-      (payment.notes ? `📝 *വിവരണം:* ${payment.notes}\n` : "") +
+      (payment.notes ? `📝 *Notes:* ${payment.notes}\n` : "") +
       `\n` +
-      `📊 *പ്രോജക്റ്റ് സാമ്പത്തിക നില:*\n` +
-      `• ആകെ തുക: ₹${invoice.grandTotal.toLocaleString("en-IN")}\n` +
-      `• ആകെ അടച്ചത്: ₹${invoice.totalPaid.toLocaleString("en-IN")}\n` +
-      `• ബാക്കി അടയ്ക്കാനുള്ള തുക: ₹${invoice.balanceDue.toLocaleString("en-IN")}\n\n` +
-      `🔗 ലൈവ് ഇൻവോയ്സ് & രസീത് കാണാൻ: ${window.location.origin}/?invoice_share=${invoice.id || invoice.invoiceNumber}\n\n` +
+      `📊 *Project Financial Status:*\n` +
+      `• Total Billed: ₹${invoice.grandTotal.toLocaleString("en-IN")}\n` +
+      `• Total Paid: ₹${invoice.totalPaid.toLocaleString("en-IN")}\n` +
+      `• Balance Due: ₹${invoice.balanceDue.toLocaleString("en-IN")}\n\n` +
+      `🔗 View Live Invoice & Receipt: ${window.location.origin}/?invoice_share=${invoice.id || invoice.invoiceNumber}\n\n` +
       `Vasthusilpy Architectural & Engineering - Keralassery\n📞 +91 70123 83137`
     );
     window.open(`https://api.whatsapp.com/send?phone=91${invoice.applicantMobile}&text=${text}`, "_blank");
@@ -248,10 +248,10 @@ export const ClientPaymentHistoryView: React.FC<ClientPaymentHistoryViewProps> =
             </div>
 
             <h2 className="text-xl md:text-2xl font-black text-white font-sans tracking-tight">
-              പേയ്‌മെന്റ് ഹിസ്റ്ററി & പാർഷ്യൽ പേയ്‌മെന്റ് ലോഗ് (Payment History)
+              Payment History & Partial Payments Ledger
             </h2>
             <p className="text-xs md:text-sm text-slate-400 max-w-2xl leading-relaxed">
-              ക്ലൈന്റുകളിൽ നിന്നും ലഭിക്കുന്ന പാർഷ്യൽ ഇൻസ്റ്റാൾമെന്റുകൾ രേഖപ്പെടുത്തുക, ബാക്കി തുക ഓട്ടോമാറ്റിക്കായി തിട്ടപ്പെടുത്തുക, ഇൻവോയ്സ് സ്റ്റാറ്റസ് മാറ്റങ്ങൾ നിയന്ത്രിക്കുക.
+              Track client installment collections, automate remaining balance computations, and manage invoice status lifecycles.
             </p>
           </div>
 
@@ -347,7 +347,7 @@ export const ClientPaymentHistoryView: React.FC<ClientPaymentHistoryViewProps> =
           }`}
         >
           <Receipt className="w-4 h-4" />
-          <span>1. എല്ലാ പേയ്‌മെന്റ് ഇടപാടുകളും (Master Transactions Ledger)</span>
+          <span>1. Master Transactions Ledger</span>
           <span className="text-[10px] bg-slate-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded-full font-bold">
             {filteredPayments.length}
           </span>
@@ -362,7 +362,7 @@ export const ClientPaymentHistoryView: React.FC<ClientPaymentHistoryViewProps> =
           }`}
         >
           <Layers className="w-4 h-4" />
-          <span>2. ക്ലൈന്റ് തിരിച്ചുള്ള പേയ്‌മെന്റ് നില (Client Installment Tracker)</span>
+          <span>2. Client Installment Tracker</span>
           <span className="text-[10px] bg-slate-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded-full font-bold">
             {invoices.length} Clients
           </span>
@@ -377,7 +377,7 @@ export const ClientPaymentHistoryView: React.FC<ClientPaymentHistoryViewProps> =
           }`}
         >
           <SlidersHorizontal className="w-4 h-4" />
-          <span>3. ഇൻവോയ്സ് സ്റ്റാറ്റസ് മാറ്റങ്ങൾ (Status Manager)</span>
+          <span>3. Status Manager</span>
         </button>
       </div>
 
@@ -467,7 +467,7 @@ export const ClientPaymentHistoryView: React.FC<ClientPaymentHistoryViewProps> =
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-base font-bold text-white font-sans flex items-center gap-2">
-              <span>പേയ്‌മെന്റ് ഇടപാടുകളുടെ വിശദവിവരം (Payment Ledger)</span>
+              <span>Payment Transactions Ledger</span>
               <span className="text-xs font-mono text-emerald-400 font-bold bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-800">
                 {filteredPayments.length} Records
               </span>
@@ -483,16 +483,16 @@ export const ClientPaymentHistoryView: React.FC<ClientPaymentHistoryViewProps> =
                 <Receipt className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <h4 className="text-sm font-bold text-slate-300">ഇടപാടുകൾ കണ്ടെത്താനായില്ല</h4>
+                <h4 className="text-sm font-bold text-slate-300">No Transactions Found</h4>
                 <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                  തിരഞ്ഞെടുത്ത ഫിൽട്ടറുകൾ പ്രകാരം പേയ്‌മെന്റ് റെക്കോർഡുകൾ ലഭ്യമല്ല അല്ലെങ്കിൽ ഇതുവരെ രേഖപ്പെടുത്തിയിട്ടില്ല.
+                  No payment records match the selected filters or none have been logged yet.
                 </p>
               </div>
               <button
                 onClick={() => handleOpenLogModal()}
                 className="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs font-mono rounded-xl cursor-pointer"
               >
-                + ആദ്യത്തെ പേയ്‌മെന്റ് ലോഗ് ചെയ്യുക
+                + Log First Payment
               </button>
             </div>
           ) : (
@@ -626,9 +626,9 @@ export const ClientPaymentHistoryView: React.FC<ClientPaymentHistoryViewProps> =
                                 onClick={() => {
                                   if (
                                     window.confirm(
-                                      `ഈ പേയ്‌മെന്റ് റെക്കോർഡ് (₹${p.amount.toLocaleString(
+                                      `Are you sure you want to delete this payment record (₹${p.amount.toLocaleString(
                                         "en-IN"
-                                      )}) ഡിലീറ്റ് ചെയ്യണമെന്ന് ഉറപ്പാണോ? ഇൻവോയ്സ് ബാക്കി തുക ഓട്ടോമാറ്റിക്കായി പുനഃക്രമീകരിക്കപ്പെടും.`
+                                      )})? The invoice balance due will be automatically recalculated.`
                                     )
                                   ) {
                                     onDeletePayment(p.invoiceId, p.id);
@@ -659,7 +659,7 @@ export const ClientPaymentHistoryView: React.FC<ClientPaymentHistoryViewProps> =
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-base font-bold text-white font-sans flex items-center gap-2">
-              <span>ക്ലൈന്റ് തിരിച്ചുള്ള പേയ്‌മെന്റ് പുരോഗതി (Client Installments Summary)</span>
+              <span>Client Installments Summary</span>
               <span className="text-xs font-mono text-emerald-400 font-bold bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-800">
                 {invoices.length} Clients
               </span>
@@ -841,7 +841,7 @@ export const ClientPaymentHistoryView: React.FC<ClientPaymentHistoryViewProps> =
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-base font-bold text-white font-sans flex items-center gap-2">
-              <span>ഇൻവോയ്സ് പേയ്‌മെന്റ് സ്റ്റാറ്റസ് കൺട്രോളർ (Status Manager)</span>
+              <span>Invoice Payment Status Manager</span>
               <span className="text-xs font-mono text-emerald-400 font-bold bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-800">
                 {invoices.length} Invoices
               </span>
@@ -1126,7 +1126,7 @@ export const ClientPaymentHistoryView: React.FC<ClientPaymentHistoryViewProps> =
               <div className="flex flex-wrap items-start justify-between gap-4 border-b-2 border-slate-800 pb-5">
                 <div>
                   <div className="text-xl font-black text-slate-900 tracking-tight">
-                    വാസ്തുശില്പി (VASTHUSILPY)
+                    VASTHUSILPY
                   </div>
                   <div className="text-xs text-teal-800 font-bold uppercase tracking-wider mt-0.5">
                     Architectural & Valuation Services • Keralassery
@@ -1506,7 +1506,7 @@ const LogPartialPaymentModal: React.FC<LogPartialPaymentModalProps> = ({
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200 focus:outline-none focus:border-emerald-500 cursor-pointer"
                 >
                   <option value="UPI / GPay / PhonePe">UPI (GPay / PhonePe / Paytm)</option>
-                  <option value="Cash">Cash (ഓഫീസ് ക്യാഷ്)</option>
+                  <option value="Cash">Cash (Office Cash)</option>
                   <option value="Direct Bank Transfer (NEFT/RTGS/IMPS)">
                     Direct Bank Transfer (NEFT/RTGS)
                   </option>

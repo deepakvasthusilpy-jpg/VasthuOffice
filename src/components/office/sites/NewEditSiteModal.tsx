@@ -26,13 +26,13 @@ interface NewEditSiteModalProps {
   siteToEdit?: ImportantSite | null;
 }
 
-const CATEGORY_OPTIONS: { id: ImportantSiteCategory; label: string; labelMl: string; color: string }[] = [
-  { id: "LSGD_GOVT", label: "LSGD & Building Permits", labelMl: "കെട്ടിട അനുമതി & LSGD", color: "text-emerald-400 border-emerald-800 bg-emerald-950/40" },
-  { id: "REVENUE_SURVEY", label: "Revenue & Land Survey", labelMl: "റവന്യൂ & സർവേ", color: "text-cyan-400 border-cyan-800 bg-cyan-950/40" },
-  { id: "TAX_BANKING", label: "GST, Tax & Banking", labelMl: "നികുതി, GST & ബാങ്കിംഗ്", color: "text-indigo-400 border-indigo-800 bg-indigo-950/40" },
-  { id: "CAD_SOFTWARE", label: "CAD, Design & DSR", labelMl: "CAD, എഞ്ചിനീയറിംഗ് & DSR", color: "text-rose-400 border-rose-800 bg-rose-950/40" },
-  { id: "UTILITY_OFFICE", label: "Office & Utilities", labelMl: "ഓഫീസ് & യൂട്ടിലിറ്റികൾ", color: "text-amber-400 border-amber-800 bg-amber-950/40" },
-  { id: "OTHER", label: "Other / Custom Portals", labelMl: "മറ്റ് പോർട്ടലുകൾ", color: "text-slate-300 border-slate-700 bg-slate-800/60" }
+const CATEGORY_OPTIONS: { id: ImportantSiteCategory; label: string; subLabel: string; color: string }[] = [
+  { id: "LSGD_GOVT", label: "LSGD & Building Permits", subLabel: "Permits & LSGD", color: "text-emerald-400 border-emerald-800 bg-emerald-950/40" },
+  { id: "REVENUE_SURVEY", label: "Revenue & Land Survey", subLabel: "Revenue & Survey", color: "text-cyan-400 border-cyan-800 bg-cyan-950/40" },
+  { id: "TAX_BANKING", label: "GST, Tax & Banking", subLabel: "Tax, GST & Banking", color: "text-indigo-400 border-indigo-800 bg-indigo-950/40" },
+  { id: "CAD_SOFTWARE", label: "CAD, Design & DSR", subLabel: "CAD, Design & DSR", color: "text-rose-400 border-rose-800 bg-rose-950/40" },
+  { id: "UTILITY_OFFICE", label: "Office & Utilities", subLabel: "Office & Utilities", color: "text-amber-400 border-amber-800 bg-amber-950/40" },
+  { id: "OTHER", label: "Other / Custom Portals", subLabel: "Other Portals", color: "text-slate-300 border-slate-700 bg-slate-800/60" }
 ];
 
 const COLOR_OPTIONS = [
@@ -274,7 +274,7 @@ export const NewEditSiteModal: React.FC<NewEditSiteModalProps> = ({
                   }`}
                 >
                   <div className="font-mono font-bold text-xs truncate">{cat.label}</div>
-                  <div className="text-[10px] opacity-75 truncate">{cat.labelMl}</div>
+                  <div className="text-[10px] opacity-75 truncate">{cat.subLabel}</div>
                 </button>
               ))}
             </div>

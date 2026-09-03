@@ -143,12 +143,12 @@ export const NewClientLinkModal: React.FC<NewClientLinkModalProps> = ({
   const handleShareWhatsApp = () => {
     if (!createdLink) return;
     const text = encodeURIComponent(
-      `*വാസ്തുശില്പി - പ്രോജക്ട് പ്രോഗ്രസ് & സർട്ടിഫിക്കറ്റ് വ്യൂ*\n` +
-      `പ്രിയ ${createdLink.clientName},\n\n` +
-      `നിങ്ങളുടെ *${createdLink.estimateProjectName}* പ്രോജക്റ്റിന്റെ ലൈവ് വർക്ക് പ്രോഗ്രസ് & സ്റ്റേജ് സർട്ടിഫിക്കറ്റ് താഴെ കാണുന്ന ലിങ്കിൽ പരിശോധിക്കാവുന്നതാണ്:\n\n` +
+      `*Vasthusilpy - Project Progress & Certificate View*\n` +
+      `Dear ${createdLink.clientName},\n\n` +
+      `You can review the live work progress & stage certificate of your project *${createdLink.estimateProjectName}* at the link below:\n\n` +
       `🔗 ${shareUrl}\n\n` +
-      `✨ *ലോഗിൻ ആവശ്യമില്ല:* ഈ ലിങ്കിൽ ക്ലിക്ക് ചെയ്താൽ മൊബൈലിലോ കമ്പ്യൂട്ടറിലോ നേരിട്ട് കാണാം.\n` +
-      `⏳ ഈ ലിങ്ക് ${new Date(createdLink.expiresAt).toLocaleDateString("en-IN")} വരെ സാധുവാണ്.\n\n` +
+      `✨ *No Login Required:* Click the link to view directly on your phone or PC.\n` +
+      `⏳ This link is valid until ${new Date(createdLink.expiresAt).toLocaleDateString("en-IN")}.\n\n` +
       `Vasthusilpy Technical System - Keralassery\n📞 +91 70123 83137`
     );
     window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
@@ -165,7 +165,7 @@ export const NewClientLinkModal: React.FC<NewClientLinkModalProps> = ({
             </div>
             <div>
               <h3 className="font-bold text-base text-white font-sans flex items-center gap-2">
-                <span>ക്ലൈൻ്റ് വ്യൂ ലിങ്ക് നിർമ്മിക്കുക</span>
+                <span>Create Client View Link</span>
                 <span className="text-[10px] font-mono font-bold bg-cyan-950 text-cyan-400 border border-cyan-800 px-2 py-0.5 rounded-full">
                   TIME-LIMITED LINK
                 </span>
@@ -194,10 +194,10 @@ export const NewClientLinkModal: React.FC<NewClientLinkModalProps> = ({
               </div>
               <div className="space-y-1">
                 <div className="text-sm font-bold text-emerald-300 font-sans">
-                  ക്ലൈൻ്റ് ലിങ്ക് വിജയകരമായി തയ്യാറാക്കി! (Link Ready)
+                  Client link created successfully! (Link Ready)
                 </div>
                 <p className="text-xs text-slate-300">
-                  ഈ ലിങ്ക് ഉപയോഗിച്ച് ക്ലൈൻ്റിന് ലോഗിൻ ആവശ്യമില്ലാതെ തത്സമയം പ്രോജക്ട് പുരോഗതിയും എസ്റ്റിമേറ്റും പരിശോധിക്കാം.
+                  Clients can use this link to check live project progress and estimates without logging in.
                 </p>
               </div>
             </div>
@@ -285,7 +285,7 @@ export const NewClientLinkModal: React.FC<NewClientLinkModalProps> = ({
               <label className="block text-xs font-mono font-bold text-slate-300 flex items-center justify-between">
                 <span className="flex items-center gap-1.5">
                   <FileSpreadsheet className="w-4 h-4 text-cyan-400" />
-                  Select Estimate Project (എസ്റ്റിമേറ്റ് പ്രോജക്റ്റ് തിരഞ്ഞെടുക്കുക):
+                  Select Estimate Project:
                 </span>
                 <span className="text-[11px] text-slate-500">
                   {estimateProjects.length} Projects Available
@@ -317,7 +317,7 @@ export const NewClientLinkModal: React.FC<NewClientLinkModalProps> = ({
             <div className="space-y-2.5">
               <label className="block text-xs font-mono font-bold text-slate-300 flex items-center gap-1.5">
                 <Clock className="w-4 h-4 text-amber-400" />
-                Link Validity & Expiry (ലിങ്കിന്റെ കാലാവധി):
+                Link Validity & Expiry:
               </label>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
@@ -366,7 +366,7 @@ export const NewClientLinkModal: React.FC<NewClientLinkModalProps> = ({
             <div className="space-y-3 p-4 bg-slate-950/70 border border-slate-800 rounded-2xl">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-mono font-bold text-slate-300">
-                  Site Progress Percentage (സൈറ്റ് വർക്ക് പുരോഗതി):
+                  Site Progress Percentage:
                 </label>
                 <span className="text-sm font-mono font-black text-cyan-400 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800">
                   {progressPercentage}% Completed
@@ -385,7 +385,7 @@ export const NewClientLinkModal: React.FC<NewClientLinkModalProps> = ({
 
               <div className="space-y-1">
                 <label className="text-[11px] font-mono text-slate-400">
-                  Current Certified Stage Status (നിലവിലെ സ്റ്റേജ് വിവരണം):
+                  Current Certified Stage Status:
                 </label>
                 <input
                   type="text"
@@ -400,7 +400,7 @@ export const NewClientLinkModal: React.FC<NewClientLinkModalProps> = ({
             {/* Step 4: Feature View Toggles & PIN Protection */}
             <div className="space-y-3">
               <label className="block text-xs font-mono font-bold text-slate-300">
-                Display Options & Permissions (കാണിക്കേണ്ട വിവരങ്ങൾ):
+                Display Options & Permissions:
               </label>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -464,10 +464,10 @@ export const NewClientLinkModal: React.FC<NewClientLinkModalProps> = ({
                 </div>
                 <div className="space-y-1">
                   <div className="text-xs font-mono font-black text-emerald-300 flex items-center gap-2">
-                    <span>100% Zero-Login Access Enabled (ലോഗിൻ ആവശ്യമില്ല)</span>
+                    <span>100% Zero-Login Access Enabled (No Login Required)</span>
                   </div>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    ക്ലൈന്റുകൾക്ക് ആപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുകയോ പാസ്‌വേഡ് / യൂസർനെയിം നൽകുകയോ ചെയ്യാതെ തന്നെ വാട്സാപ്പ് ലിങ്കിൽ ക്ലിക്ക് ചെയ്ത് സൈറ്റ് പ്രോഗ്രസും സ്റ്റേജ് സർട്ടിഫിക്കറ്റും ഉടൻ കാണാം.
+                    Clients can click the WhatsApp link to instantly view site progress and stage certificates without installing an app or entering passwords.
                   </p>
                 </div>
               </div>

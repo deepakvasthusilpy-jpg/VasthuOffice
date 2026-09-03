@@ -159,9 +159,9 @@ export const ClientInvoicePortal: React.FC<ClientInvoicePortalProps> = ({
         <div className="w-16 h-16 rounded-3xl bg-rose-950/80 border border-rose-800 flex items-center justify-center text-rose-400 mx-auto">
           <AlertCircle className="w-8 h-8" />
         </div>
-        <h2 className="text-xl font-bold font-sans">ഇൻവോയ്സ് കണ്ടെത്താൻ സാധിച്ചില്ല</h2>
+        <h2 className="text-xl font-bold font-sans">Invoice Not Found</h2>
         <p className="text-xs text-slate-400 max-w-md font-sans">
-          നിങ്ങൾ നൽകിയ ഇൻവോയ്സ് ലിങ്ക് അസാധുവാണ് അല്ലെങ്കിൽ മാറ്റം വരുത്തിയിട്ടുണ്ട്. ദയവായി ഓഫീസുമായി ബന്ധപ്പെടുക.
+          The invoice link you accessed is invalid or may have expired. Please contact the office helpline for assistance.
         </p>
         <button
           onClick={handleWhatsAppContact}
@@ -257,8 +257,8 @@ export const ClientInvoicePortal: React.FC<ClientInvoicePortalProps> = ({
             </div>
             <p className="text-xs text-slate-400">
               {invoice.paymentStatus === "PAID"
-                ? "ഈ ഇൻവോയ്സിന്റെ തുക പൂർണ്ണമായി അടച്ചു രസീത് ജനറേറ്റ് ചെയ്തിട്ടുണ്ട്."
-                : `ബാക്കി അടയ്ക്കാനുള്ള തുക: ₹${invoice.balanceDue.toLocaleString("en-IN")}. താഴെ കാണുന്ന UPI QR കോഡ് സ്കാൻ ചെയ്ത് ഉടൻ അടയ്ക്കാം.`}
+                ? "This invoice has been fully settled and an official payment receipt has been issued."
+                : `Remaining balance due: ₹${invoice.balanceDue.toLocaleString("en-IN")}. Scan the UPI QR code below to pay instantly.`}
             </p>
           </div>
 
@@ -272,120 +272,112 @@ export const ClientInvoicePortal: React.FC<ClientInvoicePortalProps> = ({
           </div>
         </div>
 
-        {/* Printable Official Invoice Document */}
-        <div id="printable-invoice-document" className="bg-white text-slate-900 rounded-3xl p-6 md:p-10 space-y-6 shadow-2xl font-sans print:shadow-none print:p-0">
+        {/* Printable Official Invoice Document (Complete Black & White Theme) */}
+        <div id="printable-invoice-document" className="bg-white text-black rounded-2xl p-6 md:p-8 space-y-5 font-sans border-2 border-black shadow-none print:border-none print:shadow-none print:p-0 print:rounded-none">
           {/* Document Header */}
-          <div className="flex flex-wrap items-start justify-between gap-4 border-b-2 border-slate-300 pb-6">
+          <div className="flex flex-wrap items-start justify-between gap-4 border-b-2 border-black pb-5">
             <div>
-              <div className="text-2xl md:text-3xl font-black text-slate-950 tracking-wide font-sans">
+              <div className="text-2xl md:text-3xl font-black text-black tracking-wide font-sans uppercase">
                 VASTHUSILPY
               </div>
-              <div className="text-xs font-bold text-teal-800 uppercase tracking-widest font-mono">
+              <div className="text-xs font-black text-black uppercase tracking-widest font-mono">
                 Architectural • Engineering • Survey • Valuation
               </div>
-              <div className="text-xs text-slate-600 mt-2 space-y-1">
+              <div className="text-xs text-black font-semibold mt-2 space-y-1">
                 <div className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                  <MapPin className="w-3.5 h-3.5 text-black shrink-0" />
                   <span>Keralassery, Palakkad District, Kerala - 678641</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                  <span>Mob: +91 70123 83137 / +91 97479 95961</span>
+                  <Phone className="w-3.5 h-3.5 text-black shrink-0" />
+                  <span className="font-mono">Mob: +91 70123 83137 / +91 97479 95961</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                  <Mail className="w-3.5 h-3.5 text-black shrink-0" />
                   <span>deepak.vasthusilpy@gmail.com</span>
                 </div>
               </div>
             </div>
 
             <div className="text-right">
-              <div className="text-2xl font-black text-slate-900 uppercase font-mono tracking-widest">
+              <div className="text-2xl font-black text-black uppercase font-mono tracking-widest">
                 INVOICE & RECEIPT
               </div>
-              <div className="text-sm font-bold font-mono text-teal-700 mt-1">
+              <div className="text-sm font-black font-mono text-black mt-1">
                 #{invoice.invoiceNumber}
               </div>
-              <div className="text-xs text-slate-600 font-mono mt-1 space-y-0.5">
-                <div>Date of Issue: <strong>{invoice.invoiceDate}</strong></div>
-                <div>Due Date: <strong>{invoice.dueDate}</strong></div>
+              <div className="text-xs text-black font-semibold font-mono mt-1 space-y-0.5">
+                <div>Date of Issue: <strong className="font-black text-black">{invoice.invoiceDate}</strong></div>
+                <div>Due Date: <strong className="font-black text-black">{invoice.dueDate}</strong></div>
               </div>
               <div className="mt-2.5">
-                <span
-                  className={`inline-block text-xs font-mono font-black px-3 py-1 rounded-md uppercase border ${
-                    invoice.paymentStatus === "PAID"
-                      ? "bg-emerald-100 text-emerald-800 border-emerald-300"
-                      : invoice.paymentStatus === "PARTIALLY PAID"
-                      ? "bg-amber-100 text-amber-800 border-amber-300"
-                      : "bg-rose-100 text-rose-800 border-rose-300"
-                  }`}
-                >
-                  ● {invoice.paymentStatus}
+                <span className="inline-block text-xs font-mono font-black px-3 py-1 rounded uppercase border-2 border-black bg-white text-black tracking-wider">
+                  [ {invoice.paymentStatus} ]
                 </span>
               </div>
             </div>
           </div>
 
           {/* Billed To Client & Project Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50 border border-slate-200 rounded-2xl p-5 text-xs">
-            <div>
-              <div className="text-[10px] font-mono font-bold text-teal-800 uppercase tracking-wider mb-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white border-2 border-black rounded-xl p-4 text-xs text-black">
+            <div className="space-y-1">
+              <div className="text-[11px] font-mono font-black text-black uppercase tracking-wider border-b border-black pb-1 mb-1.5">
                 Billed To (Client / Applicant)
               </div>
-              <div className="text-sm font-black text-slate-900">{invoice.applicantName}</div>
-              <div className="text-slate-700 font-mono mt-0.5">Mobile: {invoice.applicantMobile}</div>
+              <div className="text-base font-black text-black">{invoice.applicantName}</div>
+              <div className="text-black font-bold font-mono">Mobile: +91 {invoice.applicantMobile}</div>
               {invoice.applicantEmail && (
-                <div className="text-slate-600 font-mono">Email: {invoice.applicantEmail}</div>
+                <div className="text-black font-bold font-mono">Email: {invoice.applicantEmail}</div>
               )}
               {invoice.applicantAddress && (
-                <div className="text-slate-600 mt-1 font-sans leading-relaxed">
+                <div className="text-black font-semibold mt-1 font-sans leading-relaxed">
                   {invoice.applicantAddress}
                 </div>
               )}
             </div>
 
-            <div>
-              <div className="text-[10px] font-mono font-bold text-teal-800 uppercase tracking-wider mb-1">
+            <div className="space-y-1 md:border-l-2 md:border-black md:pl-4">
+              <div className="text-[11px] font-mono font-black text-black uppercase tracking-wider border-b border-black pb-1 mb-1.5">
                 Project & Reference
               </div>
               {invoice.projectTitle ? (
                 <>
-                  <div className="text-xs font-bold text-slate-900">{invoice.projectTitle}</div>
-                  <div className="text-slate-500 font-mono text-[11px] mt-0.5">
+                  <div className="text-xs font-black text-black">{invoice.projectTitle}</div>
+                  <div className="text-black font-bold font-mono text-[11px] mt-0.5">
                     Ref Project ID: #{invoice.projectId}
                   </div>
                 </>
               ) : (
-                <div className="text-slate-600">Professional Engineering Consultation & Valuation</div>
+                <div className="text-black font-semibold">Professional Engineering Consultation & Valuation</div>
               )}
-              <div className="mt-2 text-[11px] text-slate-500 font-mono">
+              <div className="mt-2 text-[11px] text-black font-bold font-mono">
                 Jurisdiction: Local Self Government Department (LSGD / KSMART Kerala)
               </div>
             </div>
           </div>
 
           {/* Itemized Services / Products Breakdown Table */}
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto border-2 border-black rounded-xl overflow-hidden">
             <table className="w-full text-left text-xs border-collapse">
               <thead>
-                <tr className="bg-slate-900 text-white font-mono uppercase text-[11px]">
-                  <th className="p-3.5 rounded-l-xl">Sl</th>
-                  <th className="p-3.5">Item & Service Description</th>
-                  <th className="p-3.5 text-center">Qty</th>
-                  <th className="p-3.5 text-center">Unit</th>
-                  <th className="p-3.5 text-right">Rate (₹)</th>
-                  <th className="p-3.5 text-right rounded-r-xl">Amount (₹)</th>
+                <tr className="bg-neutral-100 text-black border-b-2 border-black font-mono uppercase text-xs font-black">
+                  <th className="p-3 text-center w-12 border-r-2 border-black">Sl</th>
+                  <th className="p-3 border-r-2 border-black">Item & Service Description</th>
+                  <th className="p-3 text-center border-r-2 border-black">Qty</th>
+                  <th className="p-3 text-center border-r-2 border-black">Unit</th>
+                  <th className="p-3 text-right border-r-2 border-black">Rate (₹)</th>
+                  <th className="p-3 text-right">Amount (₹)</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-200">
+              <tbody className="divide-y divide-black font-sans text-black">
                 {invoice.items.map((item, index) => (
-                  <tr key={item.id} className="hover:bg-slate-50 font-sans">
-                    <td className="p-3.5 font-mono font-bold text-slate-500">{index + 1}</td>
-                    <td className="p-3.5 font-semibold text-slate-900">{item.description}</td>
-                    <td className="p-3.5 text-center font-mono">{item.quantity}</td>
-                    <td className="p-3.5 text-center font-mono text-slate-600">{item.unit}</td>
-                    <td className="p-3.5 text-right font-mono">₹{item.rate.toLocaleString("en-IN")}</td>
-                    <td className="p-3.5 text-right font-mono font-bold text-slate-900">
+                  <tr key={item.id} className="bg-white">
+                    <td className="p-3 font-mono font-black text-black text-center border-r border-black">{index + 1}</td>
+                    <td className="p-3 font-bold text-black border-r border-black">{item.description}</td>
+                    <td className="p-3 text-center font-mono font-bold text-black border-r border-black">{item.quantity}</td>
+                    <td className="p-3 text-center font-mono font-bold text-black border-r border-black">{item.unit}</td>
+                    <td className="p-3 text-right font-mono font-bold text-black border-r border-black">₹{item.rate.toLocaleString("en-IN")}</td>
+                    <td className="p-3 text-right font-mono font-black text-black">
                       ₹{item.amount.toLocaleString("en-IN")}
                     </td>
                   </tr>
@@ -395,82 +387,82 @@ export const ClientInvoicePortal: React.FC<ClientInvoicePortalProps> = ({
           </div>
 
           {/* Totals & Notes Summary */}
-          <div className="flex flex-wrap items-start justify-between gap-6 pt-4 border-t border-slate-200">
+          <div className="flex flex-wrap items-start justify-between gap-6 pt-2">
             <div className="space-y-3 max-w-sm">
               {invoice.notes && (
-                <div>
-                  <div className="text-[10px] font-mono font-bold text-slate-500 uppercase">Notes</div>
-                  <div className="text-xs text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-200 italic">
+                <div className="bg-white border-2 border-black p-3.5 rounded-xl">
+                  <div className="text-[11px] font-mono font-black text-black uppercase border-b border-black pb-1 mb-1.5">Notes</div>
+                  <div className="text-xs text-black font-semibold leading-relaxed">
                     {invoice.notes}
                   </div>
                 </div>
               )}
 
               {invoice.terms && (
-                <div>
-                  <div className="text-[10px] font-mono font-bold text-slate-500 uppercase">
+                <div className="bg-white border-2 border-black p-3.5 rounded-xl">
+                  <div className="text-[11px] font-mono font-black text-black uppercase border-b border-black pb-1 mb-1.5">
                     Terms & Conditions
                   </div>
-                  <div className="text-[11px] text-slate-600 leading-relaxed">{invoice.terms}</div>
+                  <div className="text-xs text-black font-semibold leading-relaxed">{invoice.terms}</div>
                 </div>
               )}
             </div>
 
-            <div className="w-full sm:w-72 space-y-2 font-mono text-xs bg-slate-50 p-4 rounded-2xl border border-slate-200">
-              <div className="flex justify-between text-slate-600">
+            <div className="w-full sm:w-80 space-y-2.5 font-mono text-xs bg-white p-4 rounded-xl border-2 border-black text-black">
+              <div className="flex justify-between text-black font-bold">
                 <span>Subtotal:</span>
                 <span>₹{invoice.subTotal.toLocaleString("en-IN")}</span>
               </div>
 
               {invoice.taxAmount > 0 && (
-                <div className="flex justify-between text-slate-600">
+                <div className="flex justify-between text-black font-bold">
                   <span>Tax ({invoice.taxRate}%):</span>
                   <span>+₹{invoice.taxAmount.toLocaleString("en-IN")}</span>
                 </div>
               )}
 
               {invoice.discount > 0 && (
-                <div className="flex justify-between text-emerald-700">
+                <div className="flex justify-between text-black font-bold">
                   <span>Discount:</span>
                   <span>-₹{invoice.discount.toLocaleString("en-IN")}</span>
                 </div>
               )}
 
-              <div className="flex justify-between text-slate-950 font-black text-sm pt-2 border-t border-slate-300">
+              <div className="flex justify-between text-black font-black text-base pt-2 border-t-2 border-black">
                 <span>Grand Total:</span>
-                <span className="text-teal-800">₹{invoice.grandTotal.toLocaleString("en-IN")}</span>
+                <span>₹{invoice.grandTotal.toLocaleString("en-IN")}</span>
               </div>
 
-              <div className="flex justify-between text-emerald-800 font-bold pt-1">
+              <div className="flex justify-between text-black font-bold pt-1">
                 <span>Total Amount Paid:</span>
                 <span>₹{invoice.totalPaid.toLocaleString("en-IN")}</span>
               </div>
 
-              <div className="flex justify-between text-slate-900 font-black pt-2 border-t-2 border-slate-300 text-sm">
+              <div className="flex justify-between text-black font-black pt-2 border-t-2 border-black text-base">
                 <span>Balance Due:</span>
-                <span className={invoice.balanceDue > 0 ? "text-rose-700" : "text-emerald-700"}>
+                <span>
                   ₹{invoice.balanceDue.toLocaleString("en-IN")}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Attached Instant UPI Payment QR Code Card */}
-          <div className="bg-slate-900 text-white p-6 rounded-2xl flex flex-wrap items-center justify-between gap-6 print:border print:border-slate-800">
-            <div className="space-y-3 max-w-md">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold text-emerald-400">
-                <ShieldCheck className="w-4 h-4" />
+          {/* Attached Instant UPI Payment QR Code Card (Black and White) */}
+          <div className="bg-white text-black p-5 rounded-xl border-2 border-black flex flex-wrap items-center justify-between gap-6">
+            <div className="space-y-2.5 max-w-md">
+              <div className="flex items-center gap-2 text-xs font-mono font-black text-black uppercase tracking-wider">
+                <ShieldCheck className="w-4 h-4 text-black" />
                 <span>OFFICIAL UPI QR PAYMENT • VASTHUSILPY</span>
               </div>
-              <p className="text-xs text-slate-300 font-sans leading-relaxed">
+              <p className="text-xs text-black font-semibold leading-relaxed">
                 Scan this QR code using GPay, PhonePe, Paytm, BHIM, or any UPI banking app on your mobile to pay instantly.
               </p>
-              <div className="bg-slate-950 border border-slate-800 p-3 rounded-xl font-mono text-xs space-y-1">
-                <div className="text-[10px] text-slate-400">Official UPI ID:</div>
-                <div className="text-emerald-400 font-bold text-sm">
+              <div className="bg-white border-2 border-black p-3 rounded-lg font-mono text-xs space-y-1 text-black">
+                <div className="text-[10px] font-bold uppercase">Official UPI ID:</div>
+                <div className="text-black font-black text-sm">
                   {invoice.upiId || "7012383137@okbizaxis"}
                 </div>
-                <div className="text-[10px] text-slate-500">Payee: Vasthusilpy Keralassery</div>
+                <div className="text-[10px] font-semibold text-black">Payee: Vasthusilpy Keralassery</div>
               </div>
             </div>
 
@@ -480,17 +472,18 @@ export const ClientInvoicePortal: React.FC<ClientInvoicePortalProps> = ({
                 payeeName="Vasthusilpy"
                 amount={invoice.balanceDue > 0 ? invoice.balanceDue : invoice.grandTotal}
                 invoiceNumber={invoice.invoiceNumber}
-                size={160}
+                size={140}
+                blackAndWhite={true}
               />
             </div>
           </div>
 
           {/* Payment Receipts History */}
           {invoice.payments && invoice.payments.length > 0 && (
-            <div className="border-t border-slate-200 pt-5 space-y-3">
+            <div className="border-t-2 border-black pt-5 space-y-3">
               <div className="flex items-center gap-2">
-                <Receipt className="w-4 h-4 text-emerald-700" />
-                <span className="text-xs font-mono font-bold text-slate-900 uppercase tracking-wider">
+                <Receipt className="w-4 h-4 text-black" />
+                <span className="text-xs font-mono font-black text-black uppercase tracking-wider">
                   Official Payment Transactions History ({invoice.payments.length})
                 </span>
               </div>
@@ -499,18 +492,18 @@ export const ClientInvoicePortal: React.FC<ClientInvoicePortalProps> = ({
                 {invoice.payments.map((p) => (
                   <div
                     key={p.id}
-                    className="bg-emerald-50/70 border border-emerald-200 p-3 rounded-xl flex flex-wrap items-center justify-between gap-2"
+                    className="bg-white border-2 border-black p-3 rounded-xl flex flex-wrap items-center justify-between gap-2 text-black"
                   >
                     <div>
-                      <span className="font-bold text-emerald-900 text-sm">
+                      <span className="font-black text-black text-sm">
                         ₹{p.amount.toLocaleString("en-IN")}
                       </span>
-                      <span className="text-emerald-800 text-[11px]"> • {p.paymentMode}</span>
-                      <span className="text-slate-500 text-[10px]"> (Date: {p.date})</span>
+                      <span className="text-black font-bold text-xs"> • {p.paymentMode}</span>
+                      <span className="text-black font-semibold text-[11px]"> (Date: {p.date})</span>
                     </div>
 
                     {p.referenceNo && (
-                      <div className="text-[11px] text-emerald-900 font-bold bg-emerald-100 px-2.5 py-1 rounded-md border border-emerald-300">
+                      <div className="text-[11px] text-black font-black bg-white px-2.5 py-1 rounded-md border border-black">
                         Ref/UTR: #{p.referenceNo}
                       </div>
                     )}
@@ -521,24 +514,24 @@ export const ClientInvoicePortal: React.FC<ClientInvoicePortalProps> = ({
           )}
 
           {/* Official Signatory & Seal Verification */}
-          <div className="border-t-2 border-slate-300 pt-6 flex flex-wrap justify-between items-end gap-4 text-xs font-mono text-slate-600">
+          <div className="border-t-2 border-black pt-6 flex flex-wrap justify-between items-end gap-4 text-xs font-mono text-black">
             <div className="space-y-1">
-              <div className="font-bold text-slate-900 font-sans">
+              <div className="font-black text-black font-sans text-sm uppercase">
                 VASTHUSILPY TECHNICAL & VALUATION SERVICES
               </div>
-              <div className="text-[11px] text-slate-500">
-                Digital Verification ID: #{invoice.id} • SHA-256 Verified
+              <div className="text-xs text-black font-semibold">
+                Digital Verification ID: #{invoice.id} • Verified Record
               </div>
-              <div className="text-[11px] text-teal-800 font-bold">
+              <div className="text-xs text-black font-bold">
                 Er. Deepak & Technical Engineering Team
               </div>
             </div>
 
             <div className="text-right">
-              <div className="w-32 h-12 border-b border-dashed border-slate-400 flex items-end justify-center pb-1 text-[10px] text-slate-400">
+              <div className="w-36 h-12 border-b-2 border-dashed border-black flex items-end justify-center pb-1 text-[11px] text-black font-bold">
                 Authorized Signatory
               </div>
-              <div className="text-[10px] text-slate-500 mt-1">Vasthusilpy Keralassery</div>
+              <div className="text-[11px] text-black font-bold mt-1">Vasthusilpy Keralassery</div>
             </div>
           </div>
         </div>

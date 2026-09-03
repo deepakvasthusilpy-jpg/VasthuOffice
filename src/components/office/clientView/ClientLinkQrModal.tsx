@@ -57,12 +57,12 @@ export const ClientLinkQrModal: React.FC<ClientLinkQrModalProps> = ({
 
   const handleShareWhatsApp = () => {
     const text = encodeURIComponent(
-      `*വാസ്തുശില്പി - പ്രോജക്ട് പ്രോഗ്രസ് & എസ്റ്റിമേറ്റ് വ്യൂ*\n` +
-      `പ്രിയ ${shareLink.clientName},\n\n` +
-      `നിങ്ങളുടെ *${shareLink.estimateProjectName}* പ്രോജക്റ്റിന്റെ നിലവിലെ വർക്ക് പ്രോഗ്രസ് & സ്റ്റേജ് സർട്ടിഫിക്കറ്റ് താഴെ കാണുന്ന ലിങ്കിൽ പരിശോധിക്കാവുന്നതാണ്:\n\n` +
+      `*Vasthusilpy - Project Progress & Estimate View*\n` +
+      `Dear ${shareLink.clientName},\n\n` +
+      `You can view the current live work progress & stage certificate of your project *${shareLink.estimateProjectName}* at the link below:\n\n` +
       `🔗 ${shareUrl}\n\n` +
       (shareLink.accessPin ? `🔐 *Access PIN:* ${shareLink.accessPin}\n\n` : "") +
-      `⏳ ഈ ലിങ്ക് ${new Date(shareLink.expiresAt).toLocaleDateString("en-IN")} വരെ സാധുവാണ്.\n\n` +
+      `⏳ This link is valid until ${new Date(shareLink.expiresAt).toLocaleDateString("en-IN")}.\n\n` +
       `Vasthusilpy Engineering - Keralassery\n📞 +91 70123 83137`
     );
     window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");

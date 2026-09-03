@@ -65,9 +65,7 @@ import {
   Calendar as CalendarIcon,
   Image as ImageIcon
 } from "lucide-react";
-import { PanchangamCalendarTab } from "../panchangam/PanchangamCalendarTab";
-import { getCompleteKeralaPanchangam } from "../../services/panchangamService";
-import { DEFAULT_KERALA_LOCATION } from "../../services/panchangamLocations";
+import { PanchangamDashboard } from "../panchangam/PanchangamDashboard";
 
 interface HomePageProps {
   activeTab?: TabType;
@@ -419,7 +417,7 @@ export const HomePage: React.FC<HomePageProps> = ({ activeTab = "home_overview",
         ) : activeTab === "all_tools" ? (
           <AllToolsDashboardTab onNavigate={onNavigate} />
         ) : activeTab === "panchangam_calendar" ? (
-          <PanchangamCalendarTab onNavigateToTab={(t) => onNavigate("home", t as TabType)} />
+          <PanchangamDashboard initialTab="panchangam_calendar" onNavigate={onNavigate} />
         ) : (
           <>
             {/* Dynamic Festival & Special Day Greeting Banner (Auto-adjusts for Onam, Vishu, Republic Day, etc.) */}
