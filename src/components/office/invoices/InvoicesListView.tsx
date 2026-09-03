@@ -22,11 +22,13 @@ import {
   User,
   ArrowUpRight,
   TrendingUp,
-  Percent
+  Percent,
+  Download
 } from "lucide-react";
 import { sendInvoiceViaWhatsApp, sendInvoiceViaEmail, sendInvoiceViaEmailAutomatically, sendInvoiceOrReceiptViaWhatsApp } from "../../../utils/invoiceShareHelper";
 import { triggerPrint } from "../../../utils/printHelper";
 import { triggerAppNotification } from "../../../context/NotificationContext";
+import { generateInvoicePdfBlob } from "../../../utils/invoicePdfGenerator";
 import { Loader2, Send as SendIcon, X as CloseIcon } from "lucide-react";
 
 interface InvoicesListViewProps {
@@ -159,8 +161,36 @@ export const InvoicesListView: React.FC<InvoicesListViewProps> = ({
     e?.stopPropagation();
     onSelectInvoice(inv);
     setTimeout(() => {
-      triggerPrint(`Invoice_${inv.invoiceNumber}_${inv.applicantName.replace(/\s+/g, "_")}`, "printable-invoice-document");
+      triggerPrint(
+        `Invoice_${inv.invoiceNumber}_${inv.applicantName.replace(/\s+/g, "_")}_A4`,
+        "printable-invoice-document",
+        { isInvoice: true, pageMargin: "15mm" }
+      );
     }, 150);
+  };
+
+  const handleDownloadInvoicePdf = async (inv: Invoice, e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    try {
+      const { blob } = await generateInvoicePdfBlob(inv);
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `Invoice_${inv.invoiceNumber}_${inv.applicantName.replace(/\s+/g, "_")}_A4.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      triggerAppNotification(
+        "INVOICE_GENERATED",
+        "A4 PDF Downloaded",
+        `Invoice #${inv.invoiceNumber} (A4 Paper • Default Margin) exported to PDF.`,
+        { invoiceId: inv.id }
+      );
+    } catch (err) {
+      console.warn("Direct PDF export fallback to print:", err);
+      handlePrintInvoice(inv, e);
+    }
   };
 
   const handleWhatsAppSend = async (inv: Invoice, e?: React.MouseEvent) => {
@@ -575,12 +605,22 @@ export const InvoicesListView: React.FC<InvoicesListViewProps> = ({
                             <span>Pay</span>
                           </button>
 
+                          {/* Download A4 PDF */}
+                          <button
+                            type="button"
+                            onClick={(e) => handleDownloadInvoicePdf(inv, e)}
+                            className="p-1.5 bg-slate-900 hover:bg-slate-800 text-cyan-400 hover:text-cyan-300 rounded-xl border border-slate-800 cursor-pointer transition-colors"
+                            title="Download A4 PDF (Default Margins)"
+                          >
+                            <Download className="w-3.5 h-3.5" />
+                          </button>
+
                           {/* Print Invoice */}
                           <button
                             type="button"
                             onClick={(e) => handlePrintInvoice(inv, e)}
                             className="p-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl border border-slate-800 cursor-pointer transition-colors"
-                            title="Print Invoice"
+                            title="Print A4 Invoice (Default Margins)"
                           >
                             <Printer className="w-3.5 h-3.5" />
                           </button>
@@ -718,12 +758,22 @@ export const InvoicesListView: React.FC<InvoicesListViewProps> = ({
                       <span>Pay</span>
                     </button>
 
+                    {/* Download A4 PDF */}
+                    <button
+                      type="button"
+                      onClick={(e) => handleDownloadInvoicePdf(inv, e)}
+                      className="p-1.5 bg-slate-900 hover:bg-slate-800 text-cyan-400 rounded-xl border border-slate-800 cursor-pointer"
+                      title="Download A4 PDF (Default Margins)"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                    </button>
+
                     {/* Print */}
                     <button
                       type="button"
                       onClick={(e) => handlePrintInvoice(inv, e)}
                       className="p-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-xl border border-slate-800 cursor-pointer"
-                      title="Print Invoice"
+                      title="Print A4 Invoice (Default Margins)"
                     >
                       <Printer className="w-3.5 h-3.5" />
                     </button>

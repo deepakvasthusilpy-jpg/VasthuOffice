@@ -3,12 +3,26 @@
  * Handles window focus, clean PDF default filename, iframe/popup compatibility, and A4 styling.
  */
 
-export const triggerPrint = (documentTitle?: string, containerId?: string) => {
+export interface PrintOptions {
+  pageMargin?: string;
+  paperSize?: string;
+  isInvoice?: boolean;
+}
+
+export const triggerPrint = (
+  documentTitle?: string,
+  containerId?: string,
+  options?: PrintOptions
+) => {
   const originalTitle = document.title;
   const title = documentTitle || originalTitle || "Vasthusilpy_Report";
   if (documentTitle) {
     document.title = documentTitle;
   }
+
+  const isInvoiceDoc = options?.isInvoice || containerId === "printable-invoice-document";
+  const paperMargin = options?.pageMargin || (isInvoiceDoc ? "15mm" : containerId === "agreement-printable-root" ? "0mm" : "15mm");
+  const paperSize = options?.paperSize || "A4 portrait";
 
   // 1. Attempt opening a clean top-level popup print window (bypasses iframe sandboxing)
   try {
@@ -45,10 +59,10 @@ export const triggerPrint = (documentTitle?: string, containerId?: string) => {
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             ${styles}
             <style>
-              /* Print-specific style overrides for pure Black & White, continuous layout */
+              /* Print-specific style overrides for A4 Paper with default margins */
               @page {
-                size: A4 portrait;
-                margin: 0mm;
+                size: ${paperSize};
+                margin: ${paperMargin};
               }
               body {
                 background-color: #ffffff !important;
@@ -59,6 +73,19 @@ export const triggerPrint = (documentTitle?: string, containerId?: string) => {
                 padding: 0 !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+              }
+              /* A4 Invoice Print Formatting with Default Margins */
+              #printable-invoice-document {
+                width: 100% !important;
+                max-width: 180mm !important;
+                margin: 0 auto !important;
+                padding: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+                background: #ffffff !important;
+                color: #000000 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
               }
               /* Strict A4 Agreement Pages */
               .a4-printable-page {

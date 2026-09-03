@@ -459,7 +459,7 @@ export const NewEditInvoiceModal: React.FC<NewEditInvoiceModalProps> = ({
       sendInvoiceViaEmail(savedInvoice);
     } else if (options?.andPrint) {
       setTimeout(() => {
-        triggerPrint(`Invoice_${savedInvoice.invoiceNumber}`, "printable-invoice-document");
+        triggerPrint(`Invoice_${savedInvoice.invoiceNumber}_A4`, "printable-invoice-document", { isInvoice: true, pageMargin: "15mm" });
       }, 300);
     }
 

@@ -22,29 +22,29 @@ export const generateInvoicePdfBlob = async (invoice: Invoice): Promise<{ blob: 
   });
 
   const pageWidth = 210;
-  const margin = 14;
+  const margin = 15;
   const contentWidth = pageWidth - margin * 2;
-  let y = 14;
+  let y = 15;
 
   // Document Top Corporate Header (Pure Black & White)
   doc.setTextColor(0, 0, 0);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(14);
-  doc.text("VASTHUSILPY ARCHITECTURAL & ENGINEERING CONSULTANTS", margin, 14);
+  doc.text("VASTHUSILPY ARCHITECTURAL & ENGINEERING CONSULTANTS", margin, 15);
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(8);
   doc.setTextColor(0, 0, 0);
-  doc.text("Near Panchayath Office, Keralassery, Palakkad - 678641, Kerala", margin, 20);
-  doc.text("Ph: +91 9747995961, +91 7012383137 | Email: deepak.vasthusilpy@gmail.com", margin, 25);
-  doc.text("Architectural Plans • Structural 3D • KPBR & K-SMART Approvals • Valuation • PWD Estimates", margin, 30);
+  doc.text("Near Panchayath Office, Keralassery, Palakkad - 678641, Kerala", margin, 21);
+  doc.text("Ph: +91 9747995961, +91 7012383137 | Email: deepak.vasthusilpy@gmail.com", margin, 26);
+  doc.text("Architectural Plans • Structural 3D • KPBR & K-SMART Approvals • Valuation • PWD Estimates", margin, 31);
 
   // Solid black divider rule
   doc.setDrawColor(0, 0, 0);
   doc.setLineWidth(0.8);
-  doc.line(margin, 34, pageWidth - margin, 34);
+  doc.line(margin, 35, pageWidth - margin, 35);
 
-  y = 44;
+  y = 45;
 
   // TAX INVOICE Header & Badge
   doc.setTextColor(0, 0, 0);
@@ -357,29 +357,29 @@ export const generateReceiptPdfBlob = async (
   });
 
   const pageWidth = 210;
-  const margin = 14;
+  const margin = 15;
   const contentWidth = pageWidth - margin * 2;
-  let y = 14;
+  let y = 15;
 
   // Header Titles (Crisp Black and White)
   doc.setTextColor(0, 0, 0);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(14);
-  doc.text("VASTHUSILPY ARCHITECTURAL & ENGINEERING CONSULTANTS", margin, 14);
+  doc.text("VASTHUSILPY ARCHITECTURAL & ENGINEERING CONSULTANTS", margin, 15);
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(8);
   doc.setTextColor(0, 0, 0);
-  doc.text("Near Panchayath Office, Keralassery, Palakkad - 678641, Kerala", margin, 20);
-  doc.text("Ph: +91 9747995961, +91 7012383137 | Email: deepak.vasthusilpy@gmail.com", margin, 25);
-  doc.text("Architectural Plans • Structural 3D • KPBR & K-SMART Approvals • Valuation • PWD Estimates", margin, 30);
+  doc.text("Near Panchayath Office, Keralassery, Palakkad - 678641, Kerala", margin, 21);
+  doc.text("Ph: +91 9747995961, +91 7012383137 | Email: deepak.vasthusilpy@gmail.com", margin, 26);
+  doc.text("Architectural Plans • Structural 3D • KPBR & K-SMART Approvals • Valuation • PWD Estimates", margin, 31);
 
   // Solid black divider rule
   doc.setDrawColor(0, 0, 0);
   doc.setLineWidth(0.8);
-  doc.line(margin, 34, pageWidth - margin, 34);
+  doc.line(margin, 35, pageWidth - margin, 35);
 
-  y = 44;
+  y = 45;
 
   // Title & Receipt Badge
   doc.setTextColor(0, 0, 0);

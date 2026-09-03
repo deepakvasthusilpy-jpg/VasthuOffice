@@ -850,7 +850,23 @@ html.anthropomorphic .bg-blueprint-grid-dark {
 
   @page {
     size: A4 portrait;
-    margin: 10mm;
+    margin: 15mm;
+  }
+
+  /* A4 Invoice Document Layout with standard default margin */
+  #printable-invoice-document {
+    width: 100% !important;
+    max-width: 180mm !important;
+    min-height: auto !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
   
   /* Reset document root & scroll containers */

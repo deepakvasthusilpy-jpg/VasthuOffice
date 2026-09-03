@@ -44,6 +44,7 @@ import {
   HardDrive
 } from "lucide-react";
 import { uploadInvoicePdfToGoogleDrive } from "../../../utils/googleDriveStorage";
+import { generateInvoicePdfBlob } from "../../../utils/invoicePdfGenerator";
 
 interface InvoiceDetailModalProps {
   isOpen: boolean;
@@ -105,18 +106,31 @@ export const InvoiceDetailModal: React.FC<InvoiceDetailModalProps> = ({
     ? invoice.balanceDue
     : (invoice.grandTotal || 0);
 
-  const handleDownloadPdf = () => {
-    triggerPrint(`Invoice_${invoice.invoiceNumber}_Vasthusilpy`, "printable-invoice-document");
-    triggerAppNotification(
-      "INVOICE_GENERATED",
-      "PDF Generated",
-      `Invoice #${invoice.invoiceNumber} prepared for PDF download / print.`,
-      { invoiceId: invoice.id }
-    );
+  const handleDownloadPdf = async () => {
+    try {
+      const { blob } = await generateInvoicePdfBlob(invoice);
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `Invoice_${invoice.invoiceNumber}_Vasthusilpy_A4.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      triggerAppNotification(
+        "INVOICE_GENERATED",
+        "A4 PDF Downloaded",
+        `Invoice #${invoice.invoiceNumber} (A4 Paper Size • Default Margin) exported to PDF.`,
+        { invoiceId: invoice.id }
+      );
+    } catch (err) {
+      console.warn("Direct PDF export fallback to print:", err);
+      triggerPrint(`Invoice_${invoice.invoiceNumber}_Vasthusilpy_A4`, "printable-invoice-document", { isInvoice: true, pageMargin: "15mm" });
+    }
   };
 
   const handlePrint = () => {
-    triggerPrint(`Invoice_${invoice.invoiceNumber}_Vasthusilpy`, "printable-invoice-document");
+    triggerPrint(`Invoice_${invoice.invoiceNumber}_Vasthusilpy_A4`, "printable-invoice-document", { isInvoice: true, pageMargin: "15mm" });
   };
 
   const handleSendAutomaticEmail = async () => {
@@ -768,12 +782,34 @@ export const InvoiceDetailModal: React.FC<InvoiceDetailModalProps> = ({
         )}
 
         {/* ========================================================================= */}
-        {/* OFFICIAL PRINTABLE INVOICE DOCUMENT (COMPLETE BLACK & WHITE THEME)         */}
+        {/* OFFICIAL A4 PAPER INVOICE DOCUMENT (STANDARD A4 WITH DEFAULT 15MM MARGIN) */}
         {/* ========================================================================= */}
-        <div
-          id="printable-invoice-document"
-          className="bg-white text-black rounded-2xl p-6 md:p-8 space-y-5 font-sans border-2 border-black shadow-none print:border-none print:shadow-none print:p-0 print:rounded-none"
-        >
+        <div className="w-full flex flex-col items-center justify-center py-2 px-1 sm:px-2 bg-slate-950/40 rounded-3xl border border-slate-800/80 overflow-x-auto print:bg-transparent print:p-0 print:border-none print:overflow-visible">
+          {/* A4 Paper Specs Indicator Strip (Screen Only) */}
+          <div className="w-full max-w-[210mm] flex flex-wrap items-center justify-between px-2 pb-2.5 text-xs text-slate-400 font-mono print:hidden gap-2">
+            <span className="flex items-center gap-1.5 font-semibold text-slate-200">
+              <FileText className="w-4 h-4 text-cyan-400" />
+              <span>A4 Paper (210mm × 297mm) • Default Page Margin (15mm)</span>
+            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] font-bold text-cyan-300 bg-cyan-950/80 border border-cyan-800/80 px-2.5 py-0.5 rounded-full">
+                Strict A4 Layout
+              </span>
+              <button
+                type="button"
+                onClick={handlePrint}
+                className="text-[11px] font-bold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 px-2.5 py-0.5 rounded-full border border-slate-700 transition-colors flex items-center gap-1 cursor-pointer"
+              >
+                <Printer className="w-3 h-3" />
+                <span>Print A4</span>
+              </button>
+            </div>
+          </div>
+
+          <div
+            id="printable-invoice-document"
+            className="w-full max-w-[210mm] min-h-[297mm] bg-white text-black rounded-none shadow-2xl p-[15mm] space-y-4 font-sans border border-slate-300 print:border-none print:shadow-none print:p-0 print:max-w-none print:w-full print:min-h-0 print:m-0 mx-auto box-border"
+          >
           {/* Top Document Corporate Header */}
           <div className="flex flex-wrap items-start justify-between gap-6 border-b-2 border-black pb-5">
             <div className="space-y-1">
@@ -1005,6 +1041,7 @@ export const InvoiceDetailModal: React.FC<InvoiceDetailModalProps> = ({
             </div>
           </div>
         </div>
+      </div>
 
         {/* Bottom Actions Bar on Modal (Hidden on Print) */}
         <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-200 print:hidden">
