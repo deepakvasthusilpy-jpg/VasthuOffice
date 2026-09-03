@@ -847,6 +847,14 @@ html.anthropomorphic .bg-blueprint-grid-dark {
    and blueprints for clean A4 printing/saving to PDF.
    ========================================================= */
 @media print {
+  /* Force B&W for everything */
+  * {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-color: #000000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
 
   @page {
     size: A4 portrait;

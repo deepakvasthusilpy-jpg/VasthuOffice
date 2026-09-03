@@ -74,7 +74,15 @@ export const triggerPrint = (
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
               }
-              /* A4 Invoice Print Formatting with Default Margins */
+              
+              /* Force B&W for everything */
+              * {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                border-color: #000000 !important;
+                box-shadow: none !important;
+                text-shadow: none !important;
+              }
               #printable-invoice-document {
                 width: 100% !important;
                 max-width: 180mm !important;
