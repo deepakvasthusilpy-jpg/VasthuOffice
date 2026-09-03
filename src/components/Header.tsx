@@ -1,0 +1,437 @@
+import React, { useState, useRef, useEffect } from "react";
+import { MainSectionType, TabType } from "../types";
+import { useAuth } from "../context/AuthContext";
+import { useTheme, Theme, THEME_OPTIONS } from "../context/ThemeContext";
+import { useLanguage } from "../context/LanguageContext";
+import { useNotifications } from "../context/NotificationContext";
+import { ManageUsersModal } from "./auth/ManageUsersModal";
+import { ThemeSelectorModal } from "./theme/ThemeSelectorModal";
+import { Logo } from "./Logo";
+import { isOnamThemeActive } from "../utils/onamTheme";
+import { OnamFestiveBadge } from "./common/OnamFestiveElements";
+import {
+  Menu,
+  LogOut,
+  ShieldCheck,
+  Sun,
+  Moon,
+  Columns,
+  Crown,
+  Sparkles,
+  Trees,
+  Globe,
+  Bell,
+  CheckCircle2,
+  Trash2,
+  FileText,
+  Activity,
+  X,
+  Palette,
+  ChevronDown,
+  Sparkle
+} from "lucide-react";
+
+interface HeaderProps {
+  activeSection?: MainSectionType;
+  setActiveSection?: (section: MainSectionType) => void;
+  activeTab?: TabType;
+  setActiveTab?: (tab: TabType) => void;
+  totalRows?: number;
+  onOpenMobileSidebar?: () => void;
+}
+
+const THEME_HEADER_ICONS: Record<Theme, React.FC<{ className?: string }>> = {
+  dark: Moon,
+  light: Sun,
+  neoclassical: Columns,
+  baroque: Crown,
+  ethereal: Sparkles,
+  anthropomorphic: Trees
+};
+
+export const Header: React.FC<HeaderProps> = ({
+  onOpenMobileSidebar
+}) => {
+  const { user, emailUser, signOutUser, isPrimaryAdmin } = useAuth();
+  const { theme, setTheme, currentThemeMeta, cycleNextTheme, isSystemTheme } = useTheme();
+  const { language, toggleLanguage, t } = useLanguage();
+  const { notifications, unreadCount, markAsRead, markAllAsRead, clearAll } = useNotifications();
+  const safeNotifications = notifications || [];
+
+  const [isManageUsersOpen, setIsManageUsersOpen] = useState(false);
+  const [isThemeModalOpen, setIsThemeModalOpen] = useState(false);
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
+  const [isNotifOpen, setIsNotifOpen] = useState(false);
+  const notifRef = useRef<HTMLDivElement>(null);
+  const themeMenuRef = useRef<HTMLDivElement>(null);
+
+  const activeEmail = user?.email || emailUser?.email || "";
+  const activeDisplayName = user?.displayName || emailUser?.displayName || (activeEmail ? activeEmail.split("@")[0] : "Authorized User");
+
+  // Close popovers on click outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (notifRef.current && !notifRef.current.contains(event.target as Node)) {
+        setIsNotifOpen(false);
+      }
+      if (themeMenuRef.current && !themeMenuRef.current.contains(event.target as Node)) {
+        setIsThemeMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const CurrentThemeIcon = THEME_HEADER_ICONS[theme] || Sparkle;
+
+  return (
+    <>
+      <header className="bg-[#0e021a]/80 backdrop-blur-2xl border-b border-white/15 sticky top-0 z-20 shadow-[0_10px_30px_rgba(0,0,0,0.35)] print:hidden">
+        {/* Top Twilight Glass Header */}
+        <div className="px-4 py-2.5">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3 text-left">
+              {onOpenMobileSidebar && (
+                <button
+                  onClick={onOpenMobileSidebar}
+                  className="md:hidden p-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-slate-200 hover:text-white transition"
+                  title="Open Sidebar"
+                >
+                  <Menu className="w-5 h-5" />
+                </button>
+              )}
+
+              <Logo size={42} />
+              <div>
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className="text-[10px] font-mono font-bold tracking-widest text-purple-200 bg-purple-500/20 px-2.5 py-0.5 rounded-full border border-purple-400/40 uppercase shadow-sm">
+                    {t("system_title", "VASTHUSILPY TECHNICAL SYSTEM")}
+                  </span>
+                  <span className="text-[10px] font-mono text-purple-200/60 hidden sm:inline">
+                    {t("subtitle", "KPBR 2019/2026 • SURVEY & VASTU")}
+                  </span>
+                </div>
+                <h1 className="text-base md:text-lg font-black tracking-tight text-white font-sans uppercase flex items-center gap-2">
+                  <span className="bg-gradient-to-r from-white via-purple-100 to-pink-200 bg-clip-text text-transparent">{t("header_heading", "VASTHUSILPY - KERALASSERY")}</span>
+                  {isOnamThemeActive() && (
+                    <OnamFestiveBadge compact={true} />
+                  )}
+                </h1>
+              </div>
+            </div>
+
+            {/* Desktop Navigation Control & User Profile Bar */}
+            <div className="flex items-center gap-2 sm:gap-3">
+              {/* LANGUAGE SWITCHER BUTTON (MALAYALAM / ENGLISH) */}
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 px-3 py-1.5 rounded-full text-xs font-mono font-bold text-white transition-all shadow-sm cursor-pointer backdrop-blur-md"
+                title={`Switch Language to ${language === "en" ? "Malayalam (മലയാളം)" : "English"}`}
+              >
+                <Globe className="w-3.5 h-3.5 text-purple-300" />
+                <span className="uppercase text-[11px] font-black tracking-wider text-purple-100">
+                  {language === "en" ? "EN | മലയാളം" : "മലയാളം | EN"}
+                </span>
+              </button>
+
+              {/* LOCAL NOTIFICATION BADGE BUTTON & DROPDOWN */}
+              <div className="relative" ref={notifRef}>
+                <button
+                  onClick={() => setIsNotifOpen((prev) => !prev)}
+                  className="relative p-2 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/35 rounded-full text-white transition-all shadow-sm cursor-pointer group backdrop-blur-md"
+                  title="Alerts & Status Notifications"
+                >
+                  <Bell className="w-4 h-4 text-purple-200 group-hover:text-amber-300 transition-colors" />
+                  {unreadCount > 0 && (
+                    <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-rose-500 text-white font-mono text-[10px] font-black rounded-full flex items-center justify-center animate-pulse shadow-md border border-purple-950">
+                      {unreadCount}
+                    </span>
+                  )}
+                </button>
+
+                {/* Notification Dropdown Panel */}
+                {isNotifOpen && (
+                  <div className="absolute right-0 mt-2 w-80 sm:w-96 glass-card border border-white/20 rounded-3xl shadow-2xl z-50 overflow-hidden font-sans backdrop-blur-2xl">
+                    <div className="bg-white/10 px-4 py-3 border-b border-white/15 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Bell className="w-4 h-4 text-amber-300" />
+                        <span className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                          {t("notifications", "NOTIFICATIONS")}
+                        </span>
+                        {unreadCount > 0 && (
+                          <span className="px-2 py-0.5 bg-rose-500/30 text-rose-200 border border-rose-400/50 rounded-full text-[10px] font-mono font-bold">
+                            {unreadCount} NEW
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        {unreadCount > 0 && (
+                          <button
+                            onClick={markAllAllAsReadHandler}
+                            className="text-[10px] font-mono text-purple-300 hover:underline cursor-pointer"
+                            title="Mark all as read"
+                          >
+                            {t("mark_all_read", "Mark read")}
+                          </button>
+                        )}
+                        <button
+                          onClick={() => setIsNotifOpen(false)}
+                          className="text-purple-200/70 hover:text-white"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="max-h-80 overflow-y-auto divide-y divide-white/10">
+                      {safeNotifications.length === 0 ? (
+                        <div className="p-6 text-center text-purple-200/50 font-mono text-xs">
+                          {t("no_notifications", "No new notifications")}
+                        </div>
+                      ) : (
+                        safeNotifications.map((notif) => (
+                          <div
+                            key={notif.id}
+                            onClick={() => markAsRead(notif.id)}
+                            className={`p-3.5 transition-colors cursor-pointer flex gap-3 ${
+                              notif.read ? "bg-transparent opacity-75" : "bg-white/5 hover:bg-white/10"
+                            }`}
+                          >
+                            <div className="mt-0.5 shrink-0">
+                              {notif.type === "PROJECT_STATUS" ? (
+                                <div className="p-1.5 rounded-xl bg-purple-500/20 border border-purple-400/30 text-purple-300">
+                                  <Activity className="w-4 h-4" />
+                                </div>
+                              ) : (
+                                <div className="p-1.5 rounded-xl bg-emerald-500/20 border border-emerald-400/30 text-emerald-300">
+                                  <FileText className="w-4 h-4" />
+                                </div>
+                              )}
+                            </div>
+
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center justify-between gap-2 mb-0.5">
+                                <span className="text-xs font-bold text-white truncate font-mono">
+                                  {notif.title}
+                                </span>
+                                <span className="text-[10px] font-mono text-purple-200/60 shrink-0">
+                                  {new Date(notif.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                </span>
+                              </div>
+                              <p className="text-xs text-purple-100/70 leading-snug line-clamp-2">
+                                {notif.message}
+                              </p>
+                            </div>
+
+                            {!notif.read && (
+                              <div className="w-2 h-2 rounded-full bg-pink-400 mt-2 shrink-0 animate-pulse" />
+                            )}
+                          </div>
+                        ))
+                      )}
+                    </div>
+
+                    {safeNotifications.length > 0 && (
+                      <div className="p-2 bg-white/5 border-t border-white/10 flex justify-between items-center px-4 text-[11px] font-mono">
+                        <button
+                          onClick={markAllAsRead}
+                          className="text-purple-300 hover:text-white cursor-pointer flex items-center gap-1"
+                        >
+                          <CheckCircle2 className="w-3.5 h-3.5" />
+                          <span>{t("mark_all_read", "Mark all read")}</span>
+                        </button>
+                        <button
+                          onClick={clearAll}
+                          className="text-purple-200/60 hover:text-rose-300 cursor-pointer flex items-center gap-1"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                          <span>{t("clear_all", "Clear all")}</span>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* ARCHITECTURAL THEME SELECTOR & STUDIO */}
+              <div className="relative" ref={themeMenuRef}>
+                <div className="flex items-center bg-white/10 border border-white/20 rounded-full shadow-sm overflow-hidden backdrop-blur-md">
+                  <button
+                    onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
+                    className="flex items-center gap-2 px-3 py-1.5 text-xs font-mono font-bold text-white hover:bg-white/15 transition-colors cursor-pointer group"
+                    title={`Current Theme: ${currentThemeMeta.name} - Click to choose from 6 themes`}
+                  >
+                    <div
+                      className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] shrink-0"
+                      style={{ color: currentThemeMeta.primaryColor }}
+                    >
+                      <CurrentThemeIcon className="w-3.5 h-3.5 transform group-hover:scale-110 transition-transform" />
+                    </div>
+                    <span className="hidden sm:inline uppercase text-[11px] font-black tracking-wider text-purple-100 truncate max-w-[110px]">
+                      {currentThemeMeta.name.split(" ")[0]}
+                    </span>
+                    <ChevronDown className="w-3 h-3 text-purple-300 group-hover:text-white transition-colors" />
+                  </button>
+
+                  <button
+                    onClick={cycleNextTheme}
+                    className="px-2.5 py-1.5 border-l border-white/20 text-purple-200 hover:text-white hover:bg-white/15 text-[10px] font-mono font-bold transition-colors cursor-pointer"
+                    title="Cycle to next architectural theme"
+                  >
+                    NEXT
+                  </button>
+                </div>
+
+                {/* Theme Fast Selection Dropdown */}
+                {isThemeMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-72 glass-card border border-white/20 rounded-3xl shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-150 backdrop-blur-2xl">
+                    <div className="px-3.5 py-2.5 bg-white/10 border-b border-white/15 flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-white uppercase tracking-wider font-mono">
+                        <Palette className="w-3.5 h-3.5 text-purple-300" />
+                        <span>Select Theme</span>
+                      </div>
+                      <span className="text-[9px] font-mono bg-purple-500/20 text-purple-200 border border-purple-400/40 px-2 py-0.5 rounded-full font-bold">
+                        6 STYLES
+                      </span>
+                    </div>
+
+                    <div className="p-1.5 space-y-1 max-h-72 overflow-y-auto">
+                      {THEME_OPTIONS.map((opt) => {
+                        const isSelected = theme === opt.id;
+                        const OptIcon = THEME_HEADER_ICONS[opt.id] || Sparkle;
+
+                        return (
+                          <button
+                            key={opt.id}
+                            onClick={() => {
+                              setTheme(opt.id);
+                              setIsThemeMenuOpen(false);
+                            }}
+                            className={`w-full flex items-center justify-between p-2 rounded-2xl text-left transition-all cursor-pointer ${
+                              isSelected
+                                ? "bg-white/20 border border-white/40 text-white font-bold shadow-sm"
+                                : "text-purple-100 hover:text-white hover:bg-white/10 border border-transparent"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <div
+                                className="w-6 h-6 rounded-xl flex items-center justify-center shrink-0 shadow-inner"
+                                style={{
+                                  backgroundColor: opt.cardPreview,
+                                  border: `1px solid ${opt.borderPreview}`,
+                                  color: opt.primaryColor
+                                }}
+                              >
+                                <OptIcon className="w-3.5 h-3.5" />
+                              </div>
+                              <div className="truncate">
+                                <div className="text-xs leading-tight font-semibold truncate text-white">
+                                  {opt.name}
+                                </div>
+                                <div className="text-[9.5px] text-purple-200/60 font-mono truncate">
+                                  {opt.nameMl}
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="flex items-center gap-1 shrink-0 ml-2">
+                              <span
+                                className="w-2.5 h-2.5 rounded-full"
+                                style={{ backgroundColor: opt.primaryColor }}
+                              />
+                              <span
+                                className="w-2.5 h-2.5 rounded-full"
+                                style={{ backgroundColor: opt.bgPreview, border: `1px solid ${opt.borderPreview}` }}
+                              />
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div className="p-2 bg-white/5 border-t border-white/10">
+                      <button
+                        onClick={() => {
+                          setIsThemeMenuOpen(false);
+                          setIsThemeModalOpen(true);
+                        }}
+                        className="w-full flex items-center justify-center gap-1.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-mono font-bold text-white border border-white/20 transition-colors cursor-pointer"
+                      >
+                        <Palette className="w-3.5 h-3.5" />
+                        <span>Open Theme Studio (Full Gallery)</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {isPrimaryAdmin && (
+                <button
+                  onClick={() => setIsManageUsersOpen(true)}
+                  className="hidden sm:flex items-center gap-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-400/40 px-3.5 py-1.5 rounded-full font-mono text-xs font-bold transition-all shadow-sm cursor-pointer backdrop-blur-md"
+                  title="Manage Authorized Email Whitelist"
+                >
+                  <ShieldCheck className="w-4 h-4 text-amber-300 animate-pulse" />
+                  <span>{t("manage_users", "MANAGE USERS")}</span>
+                </button>
+              )}
+
+              {(user || emailUser) && (
+                <div className="flex items-center gap-2 bg-white/10 border border-white/20 p-1 pl-3 rounded-full backdrop-blur-md">
+                  <div className="hidden sm:flex flex-col text-right">
+                    <span className="text-xs font-mono font-bold text-white max-w-[160px] truncate">
+                      {activeDisplayName}
+                    </span>
+                    <span className="text-[10px] font-mono text-emerald-300 flex items-center justify-end gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping inline-block" />
+                      {isPrimaryAdmin ? t("primary_admin", "PRIMARY ADMIN") : t("authorized", "AUTHORIZED")}
+                    </span>
+                  </div>
+
+                  {user?.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt="User Avatar"
+                      className="w-8 h-8 rounded-full border border-white/30 object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-purple-500/30 border border-purple-400/40 flex items-center justify-center text-white font-bold font-mono text-xs">
+                      {activeEmail ? activeEmail[0].toUpperCase() : "U"}
+                    </div>
+                  )}
+
+                  <button
+                    onClick={signOutUser}
+                    className="p-1.5 text-purple-200/80 hover:text-rose-300 hover:bg-white/10 rounded-full transition-colors cursor-pointer"
+                    title="Sign Out"
+                  >
+                    <LogOut className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <ManageUsersModal
+        isOpen={isManageUsersOpen}
+        onClose={() => setIsManageUsersOpen(false)}
+      />
+
+      <ThemeSelectorModal
+        isOpen={isThemeModalOpen}
+        onClose={() => setIsThemeModalOpen(false)}
+      />
+    </>
+  );
+
+  function markAllAllAsReadHandler() {
+    markAllAsRead();
+  }
+};
+
+
+

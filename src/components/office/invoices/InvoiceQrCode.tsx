@@ -1,0 +1,145 @@
+import React, { useState } from "react";
+import { QrCode, Copy, Check, ShieldCheck } from "lucide-react";
+
+interface InvoiceQrCodeProps {
+  upiId?: string;
+  payeeName?: string;
+  name?: string;
+  amount?: number;
+  invoiceNumber?: string;
+  note?: string;
+  size?: number;
+  className?: string;
+  compact?: boolean;
+}
+
+export const InvoiceQrCode: React.FC<InvoiceQrCodeProps> = ({
+  upiId = "7012383137@naviaxis",
+  payeeName,
+  name,
+  amount,
+  invoiceNumber,
+  note,
+  size = 140,
+  className = "",
+  compact = false
+}) => {
+  const [copied, setCopied] = useState(false);
+  const resolvedPayee = payeeName || name || "Vasthusilpy";
+  const resolvedNote = note || (invoiceNumber ? `Vasthusilpy Invoice ${invoiceNumber}` : "Vasthusilpy Payment");
+
+  // Construct standard UPI deep-link URL
+  const params = new URLSearchParams();
+  params.append("pa", upiId);
+  params.append("pn", resolvedPayee);
+  if (amount && amount > 0) {
+    params.append("am", amount.toFixed(2));
+  }
+  params.append("cu", "INR");
+  params.append("tn", resolvedNote);
+
+  const upiUrl = `upi://pay?${params.toString()}`;
+
+  // Reliable QR code generator via free public QR server
+  const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&margin=8&data=${encodeURIComponent(upiUrl)}`;
+
+  const handleCopyUpi = (e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    navigator.clipboard.writeText(upiId);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  if (compact) {
+    return (
+      <div className={`bg-slate-900 border border-slate-800 rounded-2xl p-3 flex items-center gap-3 shadow-lg ${className}`}>
+        <div className="bg-white p-1.5 rounded-xl shrink-0 shadow-sm border border-slate-700">
+          <img
+            src={qrImageUrl}
+            alt={`UPI Payment QR for ${upiId}`}
+            width={size}
+            height={size}
+            className="rounded-md object-contain block"
+            loading="lazy"
+          />
+        </div>
+        <div className="flex-1 min-w-0 font-mono text-left">
+          <div className="flex items-center gap-1 text-[10px] text-emerald-400 font-bold uppercase tracking-wider">
+            <ShieldCheck className="w-3 h-3 text-emerald-400 shrink-0" />
+            <span>Official UPI QR</span>
+          </div>
+          {amount && amount > 0 && (
+            <div className="text-sm font-black text-cyan-400 truncate">
+              ₹{amount.toLocaleString("en-IN")}
+            </div>
+          )}
+          <div className="text-[10px] text-slate-300 truncate font-mono mt-0.5">
+            {upiId}
+          </div>
+          <button
+            type="button"
+            onClick={handleCopyUpi}
+            className="mt-1.5 px-2 py-0.5 bg-slate-800 hover:bg-slate-700 text-cyan-300 rounded border border-slate-700 text-[10px] font-bold flex items-center gap-1 transition-all cursor-pointer"
+          >
+            {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+            <span>{copied ? "COPIED" : "COPY UPI"}</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col items-center text-center space-y-3 shadow-xl ${className}`}>
+      <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800/80 px-3 py-1 rounded-full">
+        <ShieldCheck className="w-3.5 h-3.5" />
+        <span>OFFICIAL UPI QR PAYMENT</span>
+      </div>
+
+      <div className="bg-white p-2.5 rounded-2xl shadow-inner border-2 border-slate-200 relative group inline-block">
+        <img
+          src={qrImageUrl}
+          alt={`UPI Payment QR for ${upiId}`}
+          width={size}
+          height={size}
+          className="rounded-lg object-contain block mx-auto"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 flex items-center justify-center bg-slate-950/90 text-white p-2 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-mono leading-tight pointer-events-none">
+          Scan using GPay, PhonePe, Paytm, or any UPI App
+        </div>
+      </div>
+
+      {amount && amount > 0 && (
+        <div className="text-center">
+          <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Payable Amount</div>
+          <div className="text-lg font-black font-mono text-cyan-400">
+            ₹{amount.toLocaleString("en-IN")}
+          </div>
+        </div>
+      )}
+
+      <div className="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 flex items-center justify-between gap-2 font-mono text-xs">
+        <div className="text-left overflow-hidden">
+          <div className="text-[10px] text-slate-400 font-sans">UPI ID</div>
+          <div className="text-slate-200 font-bold truncate text-[11px]">{upiId}</div>
+        </div>
+        <button
+          type="button"
+          onClick={handleCopyUpi}
+          className="p-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-400 rounded-lg border border-slate-700 transition-colors cursor-pointer flex items-center gap-1 text-[10px] font-bold shrink-0"
+          title="Copy UPI ID"
+        >
+          {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+          <span>{copied ? "COPIED" : "COPY"}</span>
+        </button>
+      </div>
+
+      <div className="text-[10px] text-slate-400 font-sans leading-tight">
+        GPay • PhonePe • Paytm • BHIM • Any Bank App
+      </div>
+    </div>
+  );
+};
