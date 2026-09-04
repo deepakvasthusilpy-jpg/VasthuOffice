@@ -72,13 +72,29 @@ import { SubscriptionExpiredScreen } from "./components/subscription/Subscriptio
 
 // Construction Works Master Component
 import { ConstructionDashboard } from "./components/construction/ConstructionDashboard";
-import { RenderingDashboard } from "./components/rendering/RenderingDashboard";
 
 // Personal Bills and Payments Master Component
 import { PersonalBillsDashboard } from "./components/personalBills/PersonalBillsDashboard";
 import { PersonalBillsTabType } from "./types";
 
-import { Compass, ShieldCheck, Building2, MapPin, HardHat, Wallet } from "lucide-react";
+import {
+  Compass,
+  ShieldCheck,
+  Building2,
+  MapPin,
+  HardHat,
+  Wallet,
+  Bot,
+  Calculator,
+  Ruler,
+  Table,
+  FileText,
+  BookOpen,
+  ArrowRightLeft,
+  Search,
+  Layers,
+  Cpu
+} from "lucide-react";
 
 export default function App() {
   const {
@@ -500,8 +516,103 @@ export default function App() {
           {/* VASTHU SECTION */}
           {activeSection === "vasthu" && (
             <div className="space-y-6">
+              {/* Vasthu Sub-navigation Bar */}
+              <div className="bg-slate-900/90 border border-slate-800 p-2 rounded-2xl flex items-center justify-between gap-2 overflow-x-auto shadow-lg backdrop-blur-md">
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setActiveTab("calculator")}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                      activeTab === "calculator"
+                        ? "bg-cyan-600 text-white shadow-md shadow-cyan-950"
+                        : "text-slate-400 hover:text-white hover:bg-slate-800"
+                    }`}
+                  >
+                    <Calculator className="w-4 h-4 text-cyan-300" />
+                    <span>Vasthu Calculator</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab("agent")}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                      activeTab === "agent"
+                        ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-950 border border-cyan-400/40"
+                        : "text-cyan-400 hover:text-white hover:bg-cyan-950/40 border border-cyan-500/20"
+                    }`}
+                  >
+                    <Bot className="w-4 h-4 text-cyan-300 animate-pulse" />
+                    <span>AI Vasthu Agent</span>
+                    <span className="px-1.5 py-0.5 rounded-full bg-cyan-500/30 text-cyan-200 font-mono text-[10px] font-bold border border-cyan-400/50">
+                      AI
+                    </span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab("side_finder")}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                      activeTab === "side_finder"
+                        ? "bg-cyan-600 text-white shadow-md shadow-cyan-950"
+                        : "text-slate-400 hover:text-white hover:bg-slate-800"
+                    }`}
+                  >
+                    <ArrowRightLeft className="w-4 h-4 text-cyan-300" />
+                    <span>Optimal Side Finder</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab("perimeter_vasthu")}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                      activeTab === "perimeter_vasthu"
+                        ? "bg-cyan-600 text-white shadow-md shadow-cyan-950"
+                        : "text-slate-400 hover:text-white hover:bg-slate-800"
+                    }`}
+                  >
+                    <Ruler className="w-4 h-4 text-cyan-300" />
+                    <span>2-Side Perimeter Vastu</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab("table")}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                      activeTab === "table"
+                        ? "bg-cyan-600 text-white shadow-md shadow-cyan-950"
+                        : "text-slate-400 hover:text-white hover:bg-slate-800"
+                    }`}
+                  >
+                    <Table className="w-4 h-4 text-cyan-300" />
+                    <span>Full Dimensions Table</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab("attachment")}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                      activeTab === "attachment"
+                        ? "bg-cyan-600 text-white shadow-md shadow-cyan-950"
+                        : "text-slate-400 hover:text-white hover:bg-slate-800"
+                    }`}
+                  >
+                    <FileText className="w-4 h-4 text-cyan-300" />
+                    <span>Vedic Manuscript</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab("guide")}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                      activeTab === "guide"
+                        ? "bg-cyan-600 text-white shadow-md shadow-cyan-950"
+                        : "text-slate-400 hover:text-white hover:bg-slate-800"
+                    }`}
+                  >
+                    <BookOpen className="w-4 h-4 text-cyan-300" />
+                    <span>Thachu Shastra Guide</span>
+                  </button>
+                </div>
+              </div>
+
               {activeTab === "calculator" && (
-                <CalculatorTab onSelectRowInTable={handleSelectRow} />
+                <CalculatorTab
+                  onSelectRowInTable={handleSelectRow}
+                  onOpenAIAgent={() => setActiveTab("agent")}
+                />
               )}
 
               {activeTab === "side_finder" && <SideFinderTab />}
@@ -526,7 +637,75 @@ export default function App() {
 
           {/* BUILDING RULES SECTION */}
           {activeSection === "building_rules" && (
-            <>
+            <div className="space-y-6">
+              {/* Building Rules Sub-navigation Bar */}
+              <div className="bg-slate-900/90 border border-slate-800 p-2 rounded-2xl flex items-center justify-between gap-2 overflow-x-auto shadow-lg backdrop-blur-md">
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setActiveTab("rules_ai_chat")}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                      activeTab === "rules_ai_chat"
+                        ? "bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-950 border border-emerald-400/40"
+                        : "text-emerald-400 hover:text-white hover:bg-emerald-950/40 border border-emerald-500/20"
+                    }`}
+                  >
+                    <Bot className="w-4 h-4 text-emerald-300 animate-pulse" />
+                    <span>AI Building Rules Agent</span>
+                    <span className="px-1.5 py-0.5 rounded-full bg-emerald-500/30 text-emerald-200 font-mono text-[10px] font-bold border border-emerald-400/50">
+                      AI
+                    </span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab("rules_search")}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                      activeTab === "rules_search"
+                        ? "bg-emerald-600 text-white shadow-md shadow-emerald-950"
+                        : "text-slate-400 hover:text-white hover:bg-slate-800"
+                    }`}
+                  >
+                    <Search className="w-4 h-4 text-emerald-300" />
+                    <span>Rules Search</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab("rules_occupancies")}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                      activeTab === "rules_occupancies"
+                        ? "bg-emerald-600 text-white shadow-md shadow-emerald-950"
+                        : "text-slate-400 hover:text-white hover:bg-slate-800"
+                    }`}
+                  >
+                    <Layers className="w-4 h-4 text-emerald-300" />
+                    <span>Occupancies (A1-J)</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab("rules_calculator")}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                      activeTab === "rules_calculator"
+                        ? "bg-emerald-600 text-white shadow-md shadow-emerald-950"
+                        : "text-slate-400 hover:text-white hover:bg-slate-800"
+                    }`}
+                  >
+                    <Calculator className="w-4 h-4 text-emerald-300" />
+                    <span>Setback Calculator</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab("rules_calculators")}
+                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                      activeTab === "rules_calculators"
+                        ? "bg-emerald-600 text-white shadow-md shadow-emerald-950"
+                        : "text-slate-400 hover:text-white hover:bg-slate-800"
+                    }`}
+                  >
+                    <Cpu className="w-4 h-4 text-emerald-300" />
+                    <span>Calculators & Tools</span>
+                  </button>
+                </div>
+              </div>
+
               {activeTab === "rules_ai_chat" && <AIKpbrRulesTab />}
 
               {activeTab === "rules_search" && (
@@ -538,7 +717,7 @@ export default function App() {
               {activeTab === "rules_calculator" && <BuildingSetbackCalcTab />}
 
               {activeTab === "rules_calculators" && <CalculatorsTab />}
-            </>
+            </div>
           )}
 
           {/* KSMART LSGD PORTAL & FILE TRACKING SECTION */}
@@ -695,11 +874,6 @@ export default function App() {
                 setActiveTab(subIdMap[newTab] || (newTab as TabType));
               }}
             />
-          )}
-
-          {/* RENDERING SECTION */}
-          {activeSection === "rendering" && (
-            <RenderingDashboard />
           )}
 
           {/* QUOTATIONS SECTION */}

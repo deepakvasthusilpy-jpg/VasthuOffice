@@ -361,6 +361,10 @@ export const QuotationModule: React.FC<QuotationModuleProps> = ({
             setEditingQuotation(q);
             setActiveTab("quotation_create" as TabType);
           }}
+          onSave={(updated) => {
+            handleSaveQuotationRecord(updated);
+            setPreviewQuotation(updated);
+          }}
         />
       )}
     </div>

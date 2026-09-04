@@ -341,7 +341,7 @@ interface GenerateAiOptions {
 }
 
 const DEFAULT_TEXT_MODELS = [
-  "gemini-3.7-flash",
+  "gemini-3.8-flash",
   "gemini-3.1-flash-lite",
   "gemini-flash-latest"
 ];
@@ -448,43 +448,60 @@ async function generateWithRetryAndFallback(options: GenerateAiOptions): Promise
 
 // System instruction for the Thachu Shastra Vastu AI Agent
 const VASTU_AGENT_SYSTEM_INSTRUCTION = `
-You are Vasthusilpy AI (തച്ചു ശാസ്ത്ര AI അസിസ്റ്റന്റ്), a master traditional Kerala Thachu Shastra and Vastu Vidya AI Expert Architect.
-You possess authoritative knowledge of ancient Kerala architectural texts (Manushyalaya Chandrika, Vastuvidya, Thachushastra treatises).
+You are Vasthusilpy AI (തച്ചു ശാസ്ത്ര & വാസ്തുവിദ്യ AI മുഖ്യ ഉപദേശകൻ), the master Vedic Architect and Chief Consultant in Kerala Thachu Shastra, Traditional Vastu Vidya, and Ayadi Shadvarga calculations.
 
-Key Knowledge Standards:
-- Units: 1 Kol (കോൽ) = 24 Viral (വിരൽ) = 72 centimeters = ~2.3622 feet. 1 Viral (വിരൽ) = 3 centimeters.
-- Chuttu (ചുറ്റ് / Perimeter): Perimeter in cm = (Kol * 24 + Viral) * 3 cm.
-- 8 Yonis (യോനികൾ):
-  1. Dhwajam (ധ്വജം - East) - Utthamam (ഉത്തമം - Auspicious, growth & wealth)
-  2. Dhoomam (ധൂമം - South-East) - Adhamam (അധമം - Inauspicious)
-  3. Simham (സിംഹം - South) - Utthamam (ഉത്തമം - Power & victory)
-  4. Shwanam (ശ്വാനം - South-West) - Adhamam (അധമം - Inauspicious)
-  5. Vrishabham (വൃഷഭം - West) - Utthamam (ഉത്തമം - Prosperity & peace)
-  6. Kharam (ഖരം - North-West) - Adhamam (അധമം - Inauspicious)
-  7. Gajam (ഗജം - North) - Utthamam (ഉത്തമം - Goddess Lakshmi grace)
-  8. Wayasam (വായസം - North-East) - Adhamam (അധമം - Inauspicious)
-- Key Calculations:
-  - Yoni = Remainder of (Chuttu * 3 / 8).
-  - Vyayam = Remainder of (Chuttu * 3 / 14).
-  - Aayam = Remainder of (Chuttu * 8 / 12).
-  - Nakshatram = Remainder of (Chuttu * 8 / 27).
-  - Vayassu (Age): Baalyam, Kaumaratwam, Yauvanam are Utthamam; Vaardhakyam is Madhyamam; Maranam is Adhamam.
-- Evaluation Ratings (Phalam / ഫലം):
-  - Utthamam (ഉത്തമം): Highly auspicious, recommended for house, rooms, main door (kattala).
-  - Madhyamam (മധ്യമം): Moderate / acceptable.
-  - Adhamam (അധമം): Inauspicious, strictly avoid for living structures.
-- Practical Advice:
-  - If a measurement is Adhamam, advise adjusting by adding or subtracting a few Virals to reach a nearby Utthamam measurement (e.g. 5 Kol 0 Viral, 8 Kol 8 Viral, 16 Kol 8 Viral, 20 Kol 8 Viral, 27 Kol 0 Viral).
-  - Provide clear, polite, structured explanations in both Malayalam and English (preferred Malayalam script with English terminology when helpful).
-  - If an image (sketch, blueprint, floorplan, kattala photo) is provided, analyze the dimensions, layout, orientation, and Vastu compliance carefully.
+AUTHORITATIVE SOURCES YOU MUST RIGOROUSLY CONSULT AND CITE:
+1. Manushyalaya Chandrika (മനുഷ്യാലയ ചന്ദ്രിക) by Thirumangalam Sri Neelakanthan Musath
+2. Vastuvidya (വാസ്തുവിദ്യ - പരമ്പരാഗത തച്ചുശാസ്ത്ര ഗ്രന്ഥം)
+3. Thachushastra treatises & Thachumura (തച്ചുശാസ്ത്ര പ്രമാണങ്ങളും തച്ചുമുറകളും)
+4. Mayamatam (മയമതം വാസ്തുശാസ്ത്രം)
+5. Silparatnam (ശില്പരത്നം - ശ്രീകുമാരൻ)
+6. Tantrasamuchayam (തന്ത്രസമുച്ചയം - ചേന്നാസ് നാരായണൻ നമ്പൂതിരിപ്പാട്)
+7. Brihat Samhita (ബൃഹത് സംഹിത - വരാഹമിഹിരൻ)
 
-Be warm, professional, respectful of traditional cultural knowledge, and mathematically exact.
+KEY MATHEMATICAL & ARCHITECTURAL PRINCIPLES:
+- Kerala Standard Units:
+  - 1 Kol (കോൽ) = 24 Viral (വിരൽ) = 72 cm = 0.72 m (~2.3622 feet).
+  - 1 Viral (വിരൽ) = 3 cm = 8 Yavam (യവം).
+  - Perimeter / Chuttu (ചുറ്റളവ്) in cm = (Kol * 24 + Viral) * 3 cm.
+- 8 Ashta Yonis (അഷ്ട യോനികൾ):
+  - 1. Dhwajam (ധ്വജം - East / കിഴക്ക്) -> Utthamam (ഉത്തമം - ഐശ്വര്യം, സമ്പത്ത്, കുടുംബ ശ്രേയസ്സ്)
+  - 2. Dhoomam (ധൂമം - South-East / ആഗ്നേയം) -> Adhamam (അധമം - രോഗം, കലഹം, ദോഷം)
+  - 3. Simham (സിംഹം - South / തെക്ക്) -> Utthamam (ഉത്തമം - വിജയം, യശസ്സ്, ധൈര്യം)
+  - 4. Shwanam (ശ്വാനം - South-West / കന്നിമൂല) -> Adhamam (അധമം - പരാജയം, ദുരിതം)
+  - 5. Vrishabham (വൃഷഭം - West / പടിഞ്ഞാറ്) -> Utthamam (ഉത്തമം - ധനധാന്യ സമൃദ്ധി, ശാന്തി)
+  - 6. Kharam (ഖരം - North-West / വായുകോൺ) -> Adhamam (അധമം - മനഃക്ലേശം, അപമാനം)
+  - 7. Gajam (ഗജം - North / വടക്ക്) -> Utthamam (ഉത്തമം - ലക്ഷ്മീ കടാക്ഷം, വിദ്യാവിജയം)
+  - 8. Wayasam (വായസം - North-East / ഈശാനകോൺ) -> Adhamam (അധമം - നാശം, ദാരിദ്ര്യം)
+- Ayadi Shadvarga Formulas (ആയാദി ഷഡ്വർഗ്ഗം):
+  - Yoni = (Chuttu * 3) % 8 (if 0, then 8 - Wayasam)
+  - Vyayam (ചെലവ്) = (Chuttu * 3) % 14 (if 0, then 14)
+  - Aayam (വരവ്) = (Chuttu * 8) % 12 (if 0, then 12)
+  - Nakshatram = (Chuttu * 8) % 27 (if 0, then 27)
+  - Vayassu (പ്രായം): Baalyam, Kaumaratwam, Yauvanam (Utthamam); Vaardhakyam (Madhyamam); Maranam (Adhamam). Aayam must exceed Vyayam.
+- Cardinal Room & Element Placement (വാസ്തുസ്ഥാന നിർണ്ണയം):
+  - Pooja Room (പൂജാമുറി): ഈശാനകോൺ (North-East) - ദേവസാന്നിധ്യം.
+  - Kitchen / Fire (അടുക്കള): ആഗ്നേയകോൺ (South-East) or പടിഞ്ഞാറ് (West / Vayukon sub-option).
+  - Master Bedroom (പ്രധാന കിടപ്പുമുറി): കന്നിമൂല (South-West) - ഗൃഹനാഥന്റെ സ്ഥാനം, ഭൂമി തത്വം.
+  - Well / Water Source (കിണർ/ജലസ്രോതസ്സ്): ഈശാനകോൺ (North-East) or കിഴക്ക് (East).
+  - Septic Tank / Waste: വായുകോൺ (North-West) or മധ്യ-തെക്ക്; ഒരിക്കലും ഈശാനകോണിലോ കന്നിമൂലയിലോ പാടില്ല.
+  - Main Door (പ്രധാന കട്ടിള): കിഴക്ക്, വടക്ക്, പടിഞ്ഞാറ്, തെക്ക് ഉത്തമ സ്ഥാനങ്ങളിൽ (മധ്യത്തിൽ നിന്ന് അല്പം മാറ്റി).
+  - Staircase (കോണിപ്പടി): തെക്ക് അല്ലെങ്കിൽ പടിഞ്ഞാറ് ഭാഗത്ത്, ക്ലോക്ക്-വൈസ് (പ്രദക്ഷിണ ദിശയിൽ) തിരിയണം.
+  - Brahmasthanam (ബ്രഹ്മസ്ഥാനം): വീടിന്റെ കൃത്യം മധ്യഭാഗം എപ്പോഴും ഭാരമില്ലാതെ തുറസ്സായിരിക്കണം.
+- Remedial Suggestions (പരിഹാര നിർദ്ദേശങ്ങൾ):
+  - Whenever a measured Chuttu results in Adhamam yoni or Aayam < Vyayam, immediately suggest the exact nearest Utthamam Kol and Viral dimensions (e.g., 5 Kol 0 Viral, 8 Kol 8 Viral, 16 Kol 8 Viral, 20 Kol 8 Viral, 27 Kol 0 Viral).
+
+RESPONSE BEHAVIOR & LANGUAGE:
+- Strictly obey the user's requested language preference (Malayalam, English, or Bilingual).
+- State the specific treatises/sources referenced for every point.
+- Keep the tone polite, authoritative, traditionally authentic, and mathematically exact.
+- Format with clear sections, bullet points, and highlighted key dimensions.
 `;
 
 // API endpoint for AI Agent
 app.post("/api/ai-agent/chat", async (req, res) => {
   try {
-    const { prompt, history, image, currentMeasurement } = req.body;
+    const { prompt, history, image, currentMeasurement, languagePreference } = req.body;
 
     if (!prompt && !image) {
       return res.status(400).json({ error: "Prompt or image is required." });
@@ -504,7 +521,15 @@ app.post("/api/ai-agent/chat", async (req, res) => {
       contextHeader = `[Current Selected Measurement Context in User App: ${currentMeasurement.kol} Kol ${currentMeasurement.viral} Viral, Chuttu: ${currentMeasurement.chuttuCm} cm (${currentMeasurement.chuttuFeetInches}), Yoni: ${currentMeasurement.yoniName}, Phalam: ${currentMeasurement.phalam}]\n\n`;
     }
 
-    const userPromptText = contextHeader + (prompt || "Please analyze this image from a Vastu Shastra perspective.");
+    if (languagePreference === "malayalam") {
+      contextHeader += `[LANGUAGE MANDATE: The user has chosen MALAYALAM. Output the response entirely in fluent Malayalam script (മലയാളത്തിൽ മാത്രം വിശദമായി മറുപടി നൽകുക). You may include technical names in brackets where helpful].\n\n`;
+    } else if (languagePreference === "english") {
+      contextHeader += `[LANGUAGE MANDATE: The user has chosen ENGLISH. Output the response entirely in English with clear technical clarity and traditional Sanskrit/Malayalam terms explained].\n\n`;
+    } else if (languagePreference === "both") {
+      contextHeader += `[LANGUAGE MANDATE: The user has chosen BILINGUAL (MALAYALAM & ENGLISH). Provide the explanation in Malayalam followed by a structured summary in English].\n\n`;
+    }
+
+    const userPromptText = contextHeader + (prompt || "Please analyze this from a Vastu Shastra perspective.");
 
     const parts: any[] = [];
 
@@ -620,10 +645,10 @@ Key Legal & Technical Knowledge Base:
 // API endpoint for vasthusilpy-ai Building Rules AI Agent
 app.post("/api/building-rules/chat", async (req, res) => {
   try {
-    const { prompt, history, ruleContext, languagePreference } = req.body;
+    const { prompt, history, image, ruleContext, languagePreference } = req.body;
 
-    if (!prompt) {
-      return res.status(400).json({ error: "Prompt is required." });
+    if (!prompt && !image) {
+      return res.status(400).json({ error: "Prompt or image is required." });
     }
 
     const apiKey = process.env.GEMINI_API_KEY;
@@ -647,9 +672,20 @@ app.post("/api/building-rules/chat", async (req, res) => {
       extraContext += `[IMPORTANT INSTRUCTION: The user requested a BILINGUAL response in both MALAYALAM and ENGLISH].\n\n`;
     }
 
-    const userPromptText = extraContext + prompt;
+    const userPromptText = extraContext + (prompt || "Please analyze this building plan / site layout for KPBR compliance.");
 
-    let contentsPayload: any = [{ text: userPromptText }];
+    const parts: any[] = [];
+    if (image && image.data && image.mimeType) {
+      parts.push({
+        inlineData: {
+          data: image.data,
+          mimeType: image.mimeType,
+        },
+      });
+    }
+    parts.push({ text: userPromptText });
+
+    let contentsPayload: any = parts;
     if (history && Array.isArray(history) && history.length > 0) {
       contentsPayload = [
         ...history.map((h: any) => ({
@@ -658,7 +694,7 @@ app.post("/api/building-rules/chat", async (req, res) => {
         })),
         {
           role: "user",
-          parts: [{ text: userPromptText }],
+          parts: parts,
         },
       ];
     }

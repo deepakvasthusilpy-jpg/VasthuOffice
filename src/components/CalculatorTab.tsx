@@ -20,16 +20,18 @@ import {
   ShieldAlert,
   ShieldCheck,
   ArrowRight,
+  Bot,
 } from "lucide-react";
 import { triggerPrint } from "../utils/printHelper";
 
 interface CalculatorTabProps {
   onSelectRowInTable: (row: ThachuRow) => void;
+  onOpenAIAgent?: () => void;
 }
 
 type UnitMode = "kol_viral" | "cm" | "meter";
 
-export const CalculatorTab: React.FC<CalculatorTabProps> = () => {
+export const CalculatorTab: React.FC<CalculatorTabProps> = ({ onSelectRowInTable, onOpenAIAgent }) => {
   const [unitMode, setUnitMode] = useState<UnitMode>("kol_viral");
 
   // String states for direct enter-type input
@@ -169,7 +171,19 @@ export const CalculatorTab: React.FC<CalculatorTabProps> = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-2.5 shrink-0">
+          <div className="flex items-center gap-2.5 shrink-0 flex-wrap">
+            {onOpenAIAgent && (
+              <button
+                type="button"
+                onClick={onOpenAIAgent}
+                className="flex items-center gap-1.5 px-3.5 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-mono font-bold text-xs rounded-xl shadow-md shadow-cyan-500/20 transition cursor-pointer"
+                title="Consult AI Vasthu Agent"
+              >
+                <Bot className="w-4 h-4" />
+                <span>AI VASTHU AGENT</span>
+                <span className="px-1.5 py-0.2 rounded bg-slate-950/40 text-[9px] text-white">AI</span>
+              </button>
+            )}
             <button
               onClick={handleCopySummary}
               className="flex items-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg text-xs font-mono font-semibold transition cursor-pointer"
@@ -730,11 +744,24 @@ export const CalculatorTab: React.FC<CalculatorTabProps> = () => {
                     </div>
                   </div>
                 )}
+
+                {onOpenAIAgent && (
+                  <div className="pt-2">
+                    <button
+                      type="button"
+                      onClick={onOpenAIAgent}
+                      className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-rose-900/60 hover:bg-rose-900/90 text-rose-200 border border-rose-700/60 rounded-xl text-xs font-mono font-bold transition cursor-pointer"
+                    >
+                      <Bot className="w-4 h-4 text-rose-300" />
+                      <span>ഈ അളവിനെക്കുറിച്ച് AI വാസ്തു ഏജന്റിനോട് പരിഹാരം ചോദിക്കുക (Remedy Advice)</span>
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 
             {exactRow.phalam === "ഉത്തമം" && (
-              <div className="bg-emerald-950/60 border border-emerald-800/80 p-4 rounded-xl text-slate-200 text-sm space-y-2">
+              <div className="bg-emerald-950/60 border border-emerald-800/80 p-4 rounded-xl text-slate-200 text-sm space-y-3">
                 <div className="font-mono font-bold text-emerald-300 flex items-center gap-2 text-xs uppercase tracking-wider">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                   <span>VASTU COMPLIANCE VERIFICATION:</span>
@@ -743,6 +770,18 @@ export const CalculatorTab: React.FC<CalculatorTabProps> = () => {
                   കോൽ {exactRow.kol} വിരൽ {exactRow.viral} (ചുറ്റ് {exactRow.chuttuCm} cm) എന്നത് തച്ചുശാസ്ത്രപ്രകാരം{" "}
                   <strong className="text-emerald-400">ഉത്തമം (Auspicious)</strong> ആണ്. ഗൃഹനിർമ്മാണം, മുറികളുടെ അളവ്, കട്ടള, വാതിൽ, മതിൽ എന്നിവയ്ക്ക് ഈ അളവ് അനുയോജ്യമാണ്.
                 </p>
+                {onOpenAIAgent && (
+                  <div className="pt-1">
+                    <button
+                      type="button"
+                      onClick={onOpenAIAgent}
+                      className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-emerald-900/40 hover:bg-emerald-900/70 text-emerald-200 border border-emerald-700/60 rounded-xl text-xs font-mono font-bold transition cursor-pointer"
+                    >
+                      <Bot className="w-4 h-4 text-emerald-300" />
+                      <span>ഈ അളവ് വെച്ച് AI വാസ്തു ഓഡിറ്റ് റിപ്പോർട്ട് കാണുക (Generate Audit)</span>
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>

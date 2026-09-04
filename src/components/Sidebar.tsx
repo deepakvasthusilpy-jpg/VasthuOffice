@@ -57,7 +57,6 @@ import {
   Plus,
   HardDrive,
   Stamp,
-  Image as ImageIcon,
   MessageSquare,
   Wallet,
   Zap,
@@ -123,26 +122,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const SECTIONS = [
     {
       id: "home" as MainSectionType,
-      title: "ഹോം പേജ്",
-      subtitle: "HOME & BUSINESS OVERVIEW",
-      shortLabel: "ഹോം",
+      title: "Home & Business",
+      subtitle: "OVERVIEW & DASHBOARD",
+      shortLabel: "Home",
       icon: Home,
       defaultTab: "home_overview" as TabType,
       color: "from-cyan-500 to-blue-600",
       activeBorder: "border-cyan-400",
       activeText: "text-cyan-300",
       subTabs: [
-        { id: "home_overview" as TabType, label: "ഹോം & പ്രൊഫൈൽ", sub: "BUSINESS OVERVIEW & PROFILE", icon: Sparkles },
-        { id: "all_tools" as TabType, label: `എല്ലാ ടൂളുകളും (${ALL_TOOLS_DATA.length})`, sub: "ALL TOOLS DASHBOARD", icon: LayoutGrid, badge: `${ALL_TOOLS_DATA.length}` },
-        { id: "data_storage" as TabType, label: "ഡാറ്റ സ്റ്റോറേജ്", sub: "DATA STORAGE & CAD VAULT", icon: HardDrive, badge: "CAD" },
-        { id: "subscription_requests" as TabType, label: "സബ്‌സ്ക്രിപ്ഷൻ അഭ്യർത്ഥനകൾ", sub: "SUBSCRIPTION REQUESTS", icon: ShieldCheck, badge: "NEW" }
+        { id: "home_overview" as TabType, label: "Home & Profile", sub: "BUSINESS OVERVIEW & PROFILE", icon: Sparkles },
+        { id: "all_tools" as TabType, label: `All Tools (${ALL_TOOLS_DATA.length})`, sub: "ALL TOOLS DIRECTORY", icon: LayoutGrid, badge: `${ALL_TOOLS_DATA.length}` },
+        { id: "data_storage" as TabType, label: "Data Storage & Vault", sub: "CAD DRAWINGS & FILES", icon: HardDrive, badge: "CAD" },
+        { id: "subscription_requests" as TabType, label: "Subscription Requests", sub: "ACCESS PERMISSIONS", icon: ShieldCheck, badge: "NEW" }
       ]
     },
     {
       id: "construction_works" as MainSectionType,
-      title: "നിർമ്മാണ പ്രവർത്തനങ്ങൾ",
-      subtitle: "CONSTRUCTION & E-STAMP",
-      shortLabel: "കരാറുകൾ",
+      title: "Construction Works",
+      subtitle: "PROJECTS & E-STAMP",
+      shortLabel: "Construction",
       icon: HardHat,
       defaultTab: "construction_dashboard" as TabType,
       color: "from-amber-500 to-emerald-500",
@@ -150,37 +149,22 @@ export const Sidebar: React.FC<SidebarProps> = ({
       activeText: "text-amber-300",
       badge: "E-STAMP",
       subTabs: [
-        { id: "construction_dashboard" as TabType, label: "കൺസ്ട്രക്ഷൻ ഡാഷ്‌ബോർഡ്", sub: "CONSTRUCTION DASHBOARD", icon: LayoutGrid, badge: "OVERVIEW" },
-        { id: "construction_agreements" as TabType, label: "ഇ-സ്റ്റാമ്പ് കരാറുകൾ (Agreements)", sub: "E-STAMP & PLAIN A4 PRINT", icon: FileCheck2, badge: "PRINT" },
-        { id: "new_construction" as TabType, label: "പുതിയ നിർമ്മാണം & കരാർ", sub: "NEW PROJECT & AGREEMENT", icon: Plus, badge: "WIZARD" },
-        { id: "construction_projects" as TabType, label: "പ്രോജക്ടുകൾ & ക്ലയന്റ്സ്", sub: "PROJECTS / CLIENTS", icon: FolderKanban },
-        { id: "construction_cost_calculator" as TabType, label: "അടിസ്ഥാന നിരക്ക് & ചെലവ്", sub: "BASE RATE & COST CALCULATOR", icon: Calculator, badge: "RATE" },
-        { id: "construction_payment_stages" as TabType, label: "പെയ്‌മെന്റ് സ്റ്റേജുകൾ", sub: "PAYMENT STAGES", icon: Receipt },
-        { id: "construction_reports" as TabType, label: "ധനകാര്യ റിപ്പോർട്ടുകൾ", sub: "FINANCIAL REPORTS", icon: FileSpreadsheet },
-        { id: "construction_settings" as TabType, label: "നിർമ്മാണ ക്രമീകരണങ്ങൾ", sub: "STAGES & PRINT MARGINS", icon: Sparkles },
-        { id: "construction_search" as TabType, label: "QR വെരിഫിക്കേഷൻ", sub: "QR VERIFICATION", icon: ShieldCheck, badge: "QR" }
-      ]
-    },
-    {
-      id: "rendering" as MainSectionType,
-      title: "AI റെൻഡറിംഗ്",
-      subtitle: "AI REALISTIC RENDERING",
-      shortLabel: "റെൻഡർ",
-      icon: ImageIcon,
-      defaultTab: "ai_rendering" as TabType,
-      color: "from-pink-500 to-rose-600",
-      activeBorder: "border-pink-500",
-      activeText: "text-pink-400",
-      badge: "AI",
-      subTabs: [
-        { id: "ai_rendering" as TabType, label: "AI റെൻഡറിംഗ്", sub: "Realistic Image Generation", icon: ImageIcon, badge: "NEW" }
+        { id: "construction_dashboard" as TabType, label: "Construction Dashboard", sub: "OVERVIEW & ACTIVE SITES", icon: LayoutGrid, badge: "OVERVIEW" },
+        { id: "construction_agreements" as TabType, label: "E-Stamp Agreements", sub: "E-STAMP & A4 PRINT", icon: FileCheck2, badge: "PRINT" },
+        { id: "new_construction" as TabType, label: "New Project & Agreement", sub: "PROJECT WIZARD", icon: Plus, badge: "WIZARD" },
+        { id: "construction_projects" as TabType, label: "Projects & Clients", sub: "CLIENT DIRECTORY", icon: FolderKanban },
+        { id: "construction_cost_calculator" as TabType, label: "Base Rate & Cost Calculator", sub: "SQFT RATE ESTIMATE", icon: Calculator, badge: "RATE" },
+        { id: "construction_payment_stages" as TabType, label: "Payment Stages", sub: "DISBURSEMENT SCHEDULE", icon: Receipt },
+        { id: "construction_reports" as TabType, label: "Financial Reports", sub: "PROFIT & EXPENSES", icon: FileSpreadsheet },
+        { id: "construction_settings" as TabType, label: "Construction Settings", sub: "STAGES & MARGINS", icon: Sparkles },
+        { id: "construction_search" as TabType, label: "QR Verification", sub: "AGREEMENT VALIDATION", icon: ShieldCheck, badge: "QR" }
       ]
     },
     {
       id: "quotation" as MainSectionType,
-      title: "ക്വട്ടേഷൻ തയാറാക്കൽ",
-      subtitle: "QUOTATIONS & ESTIMATES",
-      shortLabel: "ക്വട്ടേഷൻ",
+      title: "Quotations & Estimates",
+      subtitle: "RATES & CONTRACTORS",
+      shortLabel: "Quotations",
       icon: FileText,
       defaultTab: "quotation_dashboard" as TabType,
       color: "from-amber-500 to-yellow-600",
@@ -188,19 +172,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
       activeText: "text-amber-300",
       badge: "QTN",
       subTabs: [
-        { id: "quotation_dashboard" as TabType, label: "ഡാഷ്‌ബോർഡ്", sub: "DASHBOARD", icon: LayoutGrid },
-        { id: "quotation_create" as TabType, label: "പുതിയ ക്വട്ടേഷൻ", sub: "CREATE QUOTATION", icon: Plus, badge: "NEW" },
-        { id: "quotation_all" as TabType, label: "എല്ലാ ക്വട്ടേഷനുകളും", sub: "ALL QUOTATIONS", icon: FileText },
-        { id: "quotation_rates" as TabType, label: "സർവീസ് & റേറ്റ് ലിസ്റ്റ്", sub: "SERVICE & RATE LIST", icon: Calculator, badge: "RATES" },
-        { id: "quotation_contractors" as TabType, label: "കോൺട്രാക്ടർമാർ", sub: "CONTRACTORS", icon: Users },
-        { id: "quotation_terms" as TabType, label: "നിബന്ധനകളും വ്യവസ്ഥകളും", sub: "TERMS & CONDITIONS", icon: ShieldCheck }
+        { id: "quotation_dashboard" as TabType, label: "Quotation Dashboard", sub: "METRICS & RECENT", icon: LayoutGrid },
+        { id: "quotation_create" as TabType, label: "Create Quotation", sub: "NEW CLIENT QUOTE", icon: Plus, badge: "NEW" },
+        { id: "quotation_all" as TabType, label: "All Quotations", sub: "SEARCH & DIRECTORY", icon: FileText },
+        { id: "quotation_rates" as TabType, label: "Service & Rate List", sub: "MATERIAL & LABOUR", icon: Calculator, badge: "RATES" },
+        { id: "quotation_contractors" as TabType, label: "Contractors Directory", sub: "TRADE SUB-CONTRACTORS", icon: Users },
+        { id: "quotation_terms" as TabType, label: "Terms & Conditions", sub: "CLAUSES & POLICIES", icon: ShieldCheck }
       ]
     },
     {
       id: "estimate" as MainSectionType,
-      title: "റേറ്റ് എസ്റ്റിമേറ്റർ & വാല്യുവേഷൻ",
-      subtitle: "ESTIMATE & QUANTITY SURVEY",
-      shortLabel: "എസ്റ്റിമേറ്റ്",
+      title: "Rate Estimator & BOQ",
+      subtitle: "VALUATION & SURVEY",
+      shortLabel: "Estimates",
       icon: FileSpreadsheet,
       defaultTab: "estimate_dashboard" as TabType,
       color: "from-emerald-500 to-amber-500",
@@ -208,36 +192,36 @@ export const Sidebar: React.FC<SidebarProps> = ({
       activeText: "text-emerald-400",
       badge: "BOQ",
       subTabs: [
-        { id: "estimate_dashboard" as TabType, label: "എസ്റ്റിമേറ്റ് ഡാഷ്‌ബോർഡ്", sub: "Estimates Directory", icon: FileSpreadsheet },
-        { id: "estimate_sheet" as TabType, label: "വിശദമായ റേറ്റ് എസ്റ്റിമേറ്റ്", sub: "Quantity Survey Sheet", icon: Calculator, badge: "BOQ" },
-        { id: "valuation" as TabType, label: "വാല്യുവേഷൻ സർട്ടിഫിക്കറ്റ്", sub: "Section 28B/28C Valuation", icon: FileCheck2, badge: "GOVT" },
-        { id: "stage_completion_certificate" as TabType, label: "സ്റ്റേജ് / കംപ്ലീഷൻ സർട്ടിഫിക്കറ്റ്", sub: "Stage & Completion Certs", icon: Award, badge: "CERT" },
-        { id: "items_of_work" as TabType, label: "ഐറ്റം ഓഫ് വർക്ക് ലൈബ്രറി", sub: "Items of Work Master", icon: ListPlus, badge: "LIBRARY" },
-        { id: "engineer_seals" as TabType, label: "എഞ്ചിനീയർ സീൽ & സൈൻ", sub: "Engineer Seals", icon: ShieldCheck }
+        { id: "estimate_dashboard" as TabType, label: "Estimate Dashboard", sub: "ESTIMATES DIRECTORY", icon: FileSpreadsheet },
+        { id: "estimate_sheet" as TabType, label: "Detailed Rate Estimate (BOQ)", sub: "QUANTITY SURVEY SHEET", icon: Calculator, badge: "BOQ" },
+        { id: "valuation" as TabType, label: "Valuation Certificate", sub: "BANK & GOVT VALUATION", icon: FileCheck2, badge: "GOVT" },
+        { id: "stage_completion_certificate" as TabType, label: "Stage & Completion Certificate", sub: "CERTIFICATES", icon: Award, badge: "CERT" },
+        { id: "items_of_work" as TabType, label: "Items of Work Library", sub: "WORK ITEM MASTER", icon: ListPlus, badge: "LIBRARY" },
+        { id: "engineer_seals" as TabType, label: "Engineer Seals & Signatures", sub: "OFFICIAL CERTIFICATION", icon: ShieldCheck }
       ]
     },
     {
       id: "office_dashboard" as MainSectionType,
-      title: "ഓഫീസ് ഡാഷ്‌ബോർഡ്",
-      subtitle: "OFFICE DASHBOARD & CRM",
-      shortLabel: "ഓഫീസ്",
+      title: "Office Dashboard",
+      subtitle: "PROJECT PIPELINE & CRM",
+      shortLabel: "Office",
       icon: FolderKanban,
       defaultTab: "office_crm_projects" as TabType,
       color: "from-emerald-500 to-teal-600",
       activeBorder: "border-emerald-500",
       activeText: "text-emerald-400",
       subTabs: [
-        { id: "office_crm_projects" as TabType, label: "പ്രോജക്ട്സ് പൈപ്പ്ലൈൻ", sub: "PROJECTS PIPELINE", icon: Briefcase, badge: "CRM" },
-        { id: "office_tasks" as TabType, label: "ടാസ്കുകൾ & ഉപടാസ്കുകൾ", sub: "TASKS & SUB-TASKS", icon: ListTodo, badge: "TASKS" },
-        { id: "office_activities" as TabType, label: "ആക്ടിവിറ്റി ഹിസ്റ്ററി", sub: "ACTIVITY HISTORY", icon: History },
-        { id: "office_important_sites" as TabType, label: "ഇംപോർട്ടന്റ് സൈറ്റുകൾ", sub: "IMPORTANT SITES & VAULT", icon: Globe, badge: "VAULT" }
+        { id: "office_crm_projects" as TabType, label: "Projects Pipeline", sub: "CRM PIPELINE", icon: Briefcase, badge: "CRM" },
+        { id: "office_tasks" as TabType, label: "Tasks & Sub-Tasks", sub: "TASK MANAGEMENT", icon: ListTodo, badge: "TASKS" },
+        { id: "office_activities" as TabType, label: "Activity History", sub: "AUDIT TRAIL", icon: History },
+        { id: "office_important_sites" as TabType, label: "Important Sites & Vault", sub: "PORTAL CREDENTIALS", icon: Globe, badge: "VAULT" }
       ]
     },
     {
       id: "invoices_payments" as MainSectionType,
-      title: "ഇൻവോയ്‌സ് & പേയ്‌മെന്റ്",
-      subtitle: "INVOICE & PAYMENTS",
-      shortLabel: "ബില്ലിംഗ്",
+      title: "Invoices & Payments",
+      subtitle: "BILLING & CLIENT PORTAL",
+      shortLabel: "Billing",
       icon: Receipt,
       defaultTab: "invoices_list" as TabType,
       color: "from-teal-400 to-emerald-500",
@@ -245,53 +229,55 @@ export const Sidebar: React.FC<SidebarProps> = ({
       activeText: "text-teal-300",
       badge: "PAY",
       subTabs: [
-        { id: "invoices_list" as TabType, label: "ഇൻവോയ്‌സ് & പേയ്‌മെന്റുകൾ", sub: "INVOICES & BILLING", icon: Receipt },
-        { id: "products_services" as TabType, label: "Products & Services", sub: "CATALOG & RATES", icon: Box, badge: "RATES" },
-        { id: "customers" as TabType, label: "കസ്റ്റമേഴ്സ് / ക്ലയന്റുകൾ", sub: "CUSTOMERS DIRECTORY", icon: Users },
-        { id: "reports_analysis" as TabType, label: "റിപ്പോർട്ടുകൾ & അനലിറ്റിക്‌സ്", sub: "REPORTS & ANALYSIS", icon: BarChart3 }
+        { id: "invoices_list" as TabType, label: "Invoices & Billing", sub: "CLIENT INVOICES", icon: Receipt },
+        { id: "products_services" as TabType, label: "Products & Services", sub: "RATES CATALOG", icon: Box, badge: "RATES" },
+        { id: "customers" as TabType, label: "Customers & Clients", sub: "CLIENT DIRECTORY", icon: Users },
+        { id: "reports_analysis" as TabType, label: "Reports & Analytics", sub: "REVENUE INSIGHTS", icon: BarChart3 }
       ]
     },
     {
       id: "vasthu" as MainSectionType,
-      title: "വാസ്തു ശാസ്ത്രം",
-      subtitle: "VASTHU SHASTRA",
-      shortLabel: "വാസ്തു",
+      title: "Vasthu Shastra",
+      subtitle: "VEDIC DIMENSIONS & RULES",
+      shortLabel: "Vasthu",
       icon: Compass,
       defaultTab: "calculator" as TabType,
       color: "from-cyan-500 to-blue-600",
       activeBorder: "border-cyan-500",
       activeText: "text-cyan-400",
       subTabs: [
-        { id: "calculator" as TabType, label: "കാൽക്കുലേറ്റർ", sub: "Calculator", icon: Calculator },
-        { id: "side_finder" as TabType, label: "വശങ്ങൾ കണ്ടെത്തുക", sub: "Side Finder", icon: ArrowRightLeft },
-        { id: "perimeter_vasthu" as TabType, label: "ഇരുവശ ചുറ്റളവ് & വാസ്തു", sub: "2-Side Perimeter Vastu", icon: Ruler },
-        { id: "table" as TabType, label: "പൂർണ്ണ പട്ടിക", sub: `${totalRows} Rows`, icon: Table },
-        { id: "attachment" as TabType, label: "മൂലരേഖ", sub: "17 Pages", icon: FileText },
-        { id: "guide" as TabType, label: "തച്ചുശാസ്ത്ര നിയമങ്ങൾ", sub: "Guide", icon: BookOpen }
+        { id: "calculator" as TabType, label: "Vasthu Calculator", sub: "AYADI SHADVARGA", icon: Calculator },
+        { id: "agent" as TabType, label: "AI Vasthu Agent", sub: "VASTU AUDIT & CONSULTANT", icon: Bot, badge: "AI" },
+        { id: "side_finder" as TabType, label: "Optimal Side Finder", sub: "DIMENSION OPTIMIZER", icon: ArrowRightLeft },
+        { id: "perimeter_vasthu" as TabType, label: "2-Side Perimeter Vastu", sub: "WALL PERIMETER", icon: Ruler },
+        { id: "table" as TabType, label: "Full Dimensions Table", sub: `${totalRows} ROWS`, icon: Table },
+        { id: "attachment" as TabType, label: "Vedic Manuscript", sub: "17 PAGES REFERENCE", icon: FileText },
+        { id: "guide" as TabType, label: "Thachu Shastra Guide", sub: "PRINCIPLES & RULES", icon: BookOpen }
       ]
     },
     {
       id: "building_rules" as MainSectionType,
-      title: "കെട്ടിട നിർമ്മാണ ചട്ടങ്ങൾ",
-      subtitle: "BUILDING RULES",
-      shortLabel: "ചട്ടങ്ങൾ",
+      title: "Building Rules",
+      subtitle: "KPBR & KMBR COMPLIANCE",
+      shortLabel: "Rules",
       icon: Building2,
       defaultTab: "rules_search" as TabType,
       color: "from-emerald-400 to-cyan-500",
       activeBorder: "border-emerald-500",
       activeText: "text-emerald-400",
       subTabs: [
-        { id: "rules_search" as TabType, label: "നിയമ തിരച്ചിൽ", sub: "Rule Search", icon: Search },
-        { id: "rules_occupancies" as TabType, label: "ഉപയോഗ ഗണങ്ങൾ", sub: "Occupancies A1-J", icon: Layers },
-        { id: "rules_calculator" as TabType, label: "സെറ്റ്ബാക്ക് കാൽക്കുലേറ്റർ", sub: "Setback Calc", icon: Calculator },
-        { id: "rules_calculators" as TabType, label: "കാൽക്കുലേറ്ററുകൾ", sub: "5 Tools", icon: Cpu }
+        { id: "rules_ai_chat" as TabType, label: "AI Building Rules Agent", sub: "KPBR 2019/2026 AUDITOR", icon: Bot, badge: "AI" },
+        { id: "rules_search" as TabType, label: "Rules Search", sub: "KPBR CLAUSES SEARCH", icon: Search },
+        { id: "rules_occupancies" as TabType, label: "Occupancies (A1-J)", sub: "BUILDING CLASSIFICATIONS", icon: Layers },
+        { id: "rules_calculator" as TabType, label: "Setback Calculator", sub: "DISTANCE & ACCESS", icon: Calculator },
+        { id: "rules_calculators" as TabType, label: "Calculators & Tools", sub: "5 SPECIALIZED TOOLS", icon: Cpu }
       ]
     },
     {
       id: "ksmart" as MainSectionType,
-      title: "കെ-സ്മാർട്ട്",
-      subtitle: "KSMART LSGD PORTAL",
-      shortLabel: "KSMART",
+      title: "K-SMART LSGD",
+      subtitle: "PERMITS & TAX PORTAL",
+      shortLabel: "K-SMART",
       icon: Globe,
       defaultTab: "rules_ksmart" as TabType,
       color: "from-emerald-500 to-teal-500",
@@ -299,50 +285,50 @@ export const Sidebar: React.FC<SidebarProps> = ({
       activeText: "text-emerald-400",
       badge: "LSGD",
       subTabs: [
-        { id: "rules_ksmart" as TabType, label: "KSMART ഫയൽ ട്രാക്കിംഗ്", sub: "Live LSGD Tracker", icon: Search, badge: "TRACK" },
-        { id: "ksmart_plan_scrutiny" as TabType, label: "CAD പ്ലാൻ സ്ക്രൂട്ടീനി", sub: "Auto-DCR Plan Scrutiny", icon: FileCode, badge: "AUTO-DCR" },
-        { id: "ksmart_quick_certificates" as TabType, label: "ക്വിക്ക് സർട്ടിഫിക്കറ്റുകൾ", sub: "Birth/Death/Marriage", icon: Award, badge: "CERTS" },
-        { id: "ksmart_property_tax" as TabType, label: "കെട്ടിട നികുതി", sub: "Property Tax & Assessment", icon: Receipt, badge: "TAX" }
+        { id: "rules_ksmart" as TabType, label: "K-SMART File Tracking", sub: "LIVE LSGD TRACKER", icon: Search, badge: "TRACK" },
+        { id: "ksmart_plan_scrutiny" as TabType, label: "CAD Plan Scrutiny", sub: "AUTO-DCR SCRUTINY", icon: FileCode, badge: "AUTO-DCR" },
+        { id: "ksmart_quick_certificates" as TabType, label: "Quick Certificates", sub: "LSGD CERTIFICATES", icon: Award, badge: "CERTS" },
+        { id: "ksmart_property_tax" as TabType, label: "Property Tax Assessment", sub: "LOCAL BODY TAX", icon: Receipt, badge: "TAX" }
       ]
     },
     {
       id: "survey" as MainSectionType,
-      title: "സർവ്വേ",
-      subtitle: "SURVEY & LAND AREA",
-      shortLabel: "സർവ്വേ",
+      title: "Digital Land Survey",
+      subtitle: "FMB & AREA CALCULATOR",
+      shortLabel: "Survey",
       icon: MapPin,
       defaultTab: "missing_side" as TabType,
       color: "from-blue-500 to-indigo-600",
       activeBorder: "border-blue-500",
       activeText: "text-blue-400",
       subTabs: [
-        { id: "missing_side" as TabType, label: "Missing Side Calc", sub: "GEO-04", icon: Ruler },
-        { id: "land_area" as TabType, label: "Land Area Calc", sub: "Heron's Formula", icon: MapPin },
-        { id: "unit_converters" as TabType, label: "യൂണിറ്റ് കൺവെർട്ടർ", sub: "Length & Area", icon: ArrowRightLeft, badge: "CONVERT" }
+        { id: "missing_side" as TabType, label: "Missing Side Calc", sub: "GEO-04 POLYGON", icon: Ruler },
+        { id: "land_area" as TabType, label: "Land Area Calc", sub: "HERON'S FORMULA", icon: MapPin },
+        { id: "unit_converters" as TabType, label: "Unit Converter", sub: "CENT, ACRE & SQFT", icon: ArrowRightLeft, badge: "CONVERT" }
       ]
     },
     {
       id: "civil" as MainSectionType,
-      title: "സിവിൽ എഞ്ചിനീയറിംഗ്",
-      subtitle: "CIVIL ENGINEERING",
-      shortLabel: "സിവിൽ",
+      title: "Civil Engineering",
+      subtitle: "IS 456 & BAR BENDING (BBS)",
+      shortLabel: "Civil",
       icon: HardHat,
       defaultTab: "brick_masonry" as TabType,
       color: "from-amber-500 to-rose-600",
       activeBorder: "border-amber-500",
       activeText: "text-amber-400",
       subTabs: [
-        { id: "brick_masonry" as TabType, label: "Brick Masonry Calc", sub: "IS 1077 Standard", icon: Package },
-        { id: "concrete_block" as TabType, label: "Concrete Block Calc", sub: "Solid/Hollow CMU", icon: Box },
-        { id: "cement_concrete" as TabType, label: "Cement Concrete Calc", sub: "IS 456 PCC/RCC", icon: Truck },
-        { id: "material_quantity_bbs" as TabType, label: "Material Quantity & BBS", sub: "IS 456 & IS 2502 BBS", icon: Layers, badge: "BBS" }
+        { id: "brick_masonry" as TabType, label: "Brick Masonry Calc", sub: "IS 1077 STANDARD", icon: Package },
+        { id: "concrete_block" as TabType, label: "Concrete Block Calc", sub: "SOLID & HOLLOW CMU", icon: Box },
+        { id: "cement_concrete" as TabType, label: "Cement Concrete Calc", sub: "IS 456 PCC & RCC", icon: Truck },
+        { id: "material_quantity_bbs" as TabType, label: "Material Quantity & BBS", sub: "IS 2502 BAR BENDING", icon: Layers, badge: "BBS" }
       ]
     },
     {
       id: "personal_bills" as MainSectionType,
-      title: "വ്യക്തിഗത ബില്ലുകളും പേയ്‌മെന്റുകളും",
-      subtitle: "PERSONAL BILLS & PAYMENTS",
-      shortLabel: "പേയ്‌മെന്റുകൾ",
+      title: "Personal Bills & Payments",
+      subtitle: "UTILITIES, SALARY & RD",
+      shortLabel: "Payments",
       icon: Wallet,
       defaultTab: "staff_salary" as TabType,
       color: "from-purple-500 via-pink-500 to-amber-500",
@@ -350,13 +336,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
       activeText: "text-purple-300",
       badge: "NEW",
       subTabs: [
-        { id: "staff_salary" as TabType, label: "സ്റ്റാഫ് ശമ്പളം & പേയ്‌മെന്റുകൾ", sub: "STAFF SALARY & OTHER PAYMENTS", icon: Users, badge: "SALARY" },
-        { id: "poov_mala_bill" as TabType, label: "പൂവ് മാല ബിൽ", sub: "POOV MALA BILL & PHOTO", icon: Sparkles, badge: "CALC" },
-        { id: "kseb_bills" as TabType, label: "KSEB വൈദ്യുതി ബിൽ", sub: "ELECTRICITY BILLS", icon: Zap, badge: "KSEB" },
-        { id: "health_insurance" as TabType, label: "ആരോഗ്യ ഇൻഷുറൻസ്", sub: "HEALTH INSURANCE & MEDICLAIM", icon: HeartPulse, badge: "HEALTH" },
-        { id: "rd_accounts" as TabType, label: "ആവർത്തന നിക്ഷേപം (RD)", sub: "60-MONTH RD MATRIX", icon: PiggyBank, badge: "PASSBOOK" },
-        { id: "panchayath_bills" as TabType, label: "പഞ്ചായത്ത് ഫീസ് & നികുതി", sub: "LICENCE & LOCAL TAXES", icon: Landmark, badge: "K-SMART" },
-        { id: "personal_vendors" as TabType, label: "വെണ്ടർമാരും ബില്ലുകളും", sub: "VENDORS & ALL BILLS", icon: Users, badge: "GPAY" }
+        { id: "staff_salary" as TabType, label: "Staff Salary & Payments", sub: "SALARY REGISTER", icon: Users, badge: "SALARY" },
+        { id: "poov_mala_bill" as TabType, label: "Poov Mala Bill", sub: "DAILY FLOWER BILL", icon: Sparkles, badge: "CALC" },
+        { id: "kseb_bills" as TabType, label: "KSEB Electricity Bills", sub: "POWER UTILITIES", icon: Zap, badge: "KSEB" },
+        { id: "health_insurance" as TabType, label: "Health Insurance", sub: "MEDICLAIM POLICIES", icon: HeartPulse, badge: "HEALTH" },
+        { id: "rd_accounts" as TabType, label: "Recurring Deposit (RD)", sub: "POST OFFICE RD PASSBOOK", icon: PiggyBank, badge: "PASSBOOK" },
+        { id: "panchayath_bills" as TabType, label: "Panchayath Fees & Taxes", sub: "TRADE LICENSE & FEES", icon: Landmark, badge: "K-SMART" },
+        { id: "personal_vendors" as TabType, label: "Vendors & Bills", sub: "ALL VENDOR PAYMENTS", icon: Users, badge: "GPAY" }
       ]
     }
   ];
@@ -369,7 +355,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <button
           onClick={() => setIsCollapsed(false)}
           className="p-1.5 rounded-2xl hover:bg-white/10 transition-transform hover:scale-105 cursor-pointer"
-          title="Expand Dock (ഡ്രോയർ വികസിപ്പിക്കുക)"
+          title="Expand Dock"
         >
           <Logo size={36} />
         </button>
@@ -377,7 +363,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <button
           onClick={() => setIsCollapsed(false)}
           className="p-2 text-purple-200 hover:text-white bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl transition cursor-pointer shadow-sm group"
-          title="Expand Dock / വികസിപ്പിക്കുക"
+          title="Expand Dock"
         >
           <PanelLeftOpen className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
         </button>
@@ -427,7 +413,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     {sec.subtitle}
                   </div>
                   <div className="text-[9.5px] text-purple-200/70 font-sans">
-                    {sec.subTabs.length} ടൂളുകൾ & വിഭാഗങ്ങൾ
+                    {sec.subTabs.length} Tools & Sub-sections
                   </div>
                 </div>
               )}
@@ -442,7 +428,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <button
           onClick={handleQuickAgreement}
           className="w-11 h-11 rounded-2xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-200 flex items-center justify-center transition hover:scale-105 cursor-pointer shadow-sm backdrop-blur-md"
-          title="Quick E-Stamp & Plain A4 Agreements / ഇ-സ്റ്റാമ്പ് പ്രിന്റ്"
+          title="Quick E-Stamp & Plain A4 Agreements"
         >
           <Stamp className="w-5 h-5" />
         </button>
@@ -485,7 +471,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <button
           onClick={() => setIsCollapsed(true)}
           className="hidden md:flex items-center justify-center p-1.5 text-purple-200/80 hover:text-white bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl transition cursor-pointer"
-          title="Collapse Dock to slim icon rail (ഡോക്ക് ചെറുതാക്കുക)"
+          title="Collapse Dock to slim icon rail"
         >
           <PanelLeftClose className="w-4 h-4" />
         </button>
@@ -506,10 +492,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <button
           onClick={handleQuickAgreement}
           className="flex-1 py-1.5 px-3 bg-gradient-to-r from-amber-500/25 to-pink-500/25 hover:from-amber-500/35 hover:to-pink-500/35 border border-amber-400/40 text-amber-200 rounded-full text-[10.5px] font-mono font-bold flex items-center justify-center gap-1.5 cursor-pointer transition shadow-sm backdrop-blur-md"
-          title="ഇ-സ്റ്റാമ്പ് & പ്ലെയിൻ A4 കരാർ നിർമ്മാണം"
+          title="Create E-Stamp & Plain A4 Agreement"
         >
           <Stamp className="w-3.5 h-3.5" />
-          <span>ഇ-സ്റ്റാമ്പ് കരാർ</span>
+          <span>E-Stamp Agreement</span>
         </button>
 
         <button
@@ -519,7 +505,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             if (isMobileOpen) setIsMobileOpen(false);
           }}
           className="py-1.5 px-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-full text-[10.5px] font-mono font-bold flex items-center gap-1 cursor-pointer transition backdrop-blur-md"
-          title="പുതിയ എസ്റ്റിമേറ്റ്"
+          title="New Estimate (BOQ)"
         >
           <Plus className="w-3.5 h-3.5 text-emerald-300" />
           <span>BOQ</span>

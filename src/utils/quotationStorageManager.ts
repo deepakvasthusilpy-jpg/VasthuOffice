@@ -1,4 +1,4 @@
-import { Quotation, QuotationLineItem, QuotationService, Contractor, TermsClause, QuotationStatus } from "../types";
+import { Quotation, QuotationLineItem, QuotationService, Contractor, TermsClause, QuotationStatus, CompanyDetails, ContractorDetails } from "../types";
 import { db } from "../lib/firebase";
 import { doc } from "firebase/firestore";
 import { safeSetDoc } from "./storageManager";
@@ -7,8 +7,33 @@ export const QUOTATION_STORAGE_KEYS = {
   QUOTATIONS: "vasthusilpy_quotations_v2",
   SERVICES: "vasthusilpy_quotation_services_v2",
   CONTRACTORS: "vasthusilpy_quotation_contractors_v2",
-  TERMS: "vasthusilpy_quotation_terms_v2"
+  TERMS: "vasthusilpy_quotation_terms_v2",
+  COMPANY_SETTINGS: "vasthusilpy_quotation_company_v2"
 };
+
+export function loadSavedCompanyDetails(): CompanyDetails | null {
+  try {
+    const raw = localStorage.getItem(QUOTATION_STORAGE_KEYS.COMPANY_SETTINGS);
+    if (raw) {
+      return JSON.parse(raw);
+    }
+  } catch (e) {
+    console.warn("Failed loading saved company details", e);
+  }
+  return null;
+}
+
+export function saveCompanyDetailsToStorage(details: CompanyDetails | null): void {
+  try {
+    if (details) {
+      localStorage.setItem(QUOTATION_STORAGE_KEYS.COMPANY_SETTINGS, JSON.stringify(details));
+    } else {
+      localStorage.removeItem(QUOTATION_STORAGE_KEYS.COMPANY_SETTINGS);
+    }
+  } catch (e) {
+    console.warn("Failed saving company details", e);
+  }
+}
 
 // Indian Currency Formatter (e.g., ₹8,42,000)
 export function formatINR(val: number): string {

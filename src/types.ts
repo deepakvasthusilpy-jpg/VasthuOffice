@@ -48,7 +48,6 @@ export type MainSectionType =
   | "ksmart"
   | "survey"
   | "civil"
-  | "rendering"
   | "quotation";
 
 export type QuotationTabType =
@@ -58,8 +57,6 @@ export type QuotationTabType =
   | "quotation_rates"
   | "quotation_contractors"
   | "quotation_terms";
-
-export type RenderingTabType = "ai_rendering";
 
 export type PanchangamTabType =
   | "panchangam_calendar"
@@ -132,9 +129,22 @@ export interface SubscriptionUserSession {
   loginTimestamp: number;
 }
 
-export type VasthuTabType = "calculator" | "side_finder" | "perimeter_vasthu" | "table" | "attachment" | "guide";
+export type VasthuTabType =
+  | "calculator"
+  | "agent"
+  | "side_finder"
+  | "perimeter_vasthu"
+  | "table"
+  | "attachment"
+  | "guide";
 
-export type BuildingRulesTabType = "rules_search" | "rules_pdf_viewer" | "rules_occupancies" | "rules_calculator" | "rules_calculators";
+export type BuildingRulesTabType =
+  | "rules_search"
+  | "rules_ai_chat"
+  | "rules_pdf_viewer"
+  | "rules_occupancies"
+  | "rules_calculator"
+  | "rules_calculators";
 
 export type KsmartTabType =
   | "rules_ksmart"
@@ -596,7 +606,6 @@ export type TabType =
   | InvoicesTabType
   | EstimateTabType
   | PersonalBillsTabType
-  | RenderingTabType
   | QuotationTabType;
 
 export type QuotationStatus = "draft" | "pending" | "approved" | "expired" | "expiring_soon";
@@ -645,15 +654,64 @@ export interface TermsClause {
   is_default: boolean;
 }
 
+export interface ContractorDetails {
+  name: string;
+  phone?: string;
+  trade?: string;
+  company?: string;
+  email?: string;
+  address?: string;
+}
+
+export interface CompanyDetails {
+  name: string;
+  tagline?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  gstin?: string;
+  license_no?: string;
+  logo_url?: string;
+}
+
 export interface Quotation {
   id: string;
   quotation_no: string;
   status: QuotationStatus;
+
+  // Document Title & Subtitle (fully editable)
+  document_title?: string;
+  document_subtitle?: string;
+
+  // Optional Company Details
+  include_company_details?: boolean;
+  company_name?: string;
+  company_tagline?: string;
+  company_address?: string;
+  company_phone?: string;
+  company_email?: string;
+  company_gstin?: string;
+
+  // Client Details
   client_name: string;
   client_phone: string;
   client_email?: string;
   site_address: string;
   plot_area_sqft?: number | string;
+
+  // Contractor Details (Placed near Client Details)
+  contractor_name?: string;
+  contractor_phone?: string;
+  contractor_trade?: string;
+  contractor_company?: string;
+  contractor_email?: string;
+  contractor_address?: string;
+
+  // Signatory Details
+  signatory_name?: string;
+  signatory_title?: string;
+  signatory_company?: string;
+
   date_issued: string;
   expiry_date: string;
   line_items: QuotationLineItem[];
