@@ -66,6 +66,7 @@ import { collection, onSnapshot, setDoc, doc, deleteDoc } from "firebase/firesto
 // Office Dashboard Components
 import { QuotationModule } from "./components/quotation/QuotationModule";
 import { OfficeDashboard } from "./components/office/OfficeDashboard";
+import { OnlineApplicationsTab } from "./components/office/crm/OnlineApplicationsTab";
 import { InvoicePaymentsTab } from "./components/invoices/InvoicePaymentsTab";
 import { OfficeDashboardTabType, InvoicesTabType, ConstructionTabType } from "./types";
 import { SubscriptionExpiredScreen } from "./components/subscription/SubscriptionExpiredScreen";
@@ -142,6 +143,8 @@ export default function App() {
               ? ("construction_dashboard" as TabType)
               : sec === "quotation"
               ? ("quotation_dashboard" as TabType)
+              : sec === "online_applications"
+              ? ("online_applications_directory" as TabType)
               : sec === "personal_bills"
               ? ("poov_mala_bill" as TabType)
               : ("home_overview" as TabType))
@@ -843,6 +846,16 @@ export default function App() {
               activeTab={activeTab as OfficeDashboardTabType}
               setActiveTab={(tab) => setActiveTab(tab)}
               estimateProjects={estimateProjects}
+            />
+          )}
+
+          {/* ONLINE APPLICATIONS SEPARATE MAIN SECTION */}
+          {activeSection === "online_applications" && (
+            <OnlineApplicationsTab
+              initialSubTab={activeTab === "online_applications_types" ? "types" : "directory"}
+              onSubTabChange={(sub) => {
+                setActiveTab(sub === "types" ? "online_applications_types" : "online_applications_directory");
+              }}
             />
           )}
 

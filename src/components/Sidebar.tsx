@@ -218,6 +218,22 @@ export const Sidebar: React.FC<SidebarProps> = ({
       ]
     },
     {
+      id: "online_applications" as MainSectionType,
+      title: "Online Applications",
+      subtitle: "PORTAL & LOGIN DIRECTORY",
+      shortLabel: "Applications",
+      icon: FileText,
+      defaultTab: "online_applications_directory" as TabType,
+      color: "from-teal-500 to-emerald-600",
+      activeBorder: "border-teal-400",
+      activeText: "text-teal-300",
+      badge: "PORTAL",
+      subTabs: [
+        { id: "online_applications_directory" as TabType, label: "Applications & Logins", sub: "APPLICANTS DIRECTORY", icon: FileText, badge: "LOGINS" },
+        { id: "online_applications_types" as TabType, label: "Applications Type", sub: "TYPES & DEPARTMENTS", icon: Layers, badge: "TYPES" }
+      ]
+    },
+    {
       id: "invoices_payments" as MainSectionType,
       title: "Invoices & Payments",
       subtitle: "BILLING & CLIENT PORTAL",

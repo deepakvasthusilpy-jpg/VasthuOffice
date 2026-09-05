@@ -34,10 +34,11 @@ import { ClientViewTab } from "../clientView/ClientViewTab";
 import { OfflineBackupRestoreModal } from "./OfflineBackupRestoreModal";
 import { TasksManagementView } from "./TasksManagementView";
 import { ImportantSitesView } from "../sites/ImportantSitesView";
+import { OnlineApplicationsTab } from "./OnlineApplicationsTab";
 import { EstimateProject } from "../../../data/estimateData";
 import { useLanguage } from "../../../context/LanguageContext";
 import { triggerAppNotification } from "../../../context/NotificationContext";
-import { FolderKanban, Receipt, AlertTriangle, Plus, CreditCard, ShieldAlert, History, Box, Users, BarChart3, Eye, Database, ListTodo, Globe } from "lucide-react";
+import { FolderKanban, Receipt, AlertTriangle, Plus, CreditCard, ShieldAlert, History, Box, Users, BarChart3, Eye, Database, ListTodo, Globe, FileText, Layers } from "lucide-react";
 
 
 interface VasthusilpyCrmTabProps {
@@ -635,6 +636,33 @@ export const VasthusilpyCrmTab: React.FC<VasthusilpyCrmTabProps> = ({
           </button>
 
           <button
+            onClick={() => handleTabSwitch("office_online_applications")}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-mono font-bold transition-all cursor-pointer ${
+              currentTab === "office_online_applications"
+                ? "bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/20 font-black"
+                : "text-slate-400 hover:text-white hover:bg-slate-900"
+            }`}
+          >
+            <FileText className="w-4 h-4" />
+            <span>{t("tab_online_applications", "Online Applications & Login Directory")}</span>
+            <span className="ml-1 text-[10px] bg-cyan-950 text-cyan-300 border border-cyan-800 px-2 py-0.5 rounded-full font-bold">
+              PORTAL
+            </span>
+          </button>
+
+          <button
+            onClick={() => handleTabSwitch("office_application_types")}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-mono font-bold transition-all cursor-pointer ${
+              currentTab === "office_application_types"
+                ? "bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20 font-black"
+                : "text-slate-400 hover:text-white hover:bg-slate-900"
+            }`}
+          >
+            <Layers className="w-4 h-4" />
+            <span>Applications Type</span>
+          </button>
+
+          <button
             onClick={() => handleTabSwitch("office_tasks")}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-mono font-bold transition-all cursor-pointer ${
               currentTab === "office_tasks"
@@ -695,7 +723,11 @@ export const VasthusilpyCrmTab: React.FC<VasthusilpyCrmTabProps> = ({
       </div>
 
       {/* RENDER CONTENT BASED ON TAB */}
-      {currentTab === "office_important_sites" ? (
+      {currentTab === "office_online_applications" ? (
+        <OnlineApplicationsTab initialSubTab="directory" />
+      ) : currentTab === "office_application_types" ? (
+        <OnlineApplicationsTab initialSubTab="types" />
+      ) : currentTab === "office_important_sites" ? (
         <ImportantSitesView />
       ) : currentTab === "office_tasks" ? (
         <TasksManagementView />

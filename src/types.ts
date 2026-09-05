@@ -48,7 +48,8 @@ export type MainSectionType =
   | "ksmart"
   | "survey"
   | "civil"
-  | "quotation";
+  | "quotation"
+  | "online_applications";
 
 export type QuotationTabType =
   | "quotation_dashboard"
@@ -162,7 +163,60 @@ export type OfficeDashboardTabType =
   | "office_crm"
   | "office_tasks"
   | "office_activities"
-  | "office_important_sites";
+  | "office_important_sites"
+  | "office_online_applications";
+
+export type OnlineApplicationStatus =
+  | "PENDING"
+  | "SUBMITTED"
+  | "IN_PROGRESS"
+  | "VERIFICATION"
+  | "APPROVED"
+  | "FEE_DUE"
+  | "COMPLETED"
+  | "REJECTED";
+
+export interface ApplicationPaymentRecord {
+  id: string;
+  date: string;
+  amount: number;
+  mode?: string; // "UPI_QR" | "CASH" | "BANK_TRANSFER" | "GPAY"
+  refNo?: string;
+  note?: string;
+}
+
+export interface ApplicationDetailItem {
+  id: string;
+  portal: string; // e.g. "K-SMART LSGD", "KSEB Electricity", "Kerala Water Authority (KWA)", "Fire & Rescue NOC", "KSPPCB", "Revenue / Pokkuvaravu", "e-District", "Other"
+  applicationNumber: string; // e.g. "KL-2026-PKD-0928"
+  loginId: string; // Username / Mobile / File ID
+  passwordOrPin?: string; // Deprecated / removed from UI
+  portalUrl?: string; // Quick URL to the portal
+  submissionDate?: string;
+  remarks?: string;
+  // Per-application payment entry
+  billAmount?: number; // Application specific fee/bill (₹)
+  paidAmount?: number; // Application specific paid amount (₹)
+  paymentStatus?: "PENDING" | "PARTIAL" | "PAID";
+  payments?: ApplicationPaymentRecord[];
+}
+
+export interface OnlineApplicantRecord {
+  id: string;
+  applicantName: string;
+  mobileNo: string;
+  email?: string;
+  address?: string;
+  applications: ApplicationDetailItem[];
+  status: OnlineApplicationStatus;
+  billAmount: number; // Bill amount in Rupees
+  paidAmount: number; // Paid amount in Rupees
+  lastPaymentDate?: string;
+  paymentMode?: string; // e.g. "UPI_QR", "CASH", "BANK_TRANSFER"
+  notes?: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
 export type ImportantSiteCategory =
   | "LSGD_GOVT"
@@ -592,6 +646,10 @@ export type ConstructionTabType =
 
 export type ConstructionStageMaster = ConstructionStageDefinition;
 
+export type OnlineApplicationsTabType =
+  | "online_applications_directory"
+  | "online_applications_types";
+
 export type TabType =
   | HomeTabType
   | PanchangamTabType
@@ -606,7 +664,8 @@ export type TabType =
   | InvoicesTabType
   | EstimateTabType
   | PersonalBillsTabType
-  | QuotationTabType;
+  | QuotationTabType
+  | OnlineApplicationsTabType;
 
 export type QuotationStatus = "draft" | "pending" | "approved" | "expired" | "expiring_soon";
 
@@ -654,7 +713,7 @@ export interface TermsClause {
   is_default: boolean;
 }
 
-export interface ContractorDetails {
+export interface QuotationContractorDetails {
   name: string;
   phone?: string;
   trade?: string;

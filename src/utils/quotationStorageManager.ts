@@ -1,4 +1,4 @@
-import { Quotation, QuotationLineItem, QuotationService, Contractor, TermsClause, QuotationStatus, CompanyDetails, ContractorDetails } from "../types";
+import { Quotation, QuotationLineItem, QuotationService, Contractor, TermsClause, QuotationStatus, CompanyDetails } from "../types";
 import { db } from "../lib/firebase";
 import { doc } from "firebase/firestore";
 import { safeSetDoc } from "./storageManager";

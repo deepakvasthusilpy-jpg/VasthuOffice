@@ -32,8 +32,10 @@ import {
   CreditCard,
   Receipt,
   ExternalLink,
-  Database
+  Database,
+  FileText
 } from "lucide-react";
+import { OnlineApplicationsTab } from "./OnlineApplicationsTab";
 
 interface ProjectsListViewProps {
   projects: CrmProject[];
@@ -72,6 +74,7 @@ export const ProjectsListView: React.FC<ProjectsListViewProps> = ({
   const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
   const [isReloading, setIsReloading] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [activeSubTab, setActiveSubTab] = useState<"pipeline" | "online_applications">("pipeline");
 
   const staffList: StaffName[] = ["DEEPAK", "VISHNU", "DIBIN"];
   const statuses: ProjectStatus[] = [
@@ -363,8 +366,47 @@ export const ProjectsListView: React.FC<ProjectsListViewProps> = ({
         </div>
       </div>
 
-      {/* PIPELINE STATUS FILTER TABS */}
-      <div className="bg-slate-950 border border-slate-800 rounded-2xl p-2 flex flex-wrap items-center gap-2 shadow-lg">
+      {/* SUB TABS UNDER VASTHUSILPY PROJECT PIPELINE & WINDOW */}
+      <div className="bg-slate-950 border border-slate-800 rounded-2xl p-1.5 flex flex-wrap items-center gap-2 shadow-lg">
+        <button
+          type="button"
+          onClick={() => setActiveSubTab("pipeline")}
+          className={`flex-1 sm:flex-none px-5 py-2.5 rounded-xl text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+            activeSubTab === "pipeline"
+              ? "bg-emerald-500 text-slate-950 font-black shadow-md shadow-emerald-500/20"
+              : "text-slate-400 hover:text-white hover:bg-slate-900"
+          }`}
+        >
+          <FolderKanban className="w-4 h-4" />
+          <span>PROJECT PIPELINE WINDOW</span>
+          <span className="text-[10px] bg-slate-900/80 px-2 py-0.5 rounded-full font-black">
+            {projects.length}
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveSubTab("online_applications")}
+          className={`flex-1 sm:flex-none px-5 py-2.5 rounded-xl text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+            activeSubTab === "online_applications"
+              ? "bg-emerald-500 text-slate-950 font-black shadow-md shadow-emerald-500/20"
+              : "text-slate-400 hover:text-white hover:bg-slate-900"
+          }`}
+        >
+          <FileText className="w-4 h-4" />
+          <span>ONLINE APPLICATIONS</span>
+          <span className="text-[10px] bg-cyan-950 text-cyan-300 border border-cyan-800 px-2 py-0.5 rounded-full font-bold">
+            UPI QR 9567627277@SLC
+          </span>
+        </button>
+      </div>
+
+      {activeSubTab === "online_applications" ? (
+        <OnlineApplicationsTab />
+      ) : (
+        <>
+          {/* PIPELINE STATUS FILTER TABS */}
+          <div className="bg-slate-950 border border-slate-800 rounded-2xl p-2 flex flex-wrap items-center gap-2 shadow-lg">
         <button
           onClick={() => setStatusFilter("ALL")}
           className={`px-4 py-2.5 rounded-xl text-xs font-mono font-bold flex items-center gap-2 transition-all cursor-pointer ${
@@ -905,6 +947,8 @@ export const ProjectsListView: React.FC<ProjectsListViewProps> = ({
             </tbody>
           </table>
         </div>
+      )}
+      </>
       )}
     </div>
   );
